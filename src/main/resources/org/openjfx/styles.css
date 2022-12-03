@@ -1,3 +1,58 @@
-.button {
-    -fx-text-fill: blue;
+.login-button {
+    -fx-font: 16px "Serif";
+    -fx-font-color: #000000;
+    -fx-padding: 10;
+    -fx-background-color: #ffffff;
+    -fx-cursor: hand;
+}
+
+.menu-button {
+    -fx-font: 16px "Serif";
+    -fx-padding: 10;
+    -fx-background-color: #4c0013;
+    -fx-min-width: 239;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+}
+
+.seat-button {
+    -fx-font: 16px "Serif";
+    -fx-padding: 10;
+    -fx-background-color: #ffffff;
+    -fx-min-width: 39;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+    -fx-text-fill: #000000;
+    -fx-font-size: 18;
+}
+
+.menu-button:hover {
+    -fx-background-color: #69051e;
+}
+
+.menu-sub-button {
+    -fx-font: 16px "Serif";
+    -fx-padding: 10;
+    -fx-background-color: #7d0422;
+    -fx-min-width: 239;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+}
+
+.menu-sub-button:hover {
+    -fx-background-color: #a3052c;
+}
+
+.login-pane {
+    -fx-background-color: #63081f;
+}
+
+.menu-pane {
+    -fx-background-color: #63081f;
+}
+
+.seat-pane {
+    -fx-background-color: #ff0000;
 }
