@@ -18,7 +18,7 @@ public abstract class DataManager {
         try {
             return statement.executeQuery(query);
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return null;
     }

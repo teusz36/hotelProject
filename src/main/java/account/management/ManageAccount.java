@@ -66,7 +66,7 @@ public abstract class ManageAccount {
         if(LoggedInAccount.isUserLoggedIn()) {
             if (Connect.getConnection() != null) {
                 boolean isUsernameReserved = false;
-                ResultSet rs = executeQuery("SELECT username FROM toik.users;");
+                ResultSet rs = executeQuery("SELECT username FROM hotelprojekt.users;");
                 while (rs.next()) {
                     if(rs.getString(1).equals(username)) {
                         isUsernameReserved = true;
@@ -74,7 +74,7 @@ public abstract class ManageAccount {
                 }
                 if(!isUsernameReserved) {
                     try {
-                        executeQuery("UPDATE toik.users SET username = '" + username + "', first_name = '" + firstname + "', last_name = '" + lastname + "', email = '" + email + "', password = '" + password + "' WHERE username = '" + LoggedInAccount.getLoggedInAccount().getUsername() + "';");
+                        executeQuery("UPDATE hotelprojekt.users SET username = '" + username + "', first_name = '" + firstname + "', last_name = '" + lastname + "', email = '" + email + "', password = '" + password + "' WHERE username = '" + LoggedInAccount.getLoggedInAccount().getUsername() + "';");
                         LoggedInAccount.setLoggedInAccount(new Account(username, firstname, lastname, email, password, LoggedInAccount.getLoggedInAccount().getAccountType()));
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -99,15 +99,15 @@ public abstract class ManageAccount {
         if(LoggedInAccount.isUserLoggedIn()) {
             if (Connect.getConnection() != null) {
                 boolean isUsernameReserved = false;
-                ResultSet rs = executeQuery("SELECT username FROM toik.users;");
+                ResultSet rs = executeQuery("SELECT username FROM hotelprojekt.users;");
                 while (rs.next()) {
                     if(rs.getString(1).equals(username)) {
                         isUsernameReserved = true;
                     }
                 }
-                if(!isUsernameReserved) {
+                if(!isUsernameReserved || username.equals(oldUsername)) {
                     try {
-                        executeQuery("UPDATE toik.users SET username = '" + username + "', first_name = '" + firstname + "', last_name = '" + lastname + "', email = '" + email + "', password = '" + password + "' WHERE username = '" + oldUsername + "';");
+                        executeQuery("UPDATE hotelprojekt.users SET username = '" + username + "', first_name = '" + firstname + "', last_name = '" + lastname + "', email = '" + email + "', password = '" + password + "' WHERE username = '" + oldUsername + "';");
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -119,6 +119,34 @@ public abstract class ManageAccount {
     }
 
     /**
+     * Metoda pobierająca konta z bazy.
+     * @return ResultSet z kontami.
+     */
+    public static ResultSet getAccounts() throws SQLException {
+        if(Connect.getConnection() != null) {
+            return executeQuery("SELECT * FROM hotelprojekt.users WHERE account_type = " + Account.PLAYER + " ORDER BY user_id;");
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Metoda pobierająca konta z bazy.
+     * @return ResultSet z kontami.
+     */
+    public static ResultSet getAccountsExcept(String user_ids) throws SQLException {
+        if(Connect.getConnection() != null) {
+            if(user_ids.equals("")){
+                return executeQuery("SELECT * FROM hotelprojekt.users WHERE account_type = " + Account.PLAYER + " ORDER BY user_id;");
+            } else {
+                return executeQuery("SELECT * FROM hotelprojekt.users WHERE account_type = " + Account.PLAYER + " AND user_id NOT IN (" + user_ids + ") ORDER BY user_id;");
+            }
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Metoda pobierająca informacje o danym użytkowniku na podstawie id.
      * @param userId id użytkownika
      * @return Tablica z danymi.
@@ -126,7 +154,7 @@ public abstract class ManageAccount {
     public static String[] getUserInfo(int userId) throws SQLException {
         if(Connect.getConnection() != null) {
             String[] info = new String[6];
-            ResultSet rs =  executeQuery("SELECT * FROM toik.users WHERE user_id = " + userId + ";");
+            ResultSet rs =  executeQuery("SELECT * FROM hotelprojekt.users WHERE user_id = " + userId + " ORDER BY user_id;");
             while (rs.next()) {
                 info[0] = rs.getString(2);
                 info[1] = rs.getString(3);
@@ -148,7 +176,7 @@ public abstract class ManageAccount {
     public static String[] getUserInfo(String username) throws SQLException {
         if(Connect.getConnection() != null) {
             String[] info = new String[6];
-            ResultSet rs =  executeQuery("SELECT * FROM toik.users WHERE username = '" + username + "';");
+            ResultSet rs =  executeQuery("SELECT * FROM hotelprojekt.users WHERE username = '" + username + "' ORDER BY user_id;");
             while (rs.next()) {
                 info[0] = rs.getString(2);
                 info[1] = rs.getString(3);
