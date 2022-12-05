@@ -33,6 +33,8 @@ public class LoginScreenController {
             LoginAccount.logInUser(loginScreenLogin.getText(), loginScreenPassword.getText());
             if(LoggedInAccount.getLoggedInAccount().getAccountType() == Account.GAME_ADMIN) {
                 App.setRoot("paneladminscreen");
+            } else if(LoggedInAccount.getLoggedInAccount().getAccountType() == Account.PLAYER) {
+                App.setRoot("usermainscreen");
             }
         } catch (SQLException e) {
             e.printStackTrace();

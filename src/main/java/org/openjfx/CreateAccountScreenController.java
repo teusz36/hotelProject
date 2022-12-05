@@ -52,6 +52,7 @@ public class CreateAccountScreenController {
         App.setRoot("paneladmingamesscreen");
     }
 
+
     /**
      * Metoda przełączająca na paneladminaccountsscreen
      * @throws IOException
@@ -59,6 +60,11 @@ public class CreateAccountScreenController {
     @FXML
     private void switchToAccountEdit() throws IOException {
         App.setRoot("paneladminaccountsscreen");
+    }
+
+    @FXML
+    private void switchToAccount() throws IOException {
+        App.setRoot("adminaccountscreen");
     }
 
     /**

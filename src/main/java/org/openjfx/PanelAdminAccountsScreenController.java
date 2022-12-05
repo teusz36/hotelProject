@@ -123,6 +123,11 @@ public class PanelAdminAccountsScreenController {
         App.setRoot("editaccountscreen");
     }
 
+    @FXML
+    private void switchToAccount() throws IOException {
+        App.setRoot("adminaccountscreen");
+    }
+
     /**
      * Metoda wylogowująca użytkownika
      */

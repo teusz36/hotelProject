@@ -108,6 +108,11 @@ public abstract class ManageAccount {
                 if(!isUsernameReserved || username.equals(oldUsername)) {
                     try {
                         executeQuery("UPDATE hotelprojekt.users SET username = '" + username + "', first_name = '" + firstname + "', last_name = '" + lastname + "', email = '" + email + "', password = '" + password + "' WHERE username = '" + oldUsername + "';");
+                        LoggedInAccount.getLoggedInAccount().setUsername(username);
+                        LoggedInAccount.getLoggedInAccount().setName(firstname);
+                        LoggedInAccount.getLoggedInAccount().setLastName(lastname);
+                        LoggedInAccount.getLoggedInAccount().setPassword(password);
+                        LoggedInAccount.getLoggedInAccount().setEmail(email);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -188,5 +193,15 @@ public abstract class ManageAccount {
             }
         }
         return null;
+    }
+
+    /**
+     * Meetoda zwracająca id użytkownika z podanym loginem.
+     * @param username login użytkownika.
+     * @return id użytkownika.
+     * @throws SQLException
+     */
+    public static int getUserId(String username) throws SQLException {
+        return Integer.parseInt(getUserInfo(username)[5]);
     }
 }

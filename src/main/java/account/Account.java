@@ -79,4 +79,10 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setAccountType(int accountType) {
+        this.accountType = accountType;
+    }
+
+
 }

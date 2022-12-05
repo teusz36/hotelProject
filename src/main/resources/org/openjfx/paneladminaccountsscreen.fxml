@@ -11,7 +11,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <children>
-        <Pane maxHeight="610.0" maxWidth="500.0" minHeight="610.0" minWidth="239.0" prefHeight="610.0" prefWidth="214.0" styleClass="menu-pane" stylesheets="@styles.css">
+        <Pane maxHeight="635.0" maxWidth="500.0" minHeight="635.0" minWidth="239.0" prefHeight="635.0" prefWidth="214.0" styleClass="menu-pane" stylesheets="@styles.css">
             <children>
                 <Label layoutX="58.0" layoutY="14.0" text="Menu" textFill="WHITE">
                     <font>
@@ -33,7 +33,12 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="panelscreenLogOut" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#logout" styleClass="menu-button" stylesheets="@styles.css" text="WYLOGUJ" textFill="WHITE">
+                <Button fx:id="accountscreenAccount" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#switchToAccount" styleClass="menu-sub-button" stylesheets="@styles.css" text="MOJE KONTO" textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="panelscreenLogOut" layoutY="300.0" mnemonicParsing="false" onMouseClicked="#logout" styleClass="menu-button" stylesheets="@styles.css" text="WYLOGUJ" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -46,7 +51,8 @@
                     <font>
                         <Font size="48.0" />
                     </font>
-                </Label><VBox layoutY="89.0" prefHeight="475.0" prefWidth="891.0">
+                </Label>
+                <VBox layoutY="89.0" prefHeight="475.0" prefWidth="891.0">
                 <children>
                     <TableView fx:id="usersTable" prefHeight="474.0" prefWidth="891.0" stylesheets="@styles.css">
                         <columns>

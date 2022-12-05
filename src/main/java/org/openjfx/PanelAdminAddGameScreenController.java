@@ -260,6 +260,10 @@ public class PanelAdminAddGameScreenController {
         }
     }
 
+    @FXML
+    private void switchToAccount() throws IOException {
+        App.setRoot("adminaccountscreen");
+    }
 
     /**
      * Metoda wylogowująca użytkownika

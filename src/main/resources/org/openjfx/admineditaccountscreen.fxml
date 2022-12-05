@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="TOP_CENTER" prefHeight="675.0" prefWidth="1200.0" spacing="20.0" style="-fx-background-color: #4c0013;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.EditAccountScreenController">
+<HBox alignment="TOP_CENTER" prefHeight="675.0" prefWidth="1200.0" spacing="20.0" style="-fx-background-color: #4c0013;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.UserEditAccountScreenController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -28,7 +28,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="accountscreenEditAccounts" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#switchToAddAccount" styleClass="menu-sub-button" stylesheets="@styles.css" text="ZARZĄDZANIE KONTAMI" textFill="WHITE">
+                <Button fx:id="accountscreenEditAccounts" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#switchToAccountEdit" styleClass="menu-sub-button" stylesheets="@styles.css" text="ZARZĄDZANIE KONTAMI" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -47,7 +47,7 @@
         </Pane>
         <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
             <children>
-                <Label layoutX="292.0" layoutY="14.0" text="Edycja użytkownika" textFill="WHITE">
+                <Label layoutX="256.0" layoutY="14.0" text="Edycja użytkownika" textFill="WHITE">
                     <font>
                         <Font size="48.0" />
                     </font>
@@ -72,6 +72,7 @@
                         </TextArea>
                     </children>
                 </HBox>
+
                 <HBox alignment="CENTER" layoutX="37.0" layoutY="200.0" prefHeight="75.0" prefWidth="840.0">
                     <children>
                         <Label text="Hasło:" textFill="WHITE">
@@ -152,16 +153,11 @@
                         </TextArea>
                     </children>
                 </HBox>
-                <Button fx:id="editUserScreenAdd" layoutX="317.0" layoutY="459.0" mnemonicParsing="false" onMouseClicked="#editUser" styleClass="login-button" stylesheets="@styles.css" text="ZAPISZ">
+                <Button fx:id="editUserScreenAdd" layoutX="408.0" layoutY="453.0" mnemonicParsing="false" onMouseClicked="#editUser" styleClass="login-button" stylesheets="@styles.css" text="ZAPISZ">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-            <Button fx:id="editUserScreenDelete" layoutX="497.0" layoutY="459.0" mnemonicParsing="false" onMouseClicked="#deleteUser" styleClass="login-button" stylesheets="@styles.css" text="USUŃ UŻYTKOWNIKA">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
             <VBox alignment="CENTER" layoutX="-1.0" layoutY="530.0" prefHeight="75.0" prefWidth="891.0">
                <children>
                   <Label fx:id="editUserScreenError" textFill="#ff1a1a">

@@ -7,6 +7,8 @@ import java.io.IOException;
 
 public class PanelAdminScreenController {
 
+    public static int editUserId;
+
     public static int getEditUserId() {
         return editUserId;
     }
@@ -14,8 +16,6 @@ public class PanelAdminScreenController {
     public static void setEditUserId(int editUserId) {
         PanelAdminScreenController.editUserId = editUserId;
     }
-
-    public static int editUserId;
 
     /**
      * Metoda przełączająca na paneladminaccountsscreen
@@ -33,6 +33,11 @@ public class PanelAdminScreenController {
     @FXML
     private void switchToGames() throws IOException {
         App.setRoot("paneladmingamesscreen");
+    }
+
+    @FXML
+    private void switchToAccount() throws IOException {
+        App.setRoot("adminaccountscreen");
     }
 
     /**

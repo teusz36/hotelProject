@@ -60,4 +60,15 @@ public abstract class ManageGame {
             executeQuery("UPDATE hotelprojekt.game_users SET ready = false WHERE game_id = " + game_id + ";");
         }
     }
+
+    /**
+     * Metoda oznaczająca rundę jako gotową do przeniesienia.
+     * @param game_id id gry.
+     * @param user_id id użytkownika.
+     */
+    public static void markGameAsReady(int game_id, int user_id) throws SQLException {
+        if(Connect.getConnection() != null) {
+            executeQuery("UPDATE hotelprojekt.game_users SET ready = true WHERE game_id = " + game_id + " AND user_id = " + user_id + ";");
+        }
+    }
 }

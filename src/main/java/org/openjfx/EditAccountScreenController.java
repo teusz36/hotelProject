@@ -43,7 +43,7 @@ public class EditAccountScreenController {
     }
 
     @FXML
-    private void editTicketCollector() throws SQLException, IOException {
+    private void editUser() throws SQLException, IOException {
         try {
             ManageAccount.updateAccountsData(ManageAccount.getUserInfo(PanelAdminScreenController.getEditUserId())[0], editUserScreenLogin.getText(), editUserScreenName.getText(), editUserScreenLastName.getText(), editUserScreenEmail.getText(), editUserScreenPassword.getText());
             App.setRoot("paneladminaccountsscreen");
@@ -53,7 +53,7 @@ public class EditAccountScreenController {
     }
 
     @FXML
-    private void deleteTicketCollector() throws SQLException, AccountException, IOException {
+    private void deleteUser() throws SQLException, AccountException, IOException {
         ManageAccount.deleteAccount(ManageAccount.getUserInfo(PanelAdminScreenController.getEditUserId())[0]);
         App.setRoot("paneladminaccountsscreen");
     }
@@ -74,6 +74,11 @@ public class EditAccountScreenController {
     @FXML
     private void switchToAddAccount() throws IOException {
         App.setRoot("createaccountscreen");
+    }
+
+    @FXML
+    private void switchToAccount() throws IOException {
+        App.setRoot("useraccountscreen");
     }
 
     /**

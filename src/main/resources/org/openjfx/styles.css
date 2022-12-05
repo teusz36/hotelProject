@@ -60,6 +60,7 @@
 .table-view {
     -fx-background-color: transparent;
     -fx-text-background-color: white;
+    -fx-cursor: hand;
 }
 
 .table-view .column-header-background .filler {
@@ -97,12 +98,11 @@
     -fx-selection-bar: blue;
 }
 .table-row-cell: hover {
-    -fx-background-color: green;
-    -fx-text-background-color: red;
+    -fx-background-color: #300210;
 }
 .table-view:focused .table-row-cell:selected {
-    -fx-background-color: red;
-    -fx-table-cell-border-color: red;
+    -fx-background-color: #4d051a;
+    -fx-table-cell-border-color: #4d051a;
 }
 
 

@@ -1,8 +1,11 @@
 package org.openjfx;
 
+import account.authentication.LoggedInAccount;
 import account.authentication.LoginAccount;
 import account.management.ManageAccount;
 import display.GameDisplayer;
+import game.Game;
+import game.management.CurrentlyPlayedGame;
 import game.management.ManageGame;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +20,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PanelAdminGamesScreenController {
+public class UserMainScreenController {
 
     private ResultSet games;
     private int numberOfColumns;
@@ -25,7 +28,7 @@ public class PanelAdminGamesScreenController {
     private final String[] columnNames = {"Id gry", "Data rozpoczęcia", "Data zakończenia", "Gra aktywna", "Obecna runda", "Liczba użytkowników"};
 
     @FXML
-    private TableView gamesTable;
+    private TableView userGamesTable;
 
     /**
      * Metoda inicjalizująca. Wywoływana przy tworzeniu okna.
@@ -35,26 +38,26 @@ public class PanelAdminGamesScreenController {
     }
 
     /**
-     * Metoda wyświetlająca tablicę ze wszystkimi grami.
+     * Metoda wyświetlająca tablicę z grami gracza.
      */
     public void viewTable() {
         try {
-            games = ManageGame.getGames();
-            gamesTable.getItems().clear();
-            gamesTable.getColumns().clear();
+            games = GameDisplayer.getUserGames(String.valueOf(ManageAccount.getUserId(LoggedInAccount.getLoggedInAccount().getUsername())));
+            userGamesTable.getItems().clear();
+            userGamesTable.getColumns().clear();
             numberOfColumns = games.getMetaData().getColumnCount();
 
             for(int j = 0; j < numberOfColumns; j++) {
                 columnKeys[j] = games.getMetaData().getColumnName(j+1) + "Key";
                 TableColumn<Map, String> col = new TableColumn<>(columnNames[j]);
                 col.setCellValueFactory(new MapValueFactory(columnKeys[j]));
-                gamesTable.getColumns().add(col);
+                userGamesTable.getColumns().add(col);
             }
             TableColumn<Map, String> col = new TableColumn<>("Gotowa do przeniesienia");
             col.setCellValueFactory(new MapValueFactory(columnKeys[numberOfColumns]));
-            gamesTable.getColumns().add(col);
+            userGamesTable.getColumns().add(col);
 
-            gamesTable.getItems().setAll(generateDataInMap());
+            userGamesTable.getItems().setAll(generateDataInMap());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,7 +65,7 @@ public class PanelAdminGamesScreenController {
 
     /**
      * Metoda generująca dane do tabeli z grami.
-     * @return ObservableList z grami.
+     * @return ObservableList z użytkownikami.
      * @throws SQLException
      */
     private ObservableList<Map> generateDataInMap() throws SQLException {
@@ -92,86 +95,26 @@ public class PanelAdminGamesScreenController {
         return allData;
     }
 
-    /**
-     * Metoda pobierająca id wybranej gry.
-     * @return id wybranej gry lub 0, jeśli żadna nie jest wybrana.
-     */
     @FXML
-    private int getGameId() {
+    private void playSelectedGame() {
         try {
             ObservableList selectedSession;
-            selectedSession = gamesTable.getSelectionModel().getSelectedItems();
+            selectedSession = userGamesTable.getSelectionModel().getSelectedItems();
             String[] daneSplit = selectedSession.get(0).toString().split(",");
             String[] daneSplit2 = daneSplit[2].split("=");
-            System.out.println(selectedSession.get(0).toString());
-            System.out.println(daneSplit2[1]);
-            return Integer.parseInt(daneSplit2[1]);
+            ResultSet gameInfo = GameDisplayer.getGameByID(daneSplit2[1]);
+            while (gameInfo.next()) {
+                CurrentlyPlayedGame.setCurrentGame(new Game(gameInfo.getString(1), gameInfo.getString(5), gameInfo.getString(4), ManageGame.isGameReady(gameInfo.getString(1)), gameInfo.getString(6)));
+            }
+            App.setRoot("gamedashboard");
         } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
+            System.out.println("Nie wybrano gry");
         }
-    }
-
-    /**
-     * Metoda pobierająca numer rundy wybranej gry.
-     * @return numer rundy wybranej gry.
-     */
-    @FXML
-    private int getGameNumber() {
-        try {
-            ObservableList selectedSession;
-            selectedSession = gamesTable.getSelectionModel().getSelectedItems();
-            String[] daneSplit = selectedSession.get(0).toString().split(",");
-            String[] daneSplit2 = daneSplit[4].split("=");
-            return Integer.parseInt(daneSplit2[1]);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
-    /**
-     * Metoda przełączająca na paneladmingamesscreen
-     * @throws IOException
-     */
-    @FXML
-    private void switchToGames() throws IOException {
-        App.setRoot("paneladmingamesscreen");
-    }
-
-    /**
-     * Metoda przełączająca na paneladmingamesscreen
-     * @throws IOException
-     */
-    @FXML
-    private void switchToAccounts() throws IOException {
-        App.setRoot("paneladminaccountsscreen");
-    }
-
-    /**
-     * Metoda przełączająca na createaccountscreen
-     * @throws IOException
-     */
-    @FXML
-    private void switchToAddGame() throws IOException {
-        App.setRoot("paneladminaddgamescreen");
-    }
-
-    /**
-     * Metoda przenosząca grę do następnej rundy.
-     * @throws IOException
-     */
-    @FXML
-    private void moveGameToNextRound() throws SQLException, IOException {
-        if(ManageGame.isGameReady(String.valueOf(getGameId()))) {
-            ManageGame.moveGameToNextRound(getGameId(), getGameNumber() + 1);
-        }
-        App.setRoot("paneladmingamesscreen");
     }
 
     @FXML
     private void switchToAccount() throws IOException {
-        App.setRoot("adminaccountscreen");
+        App.setRoot("useraccountscreen");
     }
 
     /**
