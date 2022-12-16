@@ -14,19 +14,19 @@ import javafx.scene.control.Label;
 public class DashboardController {
 
     @FXML
-    Label dashboardRoundNumber;
+    Label dashboardTabInfoRoundNumber;
 
     @FXML
-    Label dashboardGameId;
+    Label dashboardTabInfoGameId;
 
     @FXML
-    Label dashboardIsReady;
+    Label dashboardTabInfoIsReady;
 
     @FXML
     private void initialize() {
-        dashboardRoundNumber.setText("runda " + CurrentlyPlayedGame.getCurrentGame().getCurrentRound());
-        dashboardGameId.setText(String.valueOf(CurrentlyPlayedGame.getCurrentGame().getGameId()));
-        dashboardIsReady.setText(String.valueOf(CurrentlyPlayedGame.getCurrentGame().isGameReadyForNextRound()));
+        dashboardTabInfoRoundNumber.setText("runda " + CurrentlyPlayedGame.getCurrentGame().getCurrentRound());
+        dashboardTabInfoGameId.setText(String.valueOf(CurrentlyPlayedGame.getCurrentGame().getGameId()));
+        dashboardTabInfoIsReady.setText(String.valueOf(CurrentlyPlayedGame.getCurrentGame().isGameReadyForNextRound()));
     }
 
     @FXML

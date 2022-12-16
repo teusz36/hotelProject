@@ -35,36 +35,63 @@
                 </Button>
             </children>
         </Pane>
-        <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
-            <children>
-            <VBox alignment="CENTER" prefHeight="90.0" prefWidth="891.0">
-               <children>
-                      <Label fx:id="dashboardRoundNumber" text="&lt;round_number&gt;" textFill="WHITE">
-                          <font>
-                              <Font size="48.0" />
-                          </font>
-                      </Label>
-               </children>
-            </VBox>
-                <VBox alignment="TOP_CENTER" layoutY="89.0" prefHeight="546.0" prefWidth="891.0">
-                    <opaqueInsets>
-                        <Insets />
-                    </opaqueInsets>
-               <children>
-                  <Label fx:id="dashboardGameId" text="&lt;round_number&gt;" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="dashboardIsReady" layoutX="360.0" layoutY="10.0" text="&lt;round_number&gt;" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-                </VBox>
-                <Button layoutX="421.0" layoutY="582.0" mnemonicParsing="false" onMouseClicked="#markAsReady" styleClass="login-button" stylesheets="@styles.css" text="Zgłoś gotowość" />
-            </children>
-        </Pane>
+      <TabPane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Informacje o firmie">
+            <content>
+              <AnchorPane prefHeight="635.0" prefWidth="891.0">
+                     <children>
+                          <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
+                              <children>
+                              <VBox alignment="CENTER" prefHeight="90.0" prefWidth="891.0">
+                                 <children>
+                                        <Label fx:id="dashboardTabInfoRoundNumber" text="&lt;round_number&gt;" textFill="WHITE">
+                                            <font>
+                                                <Font size="48.0" />
+                                            </font>
+                                        </Label>
+                                 </children>
+                              </VBox>
+                                  <VBox alignment="TOP_CENTER" layoutY="89.0" prefHeight="546.0" prefWidth="891.0">
+                                      <opaqueInsets>
+                                          <Insets />
+                                      </opaqueInsets>
+                                 <children>
+                                    <Label fx:id="dashboardTabInfoGameId" text="&lt;round_number&gt;" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="dashboardTabInfoIsReady" layoutX="360.0" layoutY="10.0" text="&lt;round_number&gt;" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                  </VBox>
+                                  <Button layoutX="421.0" layoutY="582.0" mnemonicParsing="false" onMouseClicked="#markAsReady" styleClass="login-button" stylesheets="@styles.css" text="Zgłoś gotowość" />
+                              </children>
+                          </Pane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Oferta">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Stanowiska">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                      <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
+                  </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
     </children>
 </HBox>
