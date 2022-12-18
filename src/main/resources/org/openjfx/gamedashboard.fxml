@@ -3,10 +3,11 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="TOP_CENTER" prefHeight="675.0" prefWidth="1200.0" spacing="20.0" style="-fx-background-color: #4c0013;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.DashboardController">
+<HBox alignment="TOP_CENTER" prefHeight="675.0" prefWidth="1200.0" spacing="20.0" style="-fx-background-color: #4c0013;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.DashboardController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -35,63 +36,124 @@
                 </Button>
             </children>
         </Pane>
-      <TabPane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Informacje o firmie">
-            <content>
-              <AnchorPane prefHeight="635.0" prefWidth="891.0">
-                     <children>
-                          <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
-                              <children>
-                              <VBox alignment="CENTER" prefHeight="90.0" prefWidth="891.0">
-                                 <children>
-                                        <Label fx:id="dashboardTabInfoRoundNumber" text="&lt;round_number&gt;" textFill="WHITE">
-                                            <font>
-                                                <Font size="48.0" />
-                                            </font>
-                                        </Label>
-                                 </children>
-                              </VBox>
-                                  <VBox alignment="TOP_CENTER" layoutY="89.0" prefHeight="546.0" prefWidth="891.0">
-                                      <opaqueInsets>
-                                          <Insets />
-                                      </opaqueInsets>
-                                 <children>
-                                    <Label fx:id="dashboardTabInfoGameId" text="&lt;round_number&gt;" textFill="WHITE">
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="dashboardTabInfoIsReady" layoutX="360.0" layoutY="10.0" text="&lt;round_number&gt;" textFill="WHITE">
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                  </VBox>
-                                  <Button layoutX="421.0" layoutY="582.0" mnemonicParsing="false" onMouseClicked="#markAsReady" styleClass="login-button" stylesheets="@styles.css" text="Zgłoś gotowość" />
-                              </children>
-                          </Pane>
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Oferta">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Stanowiska">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <children>
-                      <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
-                  </children></AnchorPane>
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
+        <TabPane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Informacje o firmie">
+                    <content>
+                        <AnchorPane prefHeight="635.0" prefWidth="891.0">
+                            <children>
+                                <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
+                                    <children>
+                                        <VBox alignment="CENTER" prefHeight="90.0" prefWidth="891.0">
+                                            <children>
+                                                <Label fx:id="dashboardTabInfoRoundNumber" text="&lt;round_number&gt;" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="48.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="TOP_CENTER" layoutY="89.0" prefHeight="546.0" prefWidth="891.0">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                            <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="161.0" prefWidth="891.0">
+                                                    <children>
+                                                        <VBox alignment="CENTER">
+                                                            <HBox.margin>
+                                                                <Insets left="80.0" />
+                                                            </HBox.margin>
+                                                            <children>
+                                                                <Label fx:id="dashboardTabInfoLogoLabel" contentDisplay="CENTER" text="Prześlij Logo Firmy: " textFill="WHITE">
+                                                                    <font>
+                                                                        <Font size="24.0" />
+                                                                    </font>
+                                                                </Label>
+                                                                <Button mnemonicParsing="false" onMouseClicked="#fileSelection" prefHeight="38.0" prefWidth="209.0" text="Wybierz Plik" textAlignment="CENTER">
+                                                                    <opaqueInsets>
+                                                                        <Insets top="10.0" />
+                                                                    </opaqueInsets></Button>
+                                                            </children>
+                                                        </VBox>
+                                                        <ImageView fx:id="dashboardTabInfoLogo" fitHeight="240.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                                                            <HBox.margin>
+                                                                <Insets bottom="10.0" left="180.0" right="10.0" top="10.0" />
+                                                            </HBox.margin>
+                                                        </ImageView>
+                                                    </children>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                    </VBox.margin>
+                                                    <padding>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                    </padding>
+                                                </HBox>
+                                                <HBox>
+                                                    <children>
+                                                        <Label fx:id="dashboardTabInfoNameLabel" text="Wybierz Nazwe Firmy: " textFill="WHITE">
+                                                            <font>
+                                                                <Font size="24.0" />
+                                                            </font>
+                                                            <HBox.margin>
+                                                                <Insets bottom="10.0" left="80.0" right="10.0" top="10.0" />
+                                                            </HBox.margin>
+                                                            <padding>
+                                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                            </padding>
+                                                        </Label>
+                                                        <TextArea fx:id="dashboardTabInfoCompanyName" prefHeight="42.0" prefWidth="430.0">
+                                                            <HBox.margin>
+                                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                            </HBox.margin>
+                                                        </TextArea>
+                                                    </children>
+                                                </HBox>
+                                                <HBox>
+                                                    <children>
+                                                        <Label fx:id="dashboardTabInfoMissionLabel" text="Wybierz Misje Firmy: " textFill="WHITE">
+                                                            <font>
+                                                                <Font size="24.0" />
+                                                            </font>
+                                                            <HBox.margin>
+                                                                <Insets bottom="10.0" left="80.0" right="10.0" top="10.0" />
+                                                            </HBox.margin>
+                                                            <padding>
+                                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                            </padding>
+                                                        </Label>
+                                                        <TextArea fx:id="dashboardTabInfoCompanyMission" prefHeight="42.0" prefWidth="430.0">
+                                                            <HBox.margin>
+                                                                <Insets bottom="10.0" left="25.0" right="10.0" top="10.0" />
+                                                            </HBox.margin>
+                                                        </TextArea>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                        <Button layoutX="421.0" layoutY="582.0" mnemonicParsing="false" onMouseClicked="#markAsReady" styleClass="login-button" stylesheets="@styles.css" text="Zgłoś gotowość" />
+                                    </children>
+                                </Pane>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Oferta">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Stanowiska">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
     </children>
 </HBox>
