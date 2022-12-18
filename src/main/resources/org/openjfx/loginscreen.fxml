@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="675.0" prefWidth="1200.0" spacing="20.0" style="-fx-background-color: #4c0013;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.LoginScreenController">
+   <children>
+       <Pane maxHeight="610.0" maxWidth="500.0" minHeight="610.0" minWidth="500.0" prefHeight="610.0" prefWidth="451.0" styleClass="login-pane" stylesheets="@styles.css">
+           <children>
+               <Label layoutX="174.0" layoutY="25.0" text="Hotelik" textFill="WHITE">
+                   <font>
+                       <Font size="48.0" />
+                   </font>
+               </Label>
+               <Label layoutX="207.0" layoutY="121.0" text="Zaloguj się" textFill="WHITE">
+                   <font>
+                       <Font size="18.0" />
+                   </font>
+               </Label>
+               <HBox alignment="CENTER" layoutX="-186.0" layoutY="149.0" prefHeight="75.0" prefWidth="840.0">
+                   <children>
+                       <Label text="Podaj login:" textFill="WHITE">
+                           <HBox.margin>
+                               <Insets right="30.0" />
+                           </HBox.margin>
+                           <font>
+                               <Font size="18.0" />
+                           </font>
+                       </Label>
+                       <TextArea fx:id="loginScreenLogin" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0">
+                           <font>
+                               <Font name="Arial" size="14.0" />
+                           </font>
+                           <padding>
+                               <Insets top="3.0" />
+                           </padding></TextArea>
+                   </children>
+               </HBox>
+               <HBox alignment="CENTER" layoutX="-186.0" layoutY="230.0" prefHeight="75.0" prefWidth="840.0">
+                   <children>
+                       <Label text="Podaj hasło:" textFill="WHITE">
+                           <HBox.margin>
+                               <Insets right="30.0" />
+                           </HBox.margin>
+                           <font>
+                               <Font size="18.0" />
+                           </font>
+                       </Label>
+                       <PasswordField fx:id="loginScreenPassword" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0">
+                           <padding>
+                               <Insets top="3.0" />
+                           </padding>
+                           <font>
+                               <Font name="Arial" size="14.0" />
+                           </font></PasswordField>
+                   </children>
+               </HBox>
+               <HBox alignment="CENTER" layoutX="-170.0" layoutY="354.0" prefHeight="75.0" prefWidth="840.0">
+                   <children>
+                       <Button fx:id="loginScreenLoginButton" mnemonicParsing="false" onMouseClicked="#loginAttempt" styleClass="login-button" stylesheets="@styles.css" text="ZALOGUJ">
+                           <cursor>
+                               <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <HBox.margin>
+                               <Insets />
+                           </HBox.margin>
+                       </Button>
+                   </children>
+               </HBox>
+               <VBox alignment="CENTER" layoutY="305.0" prefHeight="49.0" prefWidth="500.0">
+                   <children>
+                       <Label fx:id="loginScreenError" prefHeight="27.0" textFill="#ff1a1a">
+                           <font>
+                               <Font size="18.0" />
+                           </font>
+                       </Label>
+                   </children>
+               </VBox>
+           </children>
+       </Pane>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

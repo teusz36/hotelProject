@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="TOP_CENTER" prefHeight="675.0" prefWidth="1200.0" spacing="20.0" style="-fx-background-color: #4c0013;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.UserAccountScreenController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        <Pane maxHeight="635.0" maxWidth="500.0" minHeight="635.0" minWidth="239.0" prefHeight="635.0" prefWidth="214.0" styleClass="menu-pane" stylesheets="@styles.css">
+            <children>
+                <Label layoutX="58.0" layoutY="14.0" text="Menu" textFill="WHITE">
+                    <font>
+                        <Font size="48.0" />
+                    </font>
+                </Label>
+                <Button fx:id="panelscreenAdmin" layoutY="100.0" mnemonicParsing="false" styleClass="menu-button" stylesheets="@styles.css" text="PANEL ADMINISTRATORA" textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="accountscreenGames" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#switchToGames" styleClass="menu-sub-button" stylesheets="@styles.css" text="ZARZĄDZANIE GRAMI" textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="accountscreenEditAccounts" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#switchToAccountEdit" styleClass="menu-sub-button" stylesheets="@styles.css" text="ZARZĄDZANIE KONTAMI" textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="accountscreenAccount" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#switchToAccount" styleClass="menu-sub-button" stylesheets="@styles.css" text="MOJE KONTO" textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="panelscreenLogOut" layoutY="300.0" mnemonicParsing="false" onMouseClicked="#logout" styleClass="menu-button" stylesheets="@styles.css" text="WYLOGUJ" textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </children>
+        </Pane>
+        <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
+            <children>
+                <Label layoutX="323.0" layoutY="14.0" text="Moje konto" textFill="WHITE">
+                    <font>
+                        <Font size="48.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER" layoutX="37.0" layoutY="150.0" prefHeight="75.0" prefWidth="840.0">
+                    <children>
+                        <Label text="Login:" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets right="30.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="userAccountLogin" text="&lt;login&gt;" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets right="30.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="41.0" layoutY="200.0" prefHeight="75.0" prefWidth="840.0">
+                    <children>
+                        <Label text="Imię:" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets right="30.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="userAccountName" text="&lt;imie&gt;" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets right="30.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="21.0" layoutY="250.0" prefHeight="75.0" prefWidth="840.0">
+                    <children>
+                        <Label text="Nazwisko:" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets right="30.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="userAccountLastName" text="&lt;nazwisko&gt;" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets right="30.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="37.0" layoutY="300.0" prefHeight="75.0" prefWidth="840.0">
+                    <children>
+                        <Label text="Email:" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets right="30.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="userAccountEmail" text="&lt;email&gt;" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets right="30.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+
+                    </children>
+                </HBox>
+                <Button fx:id="editUserScreenAdd" layoutX="401.0" layoutY="458.0" mnemonicParsing="false" onMouseClicked="#editUserAccount" styleClass="login-button" stylesheets="@styles.css" text="EDYTUJ">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            <VBox alignment="CENTER" layoutX="-1.0" layoutY="530.0" prefHeight="75.0" prefWidth="891.0">
+               <children>
+                  <Label fx:id="editUserScreenError" textFill="#ff1a1a">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            </children>
+        </Pane>
+    </children>
+</HBox>
