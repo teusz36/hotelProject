@@ -170,3 +170,28 @@
  /* -fx-padding: 0.416667em 0.166667em 0.0em 0.833em; /* 5 2 0 10 */
     -fx-padding: 0.416667em 0.166667em 0.0em 0.0em; /* overridden as 5 2 0 0 */
 }
+
+.offer-item-pane {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 3px;
+}
+
+.offer-item-label {
+    -fx-text-fill: #000;
+}
+
+.offer-item-title {
+    -fx-text-fill: #000;
+    -fx-border-width: 0 0 3 0;
+    -fx-border-color: #63081f;
+}
+
+.offer-buy-button {
+    -fx-font: 14px "Serif";
+    -fx-background-color: #7d0422;
+    -fx-min-width: 239;
+    -fx-min-height: 25;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+}
