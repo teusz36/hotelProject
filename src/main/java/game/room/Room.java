@@ -3,19 +3,23 @@ package game.room;
 public class Room {
     private String name;
     private int yearlyDemand;
-    private int preferedPrice;
+    private int preferredPrice;
     private double employeeTime;
     private int furnishingPrices[];
     private boolean isBought = false;
     private int qualityBought = 0;
     private double seasonality[];
+    private int startRound;
+    private int officeFurnishingPrices[];
 
-    public Room(String name, int yearlyDemand, int preferedPrice, double employeeTime, int[] furnishingPrices, double[] seasonality) {
+    public Room(String name, int yearlyDemand, int preferredPrice, double employeeTime, int[] furnishingPrices, int[] officeFurnishingPrices, double[] seasonality, int startRound) {
         this.yearlyDemand = yearlyDemand;
-        this.preferedPrice = preferedPrice;
+        this.preferredPrice = preferredPrice;
         this.employeeTime = employeeTime;
         this.furnishingPrices = furnishingPrices;
+        this.officeFurnishingPrices = officeFurnishingPrices;
         this.seasonality = seasonality;
+        this.startRound = startRound;
     }
 
     public int getYearlyDemand() {
@@ -26,12 +30,12 @@ public class Room {
         this.yearlyDemand = yearlyDemand;
     }
 
-    public int getPreferedPrice() {
-        return preferedPrice;
+    public int getPreferredPrice() {
+        return preferredPrice;
     }
 
-    public void setPreferedPrice(int preferedPrice) {
-        this.preferedPrice = preferedPrice;
+    public void setPreferredPrice(int preferedPrice) {
+        this.preferredPrice = preferedPrice;
     }
 
     public double getEmployeeTime() {
@@ -84,5 +88,21 @@ public class Room {
 
     public void setSeasonality(double[] seasonality) {
         this.seasonality = seasonality;
+    }
+
+    public int getStartRound() {
+        return startRound;
+    }
+
+    public void setStartRound(int startRound) {
+        this.startRound = startRound;
+    }
+
+    public int[] getOfficeFurnishingPrices() {
+        return officeFurnishingPrices;
+    }
+
+    public void setOfficeFurnishingPrices(int[] officeFurnishingPrices) {
+        this.officeFurnishingPrices = officeFurnishingPrices;
     }
 }
