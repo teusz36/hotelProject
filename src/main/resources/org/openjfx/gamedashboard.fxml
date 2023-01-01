@@ -39,6 +39,14 @@
 
       <TabPane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
+            <Tab text="Dashboard">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
+                        </children></AnchorPane>
+                </content>
+            </Tab>
             <Tab text="Informacje o firmie">
                 <content>
                     <AnchorPane prefHeight="635.0" prefWidth="891.0">
@@ -809,7 +817,7 @@
                                                                          <children>
                                                                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                                  <image>
-                                                                                     <Image url="@../../images/pokoj_1_osobowy_icon.png" />
+                                                                                     <Image url="@../../images/apartament_icon.png" />
                                                                                  </image>
                                                                                  <HBox.margin>
                                                                                      <Insets left="10.0" right="10.0" />
@@ -1007,7 +1015,7 @@
                                                                          <children>
                                                                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                                  <image>
-                                                                                     <Image url="@../../images/pokoj_2_osobowy_icon.png" />
+                                                                                     <Image url="@../../images/pokoj_3_osobowy_rodzinny_icon.png" />
                                                                                  </image>
                                                                                  <HBox.margin>
                                                                                      <Insets left="10.0" right="10.0" />
@@ -1209,7 +1217,7 @@
                                                                          <children>
                                                                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                                  <image>
-                                                                                     <Image url="@../../images/pokoj_3_osobowy_icon.png" />
+                                                                                     <Image url="@../../images/pokoj_4_osobowy_rodzinny_icon.png" />
                                                                                  </image>
                                                                                  <HBox.margin>
                                                                                      <Insets left="10.0" right="10.0" />
@@ -1439,7 +1447,7 @@
                                                                          <children>
                                                                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                                  <image>
-                                                                                     <Image url="@../../images/pokoj_1_osobowy_icon.png" />
+                                                                                     <Image url="@../../images/chrzest_icon.png" />
                                                                                  </image>
                                                                                  <HBox.margin>
                                                                                      <Insets left="10.0" right="10.0" />
@@ -1637,7 +1645,7 @@
                                                                          <children>
                                                                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                                  <image>
-                                                                                     <Image url="@../../images/pokoj_2_osobowy_icon.png" />
+                                                                                     <Image url="@../../images/urodziny_icon.png" />
                                                                                  </image>
                                                                                  <HBox.margin>
                                                                                      <Insets left="10.0" right="10.0" />
@@ -1839,7 +1847,7 @@
                                                                          <children>
                                                                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                                  <image>
-                                                                                     <Image url="@../../images/pokoj_3_osobowy_icon.png" />
+                                                                                     <Image url="@../../images/wesele_icon.png" />
                                                                                  </image>
                                                                                  <HBox.margin>
                                                                                      <Insets left="10.0" right="10.0" />
@@ -2069,7 +2077,7 @@
                                                                          <children>
                                                                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                                  <image>
-                                                                                     <Image url="@../../images/pokoj_1_osobowy_icon.png" />
+                                                                                     <Image url="@../../images/drinkbar_icon.png" />
                                                                                  </image>
                                                                                  <HBox.margin>
                                                                                      <Insets left="10.0" right="10.0" />
@@ -2267,7 +2275,7 @@
                                                                          <children>
                                                                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                                  <image>
-                                                                                     <Image url="@../../images/pokoj_2_osobowy_icon.png" />
+                                                                                     <Image url="@../../images/sniadanie_icon.png" />
                                                                                  </image>
                                                                                  <HBox.margin>
                                                                                      <Insets left="10.0" right="10.0" />
@@ -2469,7 +2477,7 @@
                                                                          <children>
                                                                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                                  <image>
-                                                                                     <Image url="@../../images/pokoj_3_osobowy_icon.png" />
+                                                                                     <Image url="@../../images/kolacja_icon.png" />
                                                                                  </image>
                                                                                  <HBox.margin>
                                                                                      <Insets left="10.0" right="10.0" />
@@ -2673,6 +2681,14 @@
                      </children></AnchorPane>
             </content>
           </Tab>
+          <Tab text="Zasoby">
+              <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                          <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
+                      </children></AnchorPane>
+              </content>
+          </Tab>
           <Tab text="Stanowiska">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -2680,6 +2696,773 @@
                       <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
                   </children></AnchorPane>
             </content>
+          </Tab>
+          <Tab text="Pracownicy">
+              <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                          <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
+                      </children></AnchorPane>
+              </content>
+          </Tab>
+          <Tab text="Bank">
+              <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                          <Pane prefHeight="605.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
+                           <children>
+                              <VBox fx:id="dashboardTabBankVBoxInfo" alignment="TOP_CENTER" prefHeight="605.0" prefWidth="891.0">
+                                 <children>
+                                    <Pane prefHeight="550.0" prefWidth="200.0" styleClass="offer-item-pane" stylesheets="@styles.css">
+                                       <children>
+                                          <VBox prefHeight="550.0" prefWidth="830.4">
+                                             <children>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <VBox minWidth="550.0" prefHeight="200.0">
+                                                         <HBox.margin>
+                                                            <Insets left="5.0" />
+                                                         </HBox.margin>
+                                                         <children>
+                                                            <Label fx:id="dashboardTabBankName" styleClass="offer-item-title" stylesheets="@styles.css" text="&lt;bank name&gt;">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="10.0" left="15.0" top="10.0" />
+                                                               </VBox.margin>
+                                                               <font>
+                                                                  <Font size="15.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <HBox prefHeight="100.0">
+                                                               <children>
+                                                                  <VBox prefHeight="59.0">
+                                                                     <children>
+                                                                        <Label stylesheets="@styles.css" text="NUMER RACHUNKU:">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label stylesheets="@styles.css" text="WALUTA:">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label stylesheets="@styles.css" text="STAN KONTA:">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label text="OPROCENTOWANIE LOKATY:">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label text="OPROCENTOWANIE KREDYTU:">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label text="OPROCENTOWANIE KREDYTU ODNAWIALNEGO:">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                     <HBox.margin>
+                                                                        <Insets left="30.0" />
+                                                                     </HBox.margin>
+                                                                  </VBox>
+                                                                  <VBox prefHeight="59.0" prefWidth="166.0">
+                                                                     <children>
+                                                                        <Label fx:id="dashboardTabBankAccountNumber" text="&lt;account nr&gt;">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label text="PLN">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label fx:id="dashboardTabBankBalance" text="&lt;balance&gt;">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label fx:id="dashboardTabBankDepositInterestRate" text="&lt;value&gt;">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label fx:id="dashboardTabBankCreditInterestRate" text="&lt;value&gt;">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <Label fx:id="dashboardTabBankRevolvingCreditInterestRate" text="&lt;value&gt;">
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                     </children>
+                                                                     <HBox.margin>
+                                                                        <Insets left="15.0" />
+                                                                     </HBox.margin>
+                                                                  </VBox>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="CENTER" minWidth="250.0" prefHeight="200.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onAction="#changeBank" styleClass="menu-sub-button" stylesheets="@styles.css" text="ZMIEŃ BANK" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <VBox prefHeight="365.0" prefWidth="100.0">
+                                                   <children>
+                                                      <TabPane prefHeight="365.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                                                        <tabs>
+                                                          <Tab text="Lokaty">
+                                                            <content>
+                                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="anchor-pane-border-top" stylesheets="@styles.css">
+                                                                     <children>
+                                                                        <VBox alignment="TOP_CENTER" maxWidth="800.0" minWidth="830.0" prefHeight="200.0" prefWidth="800.0">
+                                                                           <children>
+                                                                              <TableView fx:id="dashboardTabBankTableViewDeposit" minHeight="250.0" minWidth="810.0" prefHeight="250.0" prefWidth="830.4" style="-fx-background-color: #63081f;">
+                                                                                  <placeholder>
+                                                                                      <Label text="Nie masz żadnych aktywnych lokat" />
+                                                                                  </placeholder>
+                                                                                  <columns>
+                                                                                  <TableColumn minWidth="115.0" prefWidth="115.0" text="Miesiąc założenia" />
+                                                                                  <TableColumn minWidth="90.0" prefWidth="90.0" text="Okres lokaty" />
+                                                                                    <TableColumn minWidth="190.0" prefWidth="190.0" text="Oprocentowanie w skali roku" />
+                                                                                    <TableColumn minWidth="65.0" prefWidth="65.0" text="Odsetki" />
+                                                                                </columns>
+                                                                              </TableView>
+                                                                              <Button mnemonicParsing="false" onAction="#createDepositShowPopUp" styleClass="menu-sub-button" stylesheets="@styles.css" text="ZAŁÓŻ LOKATĘ">
+                                                                                 <VBox.margin>
+                                                                                    <Insets top="15.0" />
+                                                                                 </VBox.margin>
+                                                                              </Button>
+                                                                           </children>
+                                                                           <padding>
+                                                                              <Insets left="10.0" right="10.0" top="10.0" />
+                                                                           </padding>
+                                                                        </VBox>
+                                                                     </children></AnchorPane>
+                                                            </content>
+                                                          </Tab>
+                                                          <Tab text="Kredyt">
+                                                            <content>
+                                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="anchor-pane-border-top" stylesheets="@styles.css">
+                                                                <children>
+                                                                    <VBox alignment="TOP_CENTER" maxWidth="800.0" minWidth="830.0" prefHeight="200.0" prefWidth="800.0">
+                                                                        <children>
+                                                                            <TableView fx:id="dashboardTabBankTableViewCredit" minHeight="250.0" minWidth="810.0" prefHeight="250.0" prefWidth="830.4" style="-fx-background-color: #63081f;">
+                                                                                <placeholder>
+                                                                                    <Label text="Nie masz żadnych niespłaconych kredytów" />
+                                                                                </placeholder>
+                                                                                <columns>
+                                                                                    <TableColumn prefWidth="114.19998013973236" text="Nazwa banku" />
+                                                                                    <TableColumn prefWidth="119.20002746582031" text="Miesiąc &#10;zaciągnięcia" />
+                                                                                    <TableColumn prefWidth="106.39996337890625" text="Kwota" />
+                                                                                    <TableColumn minWidth="0.0" prefWidth="122.4000244140625" text="Długość spłaty kredytu" />
+                                                                                    <TableColumn prefWidth="75.0" text="Miesięczna rata" />
+                                                                                    <TableColumn prefWidth="75.0" text="Odsetki miesięczne" />
+                                                                                    <TableColumn prefWidth="75.0" text="Pozostała kwota&#10;do spłaty" />
+                                                                                </columns>
+                                                                            </TableView>
+                                                                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                                                 <children>
+                                                                                  <Button fx:id="dashboardTabBankGetCreditButton" mnemonicParsing="false" onAction="#getCreditShowPopUp" styleClass="menu-sub-button" stylesheets="@styles.css" text="WEŹ KREDYT">
+                                                                                      <VBox.margin>
+                                                                                          <Insets top="15.0" />
+                                                                                      </VBox.margin>
+                                                                                  </Button>
+                                                                                 </children>
+                                                                              </VBox>
+                                                                        </children>
+                                                                        <padding>
+                                                                            <Insets left="10.0" right="10.0" top="10.0" />
+                                                                        </padding>
+                                                                    </VBox>
+                                                                </children>
+                                                              </AnchorPane>
+                                                            </content>
+                                                          </Tab>
+                                                            <Tab text="Kredyt odnawialny">
+                                                              <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="830.0" styleClass="anchor-pane-border-top" stylesheets="@styles.css">
+                                                                     <padding>
+                                                                        <Insets left="1.0" />
+                                                                     </padding>
+                                                                     <children>
+                                                                        <VBox prefHeight="200.0" prefWidth="100.0">
+                                                                           <children>
+                                                                              <Pane minHeight="250.0" minWidth="810.0" prefHeight="250.0" prefWidth="810.0" styleClass="menu-pane" stylesheets="@styles.css">
+                                                                                 <children>
+                                                                                    <VBox alignment="CENTER" prefHeight="250.0" prefWidth="810.0">
+                                                                                       <children>
+                                                                                          <Label fx:id="dashboardTabBankRevolvingCreditAmount" styleClass="menu-pane-title" stylesheets="@styles.css" text="Nie masz zaciągniętego kredytu odnawialnego." textFill="WHITE">
+                                                                                             <font>
+                                                                                                <Font size="16.0" />
+                                                                                             </font>
+                                                                                          </Label>
+                                                                                          <Label text="Kredyt odnawialny aktywowany jest automatycznie, gdy nie masz na koncie środków&#10;do spłaty zobowiązań i spłacany jest automatycznie, kiedy firma wygeneruje zysk." textFill="WHITE" wrapText="true">
+                                                                                             <font>
+                                                                                                <Font size="13.0" />
+                                                                                             </font>
+                                                                                             <VBox.margin>
+                                                                                                <Insets top="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </Label>
+                                                                                       </children>
+                                                                                    </VBox>
+                                                                                 </children></Pane>
+                                                                           </children>
+                                                                           <padding>
+                                                                              <Insets left="10.0" right="10.0" top="10.0" />
+                                                                           </padding>
+                                                                        </VBox>
+                                                                     </children></AnchorPane>
+                                                              </content>
+                                                            </Tab>
+                                                        </tabs>
+                                                      </TabPane>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="20.0" />
+                                                   </VBox.margin>
+                                                </VBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox fx:id="dashboardTabBankDepositPopUpScreen" alignment="CENTER" layoutX="-30.0" layoutY="-60.0" prefHeight="635.0" prefWidth="890.0" style="-fx-background-color: rgba(0, 0, 0, 0.3);" visible="false">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" maxHeight="200.0" maxWidth="550.0" minWidth="600.0" prefHeight="200.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="pop-up-window-pane" stylesheets="@styles.css">
+                                                   <children>
+                                                      <HBox alignment="CENTER_RIGHT" prefWidth="200.0" style="-fx-background-color: #6a208c;">
+                                                         <children>
+                                                            <Label fx:id="dashboardTabBankDepositPopUpX" onMouseClicked="#createDepositHidePopUp" text="x" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="15.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="7.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                      <HBox prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                                                         <children>
+                                                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                                               <children>
+                                                                  <Label text="Saldo konta" />
+                                                                  <Label fx:id="dashboardTabBankDepositPopUpBalance" text="&lt;value&gt;" />
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox prefHeight="200.0" prefWidth="150.0">
+                                                               <children>
+                                                                  <Label text="Okres lokaty" />
+                                                                  <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <Label text="1" />
+                                                                        <Slider fx:id="dashboardTabBankDepositPopUpDepositTimeSlider" blockIncrement="1.0" majorTickUnit="1.0" max="2.0" maxWidth="120.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0">
+                                                                           <HBox.margin>
+                                                                              <Insets left="3.0" right="3.0" />
+                                                                           </HBox.margin>
+                                                                        </Slider>
+                                                                        <Label fx:id="dashboardTabBankDepositPopUpDepositTimeMax" text="&lt;max&gt;" />
+                                                                     </children>
+                                                                  </HBox>
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                                               <children>
+                                                                  <Label text="Oprocentowanie" />
+                                                                  <Label fx:id="dashboardTabBankDepositPopUpInitialRate" text="&lt;value&gt;" />
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                                               <children>
+                                                                  <Label text="Kwota lokaty" />
+                                                                  <TextField fx:id="dashboardTabBankDepositPopUpDepositValue" minWidth="150.0" />
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets left="15.0" right="15.0" top="20.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                                         <children>
+                                                            <Button fx:id="dashboardTabBankDepositPopUpCancel" mnemonicParsing="false" onAction="#createDepositHidePopUp" styleClass="menu-sub-button-mini" stylesheets="@styles.css" text="ANULUJ" />
+                                                            <Button fx:id="dashboardTabBankDepositPopUpCreate" mnemonicParsing="false" onAction="#createDepositButtonClicked" styleClass="menu-sub-button-mini" stylesheets="@styles.css" text="ZAŁÓŻ" />
+                                                         </children>
+                                                         <padding>
+                                                            <Insets right="10.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </VBox>
+                                           <VBox fx:id="dashboardTabBankCreditPopUpScreen" alignment="CENTER" layoutX="-30.0" layoutY="-60.0" prefHeight="635.0" prefWidth="890.0" style="-fx-background-color: rgba(0, 0, 0, 0.3);" visible="false">
+                                               <children>
+                                                   <VBox alignment="TOP_CENTER" maxHeight="200.0" maxWidth="550.0" minWidth="600.0" prefHeight="200.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="pop-up-window-pane" stylesheets="@styles.css">
+                                                       <children>
+                                                           <HBox alignment="CENTER_RIGHT" prefWidth="200.0" style="-fx-background-color: #6a208c;">
+                                                               <children>
+                                                                   <Label fx:id="dashboardTabBankCreditPopUpX" onMouseClicked="#createDepositHidePopUp" text="x" textFill="WHITE">
+                                                                       <font>
+                                                                           <Font name="System Bold" size="15.0" />
+                                                                       </font>
+                                                                   </Label>
+                                                               </children>
+                                                               <padding>
+                                                                   <Insets right="7.0" />
+                                                               </padding>
+                                                           </HBox>
+                                                           <HBox prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                                                               <children>
+                                                                   <VBox prefHeight="200.0" prefWidth="150.0">
+                                                                       <children>
+                                                                           <Label text="Okres kredytu" />
+                                                                           <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                               <children>
+                                                                                   <Label text="1" />
+                                                                                   <Slider fx:id="dashboardTabBankCreditPopUpCreditTimeSlider" blockIncrement="1.0" majorTickUnit="1.0" max="2.0" maxWidth="120.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0">
+                                                                                       <HBox.margin>
+                                                                                           <Insets left="3.0" right="3.0" />
+                                                                                       </HBox.margin>
+                                                                                   </Slider>
+                                                                                   <Label fx:id="dashboardTabBankCreditPopUpCreditTimeMax" text="&lt;max&gt;" />
+                                                                               </children>
+                                                                           </HBox>
+                                                                       </children>
+                                                                   </VBox>
+                                                                   <VBox prefHeight="200.0" prefWidth="100.0">
+                                                                       <children>
+                                                                           <Label text="Oprocentowanie" />
+                                                                           <Label fx:id="dashboardTabBankCreditPopUpInitialRate" text="&lt;value&gt;" />
+                                                                       </children>
+                                                                   </VBox>
+                                                                   <VBox prefHeight="200.0" prefWidth="100.0">
+                                                                       <children>
+                                                                           <Label text="Kwota kredytu" />
+                                                                           <TextField fx:id="dashboardTabBankCreditPopUpCreditValue" minWidth="150.0" />
+                                                                       </children>
+                                                                   </VBox>
+                                                               </children>
+                                                               <VBox.margin>
+                                                                   <Insets left="15.0" right="15.0" top="20.0" />
+                                                               </VBox.margin>
+                                                           </HBox>
+                                                           <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                                               <children>
+                                                                   <Button fx:id="dashboardTabBankCreditPopUpCancel" mnemonicParsing="false" onAction="#getCreditHidePopUp" styleClass="menu-sub-button-mini" stylesheets="@styles.css" text="ANULUJ" />
+                                                                   <Button fx:id="dashboardTabBankCreditPopUpCreate" mnemonicParsing="false" onAction="#getCreditButtonClicked" styleClass="menu-sub-button-mini" stylesheets="@styles.css" text="WEŹ" />
+                                                               </children>
+                                                               <padding>
+                                                                   <Insets right="10.0" />
+                                                               </padding>
+                                                           </HBox>
+                                                       </children>
+                                                   </VBox>
+                                               </children>
+                                           </VBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="30.0" right="30.0" top="30.0" />
+                                       </VBox.margin>
+                                    </Pane>
+                                 </children>
+                              </VBox>
+                              <HBox fx:id="dashboardTabBankHBoxSelect" alignment="CENTER" prefHeight="605.0" prefWidth="891.0" spacing="15.0" visible="false">
+                                 <children>
+                                    <Pane maxHeight="280.0" minHeight="255.0" prefHeight="280.0" prefWidth="280.0" styleClass="offer-item-pane" stylesheets="@styles.css">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="280.0" prefWidth="280.0">
+                                             <children>
+                                                <Label fx:id="dashboardTabBankSelectBank1Label" styleClass="offer-item-title" stylesheets="@styles.css" text="&lt;bank name&gt;">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="15.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <HBox prefHeight="130.0" prefWidth="200.0">
+                                                   <children>
+                                                      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="140.0">
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                         <children>
+                                                            <Label text="OPŁATA ZA KONTO:">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label text="OPŁATA ZA KARTĘ:">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label text="OPROCENTOWANIE LOKATY:">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label text="OPROCENTOWANIE KREDYTU:" wrapText="true">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label text="OPROCENTOWANIE KREDYTU ODNAWIALNEGO:" wrapText="true">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="140.0">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                         <children>
+                                                            <Label fx:id="dashboardTabBankSelectBank1value1" text="&lt;value&gt;">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label fx:id="dashboardTabBankSelectBank1value2" text="&lt;value&gt;">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label fx:id="dashboardTabBankSelectBank1value3" text="&lt;value&gt;">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label fx:id="dashboardTabBankSelectBank1value4" prefHeight="30.0" text="&lt;value&gt;">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <Label fx:id="dashboardTabBankSelectBank1value5" prefHeight="30.0" text="&lt;value&gt;">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <Button fx:id="dashboardTabBankSelectBankButton1" mnemonicParsing="false" onAction="#dashboardTabBankSelectBank" styleClass="menu-sub-button" stylesheets="@styles.css" text="WYBIERZ BANK" />
+                                             </children>
+                                          </VBox>
+                                       </children></Pane>
+                                     <Pane maxHeight="280.0" minHeight="255.0" prefHeight="280.0" prefWidth="280.0" styleClass="offer-item-pane" stylesheets="@styles.css">
+                                         <children>
+                                             <VBox alignment="CENTER" prefHeight="280.0" prefWidth="280.0">
+                                                 <children>
+                                                     <Label fx:id="dashboardTabBankSelectBank2Label" styleClass="offer-item-title" stylesheets="@styles.css" text="&lt;bank name&gt;">
+                                                         <font>
+                                                             <Font size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                             <Insets bottom="15.0" />
+                                                         </VBox.margin>
+                                                     </Label>
+                                                     <HBox prefHeight="130.0" prefWidth="200.0">
+                                                         <children>
+                                                             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="140.0">
+                                                                 <HBox.margin>
+                                                                     <Insets left="10.0" />
+                                                                 </HBox.margin>
+                                                                 <children>
+                                                                     <Label text="OPŁATA ZA KONTO:">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label text="OPŁATA ZA KARTĘ:">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label text="OPROCENTOWANIE LOKATY:">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label text="OPROCENTOWANIE KREDYTU:" wrapText="true">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label text="OPROCENTOWANIE KREDYTU ODNAWIALNEGO:" wrapText="true">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                 </children>
+                                                             </VBox>
+                                                             <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="140.0">
+                                                                 <HBox.margin>
+                                                                     <Insets right="10.0" />
+                                                                 </HBox.margin>
+                                                                 <children>
+                                                                     <Label fx:id="dashboardTabBankSelectBank2value1" text="&lt;value&gt;">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label fx:id="dashboardTabBankSelectBank2value2" text="&lt;value&gt;">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label fx:id="dashboardTabBankSelectBank2value3" text="&lt;value&gt;">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label fx:id="dashboardTabBankSelectBank2value4" prefHeight="30.0" text="&lt;value&gt;">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label fx:id="dashboardTabBankSelectBank2value5" prefHeight="30.0" text="&lt;value&gt;">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                 </children>
+                                                             </VBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                             <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                     </HBox>
+                                                     <Button fx:id="dashboardTabBankSelectBankButton2" mnemonicParsing="false" onAction="#dashboardTabBankSelectBank" styleClass="menu-sub-button" stylesheets="@styles.css" text="WYBIERZ BANK" />
+                                                 </children>
+                                             </VBox>
+                                         </children></Pane>
+                                     <Pane maxHeight="280.0" minHeight="255.0" prefHeight="280.0" prefWidth="280.0" styleClass="offer-item-pane" stylesheets="@styles.css">
+                                         <children>
+                                             <VBox alignment="CENTER" prefHeight="280.0" prefWidth="280.0">
+                                                 <children>
+                                                     <Label fx:id="dashboardTabBankSelectBank3Label" styleClass="offer-item-title" stylesheets="@styles.css" text="&lt;bank name&gt;">
+                                                         <font>
+                                                             <Font size="16.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                             <Insets bottom="15.0" />
+                                                         </VBox.margin>
+                                                     </Label>
+                                                     <HBox prefHeight="130.0" prefWidth="200.0">
+                                                         <children>
+                                                             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="140.0">
+                                                                 <HBox.margin>
+                                                                     <Insets left="10.0" />
+                                                                 </HBox.margin>
+                                                                 <children>
+                                                                     <Label text="OPŁATA ZA KONTO:">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label text="OPŁATA ZA KARTĘ:">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label text="OPROCENTOWANIE LOKATY:">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label text="OPROCENTOWANIE KREDYTU:" wrapText="true">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label text="OPROCENTOWANIE KREDYTU ODNAWIALNEGO:" wrapText="true">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                 </children>
+                                                             </VBox>
+                                                             <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="140.0">
+                                                                 <HBox.margin>
+                                                                     <Insets right="10.0" />
+                                                                 </HBox.margin>
+                                                                 <children>
+                                                                     <Label fx:id="dashboardTabBankSelectBank3value1" text="&lt;value&gt;">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label fx:id="dashboardTabBankSelectBank3value2" text="&lt;value&gt;">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label fx:id="dashboardTabBankSelectBank3value3" text="&lt;value&gt;">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label fx:id="dashboardTabBankSelectBank3value4" prefHeight="30.0" text="&lt;value&gt;">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                     <Label fx:id="dashboardTabBankSelectBank3value5" prefHeight="30.0" text="&lt;value&gt;">
+                                                                         <font>
+                                                                             <Font size="10.0" />
+                                                                         </font>
+                                                                         <VBox.margin>
+                                                                             <Insets bottom="5.0" />
+                                                                         </VBox.margin>
+                                                                     </Label>
+                                                                 </children>
+                                                             </VBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                             <Insets bottom="10.0" />
+                                                         </VBox.margin>
+                                                     </HBox>
+                                                     <Button fx:id="dashboardTabBankSelectBankButton3" mnemonicParsing="false" onAction="#dashboardTabBankSelectBank" styleClass="menu-sub-button" stylesheets="@styles.css" text="WYBIERZ BANK" />
+                                                 </children>
+                                             </VBox>
+                                         </children></Pane>
+                                 </children></HBox>
+                           </children></Pane>
+                      </children></AnchorPane>
+              </content>
+          </Tab>
+          <Tab text="Biuro rachunkowe">
+              <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                          <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
+                      </children></AnchorPane>
+              </content>
+          </Tab>
+          <Tab text="Karta wyników">
+              <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                          <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
+                      </children></AnchorPane>
+              </content>
+          </Tab>
+          <Tab text="Zgłoś gotowość">
+              <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                          <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
+                           <children>
+                              <Button layoutX="265.0" layoutY="132.0" mnemonicParsing="false" onAction="#up" text="Up" />
+                              <Button layoutX="385.0" layoutY="145.0" mnemonicParsing="false" onAction="#moneyUp" text="MoneyUP" />
+                           </children></Pane>
+                      </children></AnchorPane>
+              </content>
           </Tab>
         </tabs>
       </TabPane>

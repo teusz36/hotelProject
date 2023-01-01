@@ -45,6 +45,20 @@
     -fx-background-color: #a3052c;
 }
 
+.menu-sub-button-mini {
+    -fx-font: 16px "Serif";
+    -fx-padding: 10;
+    -fx-background-color: #7d0422;
+    -fx-min-width: 120;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+}
+
+.menu-sub-button-mini:hover {
+    -fx-background-color: #a3052c;
+}
+
 .login-pane {
     -fx-background-color: #63081f;
 }
@@ -135,7 +149,7 @@
 
 .tab-pane
 {
-    -fx-tab-min-width:90px;
+    -fx-tab-min-width:61px;
     -fx-background-color: transparent;
 }
 
@@ -176,6 +190,14 @@
     -fx-background-radius: 3px;
 }
 
+.pop-up-window-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-width: 3 3 3 3;
+    -fx-background-radius: 3px;
+    -fx-border-color: #6a208c;
+    -fx-border-radius: 0 0 3 3;
+}
+
 .offer-item-label {
     -fx-text-fill: #000;
 }
@@ -183,6 +205,18 @@
 .offer-item-title {
     -fx-text-fill: #000;
     -fx-border-width: 0 0 3 0;
+    -fx-border-color: #63081f;
+}
+
+.menu-pane-title {
+    -fx-text-fill: #fff;
+    -fx-border-width: 0 0 3 0;
+    -fx-border-color: #fff;
+}
+
+.anchor-pane-border-top {
+    -fx-text-fill: #000;
+    -fx-border-width: 3 0 0 0;
     -fx-border-color: #63081f;
 }
 

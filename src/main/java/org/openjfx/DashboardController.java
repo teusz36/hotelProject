@@ -2,23 +2,30 @@ package org.openjfx;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import account.authentication.LoggedInAccount;
 import account.authentication.LoginAccount;
 import account.management.ManageAccount;
+import game.Player;
+import game.bank.Credit;
+import game.bank.Deposit;
+import game.bank.ManageBanks;
 import game.management.CurrentlyPlayedGame;
 import game.management.ManageGame;
 import game.room.Room;
 import game.room.RoomsManagement;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -224,11 +231,68 @@ public class DashboardController {
     @FXML HBox dashboardTabOfferHBoxTitle2;
     @FXML HBox dashboardTabOfferHBoxTitle3;
 
+    @FXML Label dashboardTabBankSelectBank1Label;
+    @FXML Label dashboardTabBankSelectBank2Label;
+    @FXML Label dashboardTabBankSelectBank3Label;
+
+    @FXML Label dashboardTabBankSelectBank1value1;
+    @FXML Label dashboardTabBankSelectBank1value2;
+    @FXML Label dashboardTabBankSelectBank1value3;
+    @FXML Label dashboardTabBankSelectBank1value4;
+    @FXML Label dashboardTabBankSelectBank1value5;
+
+    @FXML Label dashboardTabBankSelectBank2value1;
+    @FXML Label dashboardTabBankSelectBank2value2;
+    @FXML Label dashboardTabBankSelectBank2value3;
+    @FXML Label dashboardTabBankSelectBank2value4;
+    @FXML Label dashboardTabBankSelectBank2value5;
+
+    @FXML Label dashboardTabBankSelectBank3value1;
+    @FXML Label dashboardTabBankSelectBank3value2;
+    @FXML Label dashboardTabBankSelectBank3value3;
+    @FXML Label dashboardTabBankSelectBank3value4;
+    @FXML Label dashboardTabBankSelectBank3value5;
+
+    @FXML Label dashboardTabBankName;
+    @FXML Label dashboardTabBankAccountNumber;
+    @FXML Label dashboardTabBankBalance;
+    @FXML HBox dashboardTabBankHBoxSelect;
+    @FXML VBox dashboardTabBankVBoxInfo;
+    @FXML Label dashboardTabBankDepositInterestRate;
+    @FXML Label dashboardTabBankCreditInterestRate;
+    @FXML Label dashboardTabBankRevolvingCreditInterestRate;
+    @FXML TableView dashboardTabBankTableViewDeposit;
+
+    @FXML VBox dashboardTabBankDepositPopUpScreen;
+    @FXML Label dashboardTabBankDepositPopUpX;
+    @FXML Label dashboardTabBankDepositPopUpBalance;
+    @FXML Label dashboardTabBankDepositPopUpInitialRate;
+    @FXML Slider dashboardTabBankDepositPopUpDepositTimeSlider;
+    @FXML Label dashboardTabBankDepositPopUpDepositTimeMax;
+    @FXML TextField dashboardTabBankDepositPopUpDepositValue;
+    @FXML Button dashboardTabBankDepositPopUpCancel;
+    @FXML Button dashboardTabBankDepositPopUpCreate;
+    @FXML TableView dashboardTabBankTableViewCredit;
+    @FXML VBox dashboardTabBankCreditPopUpScreen;
+    @FXML Label dashboardTabBankCreditPopUpX;
+    @FXML Slider dashboardTabBankCreditPopUpCreditTimeSlider;
+    @FXML Label dashboardTabBankCreditPopUpCreditTimeMax;
+    @FXML Label dashboardTabBankCreditPopUpInitialRate;
+    @FXML TextField dashboardTabBankCreditPopUpCreditValue;
+    @FXML Button dashboardTabBankCreditPopUpCancel;
+    @FXML Button dashboardTabBankCreditPopUpCreate;
+    @FXML Button dashboardTabBankGetCreditButton;
+    @FXML Label dashboardTabBankRevolvingCreditAmount;
+
     int roomsTotalPrice = 0;
+    int lastBankGenerateRoundNumber = 1;
 
     @FXML
     private void initialize() {
         initializeRoomsInfo();
+        ManageBanks.generateBankOptions();
+        dashboardTabBankGenerateDataInBankOptions();
+        revolvingCreditCheck();
     }
 
     /**
@@ -920,6 +984,255 @@ public class DashboardController {
         }
     }
 
+    @FXML
+    private void dashboardTabBankGenerateDataInBankOptions() {
+        if(ManageBanks.isBankChosen()) {
+            dashboardTabBankHBoxSelect.setVisible(false);
+            dashboardTabBankVBoxInfo.setVisible(true);
+            dashboardTabBankDepositPopUpScreen.setVisible(false);
+
+            dashboardTabBankName.setText(ManageBanks.getCurrentlyChosenBank().getName());
+            dashboardTabBankAccountNumber.setText(String.valueOf(ManageBanks.getCurrentlyChosenBank().getAccountNumber()));
+            dashboardTabBankBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
+            dashboardTabBankDepositInterestRate.setText(String.valueOf(ManageBanks.getCurrentlyChosenBank().getDepositInterestRate()) + "%");
+            dashboardTabBankCreditInterestRate.setText(String.valueOf(ManageBanks.getCurrentlyChosenBank().getCreditInterestRate()) + "%");
+            dashboardTabBankRevolvingCreditInterestRate.setText(String.valueOf(ManageBanks.getCurrentlyChosenBank().getRevolvingCreditInterestRate()) + "%");
+            viewDepositsTable();
+            viewCreditsTable();
+        } else {
+            ManageBanks.generateBankOptions();
+
+            dashboardTabBankHBoxSelect.setVisible(true);
+            dashboardTabBankVBoxInfo.setVisible(false);
+            dashboardTabBankDepositPopUpScreen.setVisible(false);
+
+            dashboardTabBankSelectBank1Label.setText(ManageBanks.getBankOption1().getName());
+            dashboardTabBankSelectBank2Label.setText(ManageBanks.getBankOption2().getName());
+            dashboardTabBankSelectBank3Label.setText(ManageBanks.getBankOption3().getName());
+
+            dashboardTabBankSelectBank1value1.setText(String.valueOf(ManageBanks.getBankOption1().getAccountCost()));
+            dashboardTabBankSelectBank1value2.setText(String.valueOf(ManageBanks.getBankOption1().getCardCost()));
+            dashboardTabBankSelectBank1value3.setText(String.valueOf(ManageBanks.getBankOption1().getDepositInterestRate()));
+            dashboardTabBankSelectBank1value4.setText(String.valueOf(ManageBanks.getBankOption1().getCreditInterestRate()));
+            dashboardTabBankSelectBank1value5.setText(String.valueOf(ManageBanks.getBankOption1().getRevolvingCreditInterestRate()));
+
+            dashboardTabBankSelectBank2value1.setText(String.valueOf(ManageBanks.getBankOption2().getAccountCost()));
+            dashboardTabBankSelectBank2value2.setText(String.valueOf(ManageBanks.getBankOption2().getCardCost()));
+            dashboardTabBankSelectBank2value3.setText(String.valueOf(ManageBanks.getBankOption2().getDepositInterestRate()));
+            dashboardTabBankSelectBank2value4.setText(String.valueOf(ManageBanks.getBankOption2().getCreditInterestRate()));
+            dashboardTabBankSelectBank2value5.setText(String.valueOf(ManageBanks.getBankOption2().getRevolvingCreditInterestRate()));
+
+            dashboardTabBankSelectBank3value1.setText(String.valueOf(ManageBanks.getBankOption3().getAccountCost()));
+            dashboardTabBankSelectBank3value2.setText(String.valueOf(ManageBanks.getBankOption3().getCardCost()));
+            dashboardTabBankSelectBank3value3.setText(String.valueOf(ManageBanks.getBankOption3().getDepositInterestRate()));
+            dashboardTabBankSelectBank3value4.setText(String.valueOf(ManageBanks.getBankOption3().getCreditInterestRate()));
+            dashboardTabBankSelectBank3value5.setText(String.valueOf(ManageBanks.getBankOption3().getRevolvingCreditInterestRate()));
+        }
+    }
+
+    @FXML
+    public void viewDepositsTable() {
+        try {
+            int numberOfColumns;
+            String[] columnKeys = {"Miesiąc_założeniaKey", "Okres_lokatyKey", "Oprocentowanie_w_skali_rokuKey", "Kwota_LokatyKey"};
+            String[] columnNames = {"Miesiąc założenia", "Okres lokaty", "Oprocentowanie w skali roku", "Kwota Lokaty"};
+            String[] depositsId = new String[100];
+            ArrayList<Deposit> allDeposits;
+            int numberOfDeposits = 0;
+            String depositIdString = "";
+            if(ManageBanks.getCurrentlyChosenBank().getDeposits().size() > 0) {
+                depositIdString = depositsId[0];
+                for(int i = 1; i < numberOfDeposits; i++) {
+                    depositIdString = depositIdString + ", " + depositsId[i];
+                }
+            }
+            allDeposits = ManageBanks.getCurrentlyChosenBank().getDeposits();
+            dashboardTabBankTableViewDeposit.getItems().clear();
+            dashboardTabBankTableViewDeposit.getColumns().clear();
+            numberOfColumns = columnNames.length;
+
+            for(int j = 0; j < numberOfColumns; j++) {
+                TableColumn<Map, String> col = new TableColumn<>(columnNames[j]);
+                col.setCellValueFactory(new MapValueFactory(columnKeys[j]));
+                dashboardTabBankTableViewDeposit.getColumns().add(col);
+            }
+            dashboardTabBankTableViewDeposit.getItems().setAll(generateDataInMapAllDeposits(allDeposits, columnKeys));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metoda generująca dane do tabeli z lokatami.
+     * @return ObservableList z lokatami.
+     * @throws SQLException
+     */
+    private ObservableList<Map> generateDataInMapAllDeposits(ArrayList<Deposit> allDeposits, String[] columnKeys) throws SQLException {
+        ObservableList<Map> allData = FXCollections.observableArrayList();
+        for(int i = 0; i < allDeposits.size(); i++) {
+            if(allDeposits.get(i).isActive()) {
+                Map<String, String> dataRow = new HashMap<>();
+                dataRow.put(columnKeys[0], String.valueOf(allDeposits.get(i).getStartMonth()));
+                dataRow.put(columnKeys[1], String.valueOf(allDeposits.get(i).getNumberOfMonths()));
+                dataRow.put(columnKeys[2], String.valueOf(allDeposits.get(i).getInitialRate()));
+                dataRow.put(columnKeys[3], String.valueOf(allDeposits.get(i).getTotalInterestValue()));
+                allData.add(dataRow);
+            }
+        }
+        return allData;
+    }
+
+    @FXML
+    private void dashboardTabBankSelectBank(Event event) {
+        String buttonId = ((Control)event.getSource()).getId();
+        int bankId = Integer.parseInt(String.valueOf(buttonId.charAt(buttonId.length() - 1)));
+        ManageBanks.choseBank(bankId);
+        dashboardTabBankVBoxInfo.setVisible(true);
+        dashboardTabBankHBoxSelect.setVisible(false);
+        dashboardTabBankGenerateDataInBankOptions();
+    }
+
+    @FXML
+    private void createDepositShowPopUp() {
+        dashboardTabBankDepositPopUpScreen.setVisible(true);
+        dashboardTabBankDepositPopUpBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
+        dashboardTabBankDepositPopUpInitialRate.setText(String.valueOf(ManageBanks.getCurrentlyChosenBank().getDepositInterestRate()));
+        dashboardTabBankDepositPopUpDepositTimeSlider.setMax(12 - CurrentlyPlayedGame.getCurrentGame().getCurrentRound());
+        dashboardTabBankDepositPopUpDepositTimeMax.setText(String.valueOf(12 - CurrentlyPlayedGame.getCurrentGame().getCurrentRound()));
+    }
+
+    @FXML
+    private void getCreditShowPopUp() {
+        dashboardTabBankCreditPopUpScreen.setVisible(true);
+        dashboardTabBankCreditPopUpCreditTimeSlider.setMax(11 - CurrentlyPlayedGame.getCurrentGame().getCurrentRound());
+        dashboardTabBankCreditPopUpCreditTimeMax.setText(String.valueOf(11 - CurrentlyPlayedGame.getCurrentGame().getCurrentRound()));
+        dashboardTabBankCreditPopUpInitialRate.setText(String.valueOf(ManageBanks.getCurrentlyChosenBank().getCreditInterestRate()));
+    }
+
+    @FXML
+    private void createDepositHidePopUp() {
+        dashboardTabBankDepositPopUpScreen.setVisible(false);
+    }
+
+    @FXML
+    private void getCreditHidePopUp() {
+        dashboardTabBankCreditPopUpScreen.setVisible(false);
+    }
+
+    @FXML
+    private void createDepositButtonClicked() {
+        int depositTime = (int) dashboardTabBankDepositPopUpDepositTimeSlider.getValue();
+        int depositValue = Integer.parseInt(dashboardTabBankDepositPopUpDepositValue.getText());
+        if(CurrentlyPlayedGame.getBalance() >= depositValue) {
+            createDepositHidePopUp();
+            ManageBanks.getCurrentlyChosenBank().addDeposit(new Deposit(CurrentlyPlayedGame.getCurrentGame().getCurrentRound(), depositTime, ManageBanks.getCurrentlyChosenBank().getDepositInterestRate(), depositValue));
+            CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() - depositValue);
+            viewDepositsTable();
+            dashboardTabBankBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
+        }
+    }
+
+    @FXML
+    private void changeBank() {
+        if(CurrentlyPlayedGame.getCurrentGame().getCurrentRound() > lastBankGenerateRoundNumber) {
+            ManageBanks.resetBankOptions();
+            ManageBanks.generateBankOptions();
+            lastBankGenerateRoundNumber = CurrentlyPlayedGame.getCurrentGame().getCurrentRound();
+            dashboardTabBankHBoxSelect.setVisible(true);
+            dashboardTabBankVBoxInfo.setVisible(false);
+            dashboardTabBankDepositPopUpScreen.setVisible(false);
+            dashboardTabBankGenerateDataInBankOptions();
+        } else {
+            dashboardTabBankHBoxSelect.setVisible(true);
+            dashboardTabBankVBoxInfo.setVisible(false);
+            dashboardTabBankDepositPopUpScreen.setVisible(false);
+        }
+    }
+
+    @FXML
+    public void viewCreditsTable() {
+        try {
+            int numberOfColumns;
+            String[] columnKeys = {"Nazwa_bankuKey", "Miesiąc_zaciągnięciaKey", "KwotaKey", "Długość_spłaty_kredytuKey", "Miesięczna_rataKey", "Odsetki_miesięczneKey", "Pozostała_kwota_do_spłatyKey"};
+            String[] columnNames = {"Nazwa banku", "Miesiąc zaciągnięcia", "Kwota", "Długość spłaty kredytu", "Miesięczna rata", "Odsetki miesięczne", "Pozostała kwota do spłaty"};
+            String[] creditsId = new String[100];
+            ArrayList<Credit> allCredits;
+            int numberOfCredits = 0;
+            String creditIdString = "";
+            if(Player.getCredits().size() > 0) {
+                creditIdString = creditsId[0];
+                for(int i = 1; i < numberOfCredits; i++) {
+                    creditIdString = creditIdString + ", " + creditsId[i];
+                }
+            }
+            allCredits = Player.getCredits();
+            dashboardTabBankTableViewCredit.getItems().clear();
+            dashboardTabBankTableViewCredit.getColumns().clear();
+            numberOfColumns = columnNames.length;
+
+            for(int j = 0; j < numberOfColumns; j++) {
+                TableColumn<Map, String> col = new TableColumn<>(columnNames[j]);
+                col.setCellValueFactory(new MapValueFactory(columnKeys[j]));
+                dashboardTabBankTableViewCredit.getColumns().add(col);
+            }
+            dashboardTabBankTableViewCredit.getItems().setAll(generateDataInMapAllCredits(allCredits, columnKeys));
+            checkPlayersCreditWorthiness();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metoda generująca dane do tabeli z kredytami.
+     * @return ObservableList z kredytami.
+     * @throws SQLException
+     */
+    private ObservableList<Map> generateDataInMapAllCredits(ArrayList<Credit> allCredits, String[] columnKeys) throws SQLException {
+        ObservableList<Map> allData = FXCollections.observableArrayList();
+        for(int i = 0; i < allCredits.size(); i++) {
+            if(allCredits.get(i).isActive()) {
+                Map<String, String> dataRow = new HashMap<>();
+                dataRow.put(columnKeys[0], String.valueOf(allCredits.get(i).getBankName()));
+                dataRow.put(columnKeys[1], String.valueOf(allCredits.get(i).getStartMonth()));
+                dataRow.put(columnKeys[2], String.valueOf(allCredits.get(i).getFullAmountOfCredit()));
+                dataRow.put(columnKeys[3], String.valueOf(allCredits.get(i).getNumberOfMonths()));
+                dataRow.put(columnKeys[4], String.valueOf(allCredits.get(i).getMonthlyPayment()));
+                dataRow.put(columnKeys[5], String.valueOf(allCredits.get(i).getMonthlyInterest()));
+                dataRow.put(columnKeys[6], String.valueOf(allCredits.get(i).getRestAmountOfCredit()));
+                allData.add(dataRow);
+            }
+        }
+        return allData;
+    }
+
+    @FXML
+    private void getCreditButtonClicked() {
+        if(Player.addCredit(new Credit(ManageBanks.getCurrentlyChosenBank().getName(), CurrentlyPlayedGame.getCurrentGame().getCurrentRound(), Integer.parseInt(dashboardTabBankCreditPopUpCreditValue.getText()), ManageBanks.getCurrentlyChosenBank().getCreditInterestRate(), (int) dashboardTabBankCreditPopUpCreditTimeSlider.getValue()))) {
+            getCreditHidePopUp();
+            CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() + Integer.parseInt(dashboardTabBankCreditPopUpCreditValue.getText()));
+            dashboardTabBankGenerateDataInBankOptions();
+        }
+
+    }
+
+    @FXML
+    private void checkPlayersCreditWorthiness() {
+        if(Player.checkCreditWorthiness()) {
+            dashboardTabBankGetCreditButton.setText("WEŹ KREDYT");
+        } else {
+            dashboardTabBankGetCreditButton.setText("Nie możesz wziąć kolejnego kredytu");
+        }
+    }
+
+    @FXML
+    private void revolvingCreditCheck() {
+        if(Player.getRevolvingCredit().getFullAmountOfRevolvingCredit() > 0) {
+            dashboardTabBankRevolvingCreditAmount.setText("Wysokość niespłaconego kredytu odnawialnego: " + Player.getRevolvingCredit().getFullAmountOfRevolvingCredit());
+        } else {
+            dashboardTabBankRevolvingCreditAmount.setText("Nie masz zaciągniętego kredytu odnawialnego.");
+        }
+    }
+
     /**
      * Metoda wylogowująca użytkownika
      */
@@ -927,5 +1240,62 @@ public class DashboardController {
     private void logout() throws IOException {
         LoginAccount.logOutUser();
         App.setRoot("loginscreen");
+    }
+
+    //TODO usunąć
+    @FXML
+    private void up() {
+        CurrentlyPlayedGame.getCurrentGame().setCurrentRound(CurrentlyPlayedGame.getCurrentGame().getCurrentRound() + 1);
+        checkDepositsAfterNewRound();
+        creditNewRound();
+
+        System.out.println("balance: " + CurrentlyPlayedGame.getBalance());
+        if(CurrentlyPlayedGame.getBalance() < 0) {
+            //wzięcie lub zwiększenie kredytu
+            System.out.println("Odnawialny: " + (CurrentlyPlayedGame.getBalance() * -1));
+            Player.getRevolvingCredit().getCredit((CurrentlyPlayedGame.getBalance() * -1));
+        } else if(Player.getRevolvingCredit().getFullAmountOfRevolvingCredit() > 0) {
+            //spłacenie kredytu
+            System.out.println("Spłacam: " + CurrentlyPlayedGame.getBalance()  + " z: " + Player.getRevolvingCredit().getFullAmountOfRevolvingCredit());
+            Player.getRevolvingCredit().payCredit(CurrentlyPlayedGame.getBalance());
+        }
+
+        Player.getRevolvingCredit().addInterest();
+        revolvingCreditCheck();
+        dashboardTabBankGenerateDataInBankOptions();
+    }
+
+    @FXML
+    private void moneyUp() {
+        CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() + 10000);
+        dashboardTabBankGenerateDataInBankOptions();
+    }
+
+    /**
+     * Metoda aktualizująca lokaty po przejściu do nowej rundy.
+     */
+    private void checkDepositsAfterNewRound() {
+        for(Deposit deposit: ManageBanks.getBankOption1().getDeposits()) {
+            if(CurrentlyPlayedGame.getCurrentGame().getCurrentRound() == (deposit.getStartMonth() + deposit.getNumberOfMonths())) {
+                CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() + deposit.endDeposit());
+            }
+        }
+    }
+
+    private void creditNewRound() {
+        for(Credit credit: Player.getCredits()) {
+            if(credit.isActive()) {
+                if (CurrentlyPlayedGame.getCurrentGame().getCurrentRound() == credit.getNumberOfMonths() + credit.getStartMonth()) {
+                    CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() - credit.getRestAmountOfCredit());
+                    credit.setActive(false);
+                    credit.setRestAmountOfCredit(0);
+                } else {
+                    CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() - credit.getMonthlyPayment());
+                    credit.setRestAmountOfCredit(credit.getRestAmountOfCredit() - credit.getMonthlyPayment());
+                }
+            }
+        }
+        viewCreditsTable();
+        dashboardTabBankGenerateDataInBankOptions();
     }
 }

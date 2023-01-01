@@ -13,6 +13,7 @@ public class Room {
     private int officeFurnishingPrices[];
 
     public Room(String name, int yearlyDemand, int preferredPrice, double employeeTime, int[] furnishingPrices, int[] officeFurnishingPrices, double[] seasonality, int startRound) {
+        this.name = name;
         this.yearlyDemand = yearlyDemand;
         this.preferredPrice = preferredPrice;
         this.employeeTime = employeeTime;
