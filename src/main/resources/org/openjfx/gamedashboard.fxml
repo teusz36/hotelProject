@@ -2711,7 +2711,7 @@
                       <children>
                           <Pane prefHeight="605.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
                            <children>
-                              <VBox fx:id="dashboardTabBankVBoxInfo" alignment="TOP_CENTER" prefHeight="605.0" prefWidth="891.0">
+                              <VBox fx:id="dashboardTabBankVBoxInfo" alignment="TOP_CENTER" prefHeight="605.0" prefWidth="891.0" visible="false">
                                  <children>
                                     <Pane prefHeight="550.0" prefWidth="200.0" styleClass="offer-item-pane" stylesheets="@styles.css">
                                        <children>
@@ -3078,7 +3078,7 @@
                                     </Pane>
                                  </children>
                               </VBox>
-                              <HBox fx:id="dashboardTabBankHBoxSelect" alignment="CENTER" prefHeight="605.0" prefWidth="891.0" spacing="15.0" visible="false">
+                              <HBox fx:id="dashboardTabBankHBoxSelect" alignment="CENTER" prefHeight="605.0" prefWidth="891.0" spacing="15.0">
                                  <children>
                                     <Pane maxHeight="280.0" minHeight="255.0" prefHeight="280.0" prefWidth="280.0" styleClass="offer-item-pane" stylesheets="@styles.css">
                                        <children>
