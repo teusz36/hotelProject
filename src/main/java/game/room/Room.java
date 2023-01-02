@@ -11,14 +11,16 @@ public class Room {
     private double seasonality[];
     private int startRound;
     private int officeFurnishingPrices[];
+    private int resourcesPrices[];
 
-    public Room(String name, int yearlyDemand, int preferredPrice, double employeeTime, int[] furnishingPrices, int[] officeFurnishingPrices, double[] seasonality, int startRound) {
+    public Room(String name, int yearlyDemand, int preferredPrice, double employeeTime, int[] furnishingPrices, int[] officeFurnishingPrices, int[] resourcesPrices, double[] seasonality, int startRound) {
         this.name = name;
         this.yearlyDemand = yearlyDemand;
         this.preferredPrice = preferredPrice;
         this.employeeTime = employeeTime;
         this.furnishingPrices = furnishingPrices;
         this.officeFurnishingPrices = officeFurnishingPrices;
+        this.resourcesPrices = resourcesPrices;
         this.seasonality = seasonality;
         this.startRound = startRound;
     }
@@ -105,5 +107,13 @@ public class Room {
 
     public void setOfficeFurnishingPrices(int[] officeFurnishingPrices) {
         this.officeFurnishingPrices = officeFurnishingPrices;
+    }
+
+    public int[] getResourcesPrices() {
+        return resourcesPrices;
+    }
+
+    public void setResourcesPrices(int[] resourcesPrices) {
+        this.resourcesPrices = resourcesPrices;
     }
 }

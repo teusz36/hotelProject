@@ -147,9 +147,21 @@
     -fx-opacity: 0;
 }
 
+
+.choice-box .context-menu {
+     -fx-background-color: white;
+     -fx-border-color: #63081f;
+ }
+.choice-box .menu-item:focused { -fx-background-color: #63081f; }
+.choice-box {
+  -fx-background-color: white;
+  -fx-mark-color: #63081f;
+  -fx-border-color: #63081f;
+}
+
 .tab-pane
 {
-    -fx-tab-min-width:61px;
+    -fx-tab-min-width:58px;
     -fx-background-color: transparent;
 }
 

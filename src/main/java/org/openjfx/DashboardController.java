@@ -17,6 +17,7 @@ import game.bank.Deposit;
 import game.bank.ManageBanks;
 import game.management.CurrentlyPlayedGame;
 import game.management.ManageGame;
+import game.resources.ManageResources;
 import game.room.Room;
 import game.room.RoomsManagement;
 import javafx.collections.FXCollections;
@@ -193,7 +194,7 @@ public class DashboardController {
     @FXML Button dashboardTabOfferVBoxQualityChoseRoom12Buy3;
     @FXML Button dashboardTabOfferVBoxQualityChoseRoom12Cancel;
 
-    @FXML Label dashboardTabOfferTotalPrice;
+    @FXML Label dashboardTabOfferBalance;
     @FXML Label dashboardTabInfoRoundNumber;
     @FXML Label dashboardTabInfoGameId;
     @FXML Label dashboardTabInfoIsReady;
@@ -284,15 +285,135 @@ public class DashboardController {
     @FXML Button dashboardTabBankGetCreditButton;
     @FXML Label dashboardTabBankRevolvingCreditAmount;
 
-    int roomsTotalPrice = 0;
+    @FXML Label dashboardTabResourcesBalance;
+    @FXML HBox dashboardTabResourcesHBoxTitle1;
+    @FXML HBox dashboardTabResourcesHBoxTitle2;
+    @FXML HBox dashboardTabResourcesHBoxTitle3;
+    @FXML Label dashboardTabResourcesVBoxRoom1Quality1StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom2Quality1StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom3Quality1StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom4Quality1StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom5Quality1StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom6Quality1StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom7Quality1StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom8Quality1StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom9Quality1StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom10Quality1StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom11Quality1StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom12Quality1StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom1Quality2StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom2Quality2StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom3Quality2StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom4Quality2StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom5Quality2StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom6Quality2StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom7Quality2StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom8Quality2StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom9Quality2StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom10Quality2StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom11Quality2StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom12Quality2StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom1Quality3StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom2Quality3StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom3Quality3StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom4Quality3StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom5Quality3StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom6Quality3StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom7Quality3StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom8Quality3StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom9Quality3StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom10Quality3StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom11Quality3StorageAmount;
+    @FXML Label dashboardTabResourcesVBoxRoom12Quality3StorageAmount;
+    @FXML Pane dashboardTabResourcesPaneRoom1;
+    @FXML Pane dashboardTabResourcesPaneRoom2;
+    @FXML Pane dashboardTabResourcesPaneRoom3;
+    @FXML Pane dashboardTabResourcesPaneRoom4;
+    @FXML Pane dashboardTabResourcesPaneRoom5;
+    @FXML Pane dashboardTabResourcesPaneRoom6;
+    @FXML Pane dashboardTabResourcesPaneRoom7;
+    @FXML Pane dashboardTabResourcesPaneRoom8;
+    @FXML Pane dashboardTabResourcesPaneRoom9;
+    @FXML Pane dashboardTabResourcesPaneRoom10;
+    @FXML Pane dashboardTabResourcesPaneRoom11;
+    @FXML Pane dashboardTabResourcesPaneRoom12;
+    @FXML Label dashboardTabResourcesVBoxRoom1Price1;
+    @FXML Label dashboardTabResourcesVBoxRoom2Price1;
+    @FXML Label dashboardTabResourcesVBoxRoom3Price1;
+    @FXML Label dashboardTabResourcesVBoxRoom4Price1;
+    @FXML Label dashboardTabResourcesVBoxRoom5Price1;
+    @FXML Label dashboardTabResourcesVBoxRoom6Price1;
+    @FXML Label dashboardTabResourcesVBoxRoom7Price1;
+    @FXML Label dashboardTabResourcesVBoxRoom8Price1;
+    @FXML Label dashboardTabResourcesVBoxRoom9Price1;
+    @FXML Label dashboardTabResourcesVBoxRoom10Price1;
+    @FXML Label dashboardTabResourcesVBoxRoom11Price1;
+    @FXML Label dashboardTabResourcesVBoxRoom12Price1;
+    @FXML Label dashboardTabResourcesVBoxRoom1Price2;
+    @FXML Label dashboardTabResourcesVBoxRoom2Price2;
+    @FXML Label dashboardTabResourcesVBoxRoom3Price2;
+    @FXML Label dashboardTabResourcesVBoxRoom4Price2;
+    @FXML Label dashboardTabResourcesVBoxRoom5Price2;
+    @FXML Label dashboardTabResourcesVBoxRoom6Price2;
+    @FXML Label dashboardTabResourcesVBoxRoom7Price2;
+    @FXML Label dashboardTabResourcesVBoxRoom8Price2;
+    @FXML Label dashboardTabResourcesVBoxRoom9Price2;
+    @FXML Label dashboardTabResourcesVBoxRoom10Price2;
+    @FXML Label dashboardTabResourcesVBoxRoom11Price2;
+    @FXML Label dashboardTabResourcesVBoxRoom12Price2;
+    @FXML Label dashboardTabResourcesVBoxRoom1Price3;
+    @FXML Label dashboardTabResourcesVBoxRoom2Price3;
+    @FXML Label dashboardTabResourcesVBoxRoom3Price3;
+    @FXML Label dashboardTabResourcesVBoxRoom4Price3;
+    @FXML Label dashboardTabResourcesVBoxRoom5Price3;
+    @FXML Label dashboardTabResourcesVBoxRoom6Price3;
+    @FXML Label dashboardTabResourcesVBoxRoom7Price3;
+    @FXML Label dashboardTabResourcesVBoxRoom8Price3;
+    @FXML Label dashboardTabResourcesVBoxRoom9Price3;
+    @FXML Label dashboardTabResourcesVBoxRoom10Price3;
+    @FXML Label dashboardTabResourcesVBoxRoom11Price3;
+    @FXML Label dashboardTabResourcesVBoxRoom12Price3;
+    @FXML TextField dashboardTabResourcesRoom1PriceTextField;
+    @FXML TextField dashboardTabResourcesRoom2PriceTextField;
+    @FXML TextField dashboardTabResourcesRoom3PriceTextField;
+    @FXML TextField dashboardTabResourcesRoom4PriceTextField;
+    @FXML TextField dashboardTabResourcesRoom5PriceTextField;
+    @FXML TextField dashboardTabResourcesRoom6PriceTextField;
+    @FXML TextField dashboardTabResourcesRoom7PriceTextField;
+    @FXML TextField dashboardTabResourcesRoom8PriceTextField;
+    @FXML TextField dashboardTabResourcesRoom9PriceTextField;
+    @FXML TextField dashboardTabResourcesRoom10PriceTextField;
+    @FXML TextField dashboardTabResourcesRoom11PriceTextField;
+    @FXML TextField dashboardTabResourcesRoom12PriceTextField;
+    @FXML ChoiceBox<String> dashboardTabResourcesRoom1QualityChoiceBox;
+    @FXML ChoiceBox<String> dashboardTabResourcesRoom2QualityChoiceBox;
+    @FXML ChoiceBox<String> dashboardTabResourcesRoom3QualityChoiceBox;
+    @FXML ChoiceBox<String> dashboardTabResourcesRoom4QualityChoiceBox;
+    @FXML ChoiceBox<String> dashboardTabResourcesRoom5QualityChoiceBox;
+    @FXML ChoiceBox<String> dashboardTabResourcesRoom6QualityChoiceBox;
+    @FXML ChoiceBox<String> dashboardTabResourcesRoom7QualityChoiceBox;
+    @FXML ChoiceBox<String> dashboardTabResourcesRoom8QualityChoiceBox;
+    @FXML ChoiceBox<String> dashboardTabResourcesRoom9QualityChoiceBox;
+    @FXML ChoiceBox<String> dashboardTabResourcesRoom10QualityChoiceBox;
+    @FXML ChoiceBox<String> dashboardTabResourcesRoom11QualityChoiceBox;
+    @FXML ChoiceBox<String> dashboardTabResourcesRoom12QualityChoiceBox;
+
     int lastBankGenerateRoundNumber = 1;
 
     @FXML
     private void initialize() {
-        initializeRoomsInfo();
-        ManageBanks.generateBankOptions();
-        dashboardTabBankGenerateDataInBankOptions();
-        revolvingCreditCheck();
+        try {
+            CurrentlyPlayedGame.getCurrentGame().setCurrentRound(6);
+            initializeRoomsInfo();
+            ManageBanks.generateBankOptions();
+            dashboardTabBankGenerateDataInBankOptions();
+            revolvingCreditCheck();
+            setUpChoiceBoxes();
+            fillResourcesFromStorage();
+            resourcesPanesVisibility();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     /**
@@ -356,7 +477,7 @@ public class DashboardController {
             dashboardTabOfferVBoxQualityChoseRoom6Price1.setText(String.valueOf(RoomsManagement.rooms[5].getFurnishingPrices()[0]) + "  (" + String.valueOf(RoomsManagement.rooms[5].getOfficeFurnishingPrices()[0]) + ")");
             dashboardTabOfferVBoxQualityChoseRoom6Price2.setText(String.valueOf(RoomsManagement.rooms[5].getFurnishingPrices()[1]) + "  (" + String.valueOf(RoomsManagement.rooms[5].getOfficeFurnishingPrices()[1]) + ")");
             dashboardTabOfferVBoxQualityChoseRoom6Price3.setText(String.valueOf(RoomsManagement.rooms[5].getFurnishingPrices()[2]) + "  (" + String.valueOf(RoomsManagement.rooms[5].getOfficeFurnishingPrices()[2]) + ")");
-            dashboardTabOfferTotalPrice.setText(String.valueOf(roomsTotalPrice));
+            dashboardTabOfferBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
 
             dashboardTabOfferVBoxQualityChoseRoom7Price1.setText(String.valueOf(RoomsManagement.rooms[6].getFurnishingPrices()[0]) + "  (" + String.valueOf(RoomsManagement.rooms[6].getOfficeFurnishingPrices()[0]) + ")");
             dashboardTabOfferVBoxQualityChoseRoom7Price2.setText(String.valueOf(RoomsManagement.rooms[6].getFurnishingPrices()[1]) + "  (" + String.valueOf(RoomsManagement.rooms[6].getOfficeFurnishingPrices()[1]) + ")");
@@ -376,7 +497,7 @@ public class DashboardController {
             dashboardTabOfferVBoxQualityChoseRoom12Price1.setText(String.valueOf(RoomsManagement.rooms[11].getFurnishingPrices()[0]) + "  (" + String.valueOf(RoomsManagement.rooms[11].getOfficeFurnishingPrices()[0]) + ")");
             dashboardTabOfferVBoxQualityChoseRoom12Price2.setText(String.valueOf(RoomsManagement.rooms[11].getFurnishingPrices()[1]) + "  (" + String.valueOf(RoomsManagement.rooms[11].getOfficeFurnishingPrices()[1]) + ")");
             dashboardTabOfferVBoxQualityChoseRoom12Price3.setText(String.valueOf(RoomsManagement.rooms[11].getFurnishingPrices()[2]) + "  (" + String.valueOf(RoomsManagement.rooms[11].getOfficeFurnishingPrices()[2]) + ")");
-            dashboardTabOfferTotalPrice.setText(String.valueOf(roomsTotalPrice));
+            dashboardTabOfferBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
 
 
 
@@ -426,9 +547,128 @@ public class DashboardController {
                 dashboardTabOfferHBoxTitle2.setVisible(false);
                 dashboardTabOfferHBoxTitle3.setVisible(false);
             }
+
+            dashboardTabResourcesVBoxRoom1Price1.setText(String.valueOf(RoomsManagement.rooms[0].getResourcesPrices()[0]));
+            dashboardTabResourcesVBoxRoom2Price1.setText(String.valueOf(RoomsManagement.rooms[1].getResourcesPrices()[0]));
+            dashboardTabResourcesVBoxRoom3Price1.setText(String.valueOf(RoomsManagement.rooms[2].getResourcesPrices()[0]));
+            dashboardTabResourcesVBoxRoom4Price1.setText(String.valueOf(RoomsManagement.rooms[3].getResourcesPrices()[0]));
+            dashboardTabResourcesVBoxRoom5Price1.setText(String.valueOf(RoomsManagement.rooms[4].getResourcesPrices()[0]));
+            dashboardTabResourcesVBoxRoom6Price1.setText(String.valueOf(RoomsManagement.rooms[5].getResourcesPrices()[0]));
+            dashboardTabResourcesVBoxRoom7Price1.setText(String.valueOf(RoomsManagement.rooms[6].getResourcesPrices()[0]));
+            dashboardTabResourcesVBoxRoom8Price1.setText(String.valueOf(RoomsManagement.rooms[7].getResourcesPrices()[0]));
+            dashboardTabResourcesVBoxRoom9Price1.setText(String.valueOf(RoomsManagement.rooms[8].getResourcesPrices()[0]));
+            dashboardTabResourcesVBoxRoom10Price1.setText(String.valueOf(RoomsManagement.rooms[9].getResourcesPrices()[0]));
+            dashboardTabResourcesVBoxRoom11Price1.setText(String.valueOf(RoomsManagement.rooms[10].getResourcesPrices()[0]));
+            dashboardTabResourcesVBoxRoom12Price1.setText(String.valueOf(RoomsManagement.rooms[11].getResourcesPrices()[0]));
+            dashboardTabResourcesVBoxRoom1Price2.setText(String.valueOf(RoomsManagement.rooms[0].getResourcesPrices()[1]));
+            dashboardTabResourcesVBoxRoom2Price2.setText(String.valueOf(RoomsManagement.rooms[1].getResourcesPrices()[1]));
+            dashboardTabResourcesVBoxRoom3Price2.setText(String.valueOf(RoomsManagement.rooms[2].getResourcesPrices()[1]));
+            dashboardTabResourcesVBoxRoom4Price2.setText(String.valueOf(RoomsManagement.rooms[3].getResourcesPrices()[1]));
+            dashboardTabResourcesVBoxRoom5Price2.setText(String.valueOf(RoomsManagement.rooms[4].getResourcesPrices()[1]));
+            dashboardTabResourcesVBoxRoom6Price2.setText(String.valueOf(RoomsManagement.rooms[5].getResourcesPrices()[1]));
+            dashboardTabResourcesVBoxRoom7Price2.setText(String.valueOf(RoomsManagement.rooms[6].getResourcesPrices()[1]));
+            dashboardTabResourcesVBoxRoom8Price2.setText(String.valueOf(RoomsManagement.rooms[7].getResourcesPrices()[1]));
+            dashboardTabResourcesVBoxRoom9Price2.setText(String.valueOf(RoomsManagement.rooms[8].getResourcesPrices()[1]));
+            dashboardTabResourcesVBoxRoom10Price2.setText(String.valueOf(RoomsManagement.rooms[9].getResourcesPrices()[1]));
+            dashboardTabResourcesVBoxRoom11Price2.setText(String.valueOf(RoomsManagement.rooms[10].getResourcesPrices()[1]));
+            dashboardTabResourcesVBoxRoom12Price2.setText(String.valueOf(RoomsManagement.rooms[11].getResourcesPrices()[1]));
+            dashboardTabResourcesVBoxRoom1Price3.setText(String.valueOf(RoomsManagement.rooms[0].getResourcesPrices()[2]));
+            dashboardTabResourcesVBoxRoom2Price3.setText(String.valueOf(RoomsManagement.rooms[1].getResourcesPrices()[2]));
+            dashboardTabResourcesVBoxRoom3Price3.setText(String.valueOf(RoomsManagement.rooms[2].getResourcesPrices()[2]));
+            dashboardTabResourcesVBoxRoom4Price3.setText(String.valueOf(RoomsManagement.rooms[3].getResourcesPrices()[2]));
+            dashboardTabResourcesVBoxRoom5Price3.setText(String.valueOf(RoomsManagement.rooms[4].getResourcesPrices()[2]));
+            dashboardTabResourcesVBoxRoom6Price3.setText(String.valueOf(RoomsManagement.rooms[5].getResourcesPrices()[2]));
+            dashboardTabResourcesVBoxRoom7Price3.setText(String.valueOf(RoomsManagement.rooms[6].getResourcesPrices()[2]));
+            dashboardTabResourcesVBoxRoom8Price3.setText(String.valueOf(RoomsManagement.rooms[7].getResourcesPrices()[2]));
+            dashboardTabResourcesVBoxRoom9Price3.setText(String.valueOf(RoomsManagement.rooms[8].getResourcesPrices()[2]));
+            dashboardTabResourcesVBoxRoom10Price3.setText(String.valueOf(RoomsManagement.rooms[9].getResourcesPrices()[2]));
+            dashboardTabResourcesVBoxRoom11Price3.setText(String.valueOf(RoomsManagement.rooms[10].getResourcesPrices()[2]));
+            dashboardTabResourcesVBoxRoom12Price3.setText(String.valueOf(RoomsManagement.rooms[11].getResourcesPrices()[2]));
         }catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    /**
+     * Metoda wykonywana po kliknięciu zakładki odświeżająca informacje.
+     */
+    @FXML
+    private void tabRefresh() {
+        try {
+            dashboardTabOfferBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
+            dashboardTabBankBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
+            dashboardTabResourcesBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
+            resourcesPanesVisibility();
+        } catch (Exception e) {}
+
+    }
+
+    @FXML
+    private void fillResourcesFromStorage() {
+        dashboardTabResourcesVBoxRoom1Quality1StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom1()[0]));
+        dashboardTabResourcesVBoxRoom1Quality2StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom1()[1]));
+        dashboardTabResourcesVBoxRoom1Quality3StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom1()[2]));
+        dashboardTabResourcesVBoxRoom2Quality1StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom2()[0]));
+        dashboardTabResourcesVBoxRoom2Quality2StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom2()[1]));
+        dashboardTabResourcesVBoxRoom2Quality3StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom2()[2]));
+        dashboardTabResourcesVBoxRoom3Quality1StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom3()[0]));
+        dashboardTabResourcesVBoxRoom3Quality2StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom3()[1]));
+        dashboardTabResourcesVBoxRoom3Quality3StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom3()[2]));
+        dashboardTabResourcesVBoxRoom4Quality1StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom4()[0]));
+        dashboardTabResourcesVBoxRoom4Quality2StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom4()[1]));
+        dashboardTabResourcesVBoxRoom4Quality3StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom4()[2]));
+        dashboardTabResourcesVBoxRoom5Quality1StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom5()[0]));
+        dashboardTabResourcesVBoxRoom5Quality2StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom5()[1]));
+        dashboardTabResourcesVBoxRoom5Quality3StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom5()[2]));
+        dashboardTabResourcesVBoxRoom6Quality1StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom6()[0]));
+        dashboardTabResourcesVBoxRoom6Quality2StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom6()[1]));
+        dashboardTabResourcesVBoxRoom6Quality3StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom6()[2]));
+        dashboardTabResourcesVBoxRoom7Quality1StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom7()[0]));
+        dashboardTabResourcesVBoxRoom7Quality2StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom7()[1]));
+        dashboardTabResourcesVBoxRoom7Quality3StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom7()[2]));
+        dashboardTabResourcesVBoxRoom8Quality1StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom8()[0]));
+        dashboardTabResourcesVBoxRoom8Quality2StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom8()[1]));
+        dashboardTabResourcesVBoxRoom8Quality3StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom8()[2]));
+        dashboardTabResourcesVBoxRoom9Quality1StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom9()[0]));
+        dashboardTabResourcesVBoxRoom9Quality2StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom9()[1]));
+        dashboardTabResourcesVBoxRoom9Quality3StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom9()[2]));
+        dashboardTabResourcesVBoxRoom10Quality1StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom10()[0]));
+        dashboardTabResourcesVBoxRoom10Quality2StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom10()[1]));
+        dashboardTabResourcesVBoxRoom10Quality3StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom10()[2]));
+        dashboardTabResourcesVBoxRoom11Quality1StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom11()[0]));
+        dashboardTabResourcesVBoxRoom11Quality2StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom11()[1]));
+        dashboardTabResourcesVBoxRoom11Quality3StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom11()[2]));
+        dashboardTabResourcesVBoxRoom12Quality1StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom12()[0]));
+        dashboardTabResourcesVBoxRoom12Quality2StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom12()[1]));
+        dashboardTabResourcesVBoxRoom12Quality3StorageAmount.setText(String.valueOf(ManageResources.getResourcesRoom12()[2]));
+    }
+
+    @FXML
+    private void setUpChoiceBoxes() {
+        dashboardTabResourcesRoom1QualityChoiceBox.setItems(FXCollections.observableArrayList("★", "★★", "★★★"));
+        dashboardTabResourcesRoom2QualityChoiceBox.setItems(FXCollections.observableArrayList("★", "★★", "★★★"));
+        dashboardTabResourcesRoom3QualityChoiceBox.setItems(FXCollections.observableArrayList("★", "★★", "★★★"));
+        dashboardTabResourcesRoom4QualityChoiceBox.setItems(FXCollections.observableArrayList("★", "★★", "★★★"));
+        dashboardTabResourcesRoom5QualityChoiceBox.setItems(FXCollections.observableArrayList("★", "★★", "★★★"));
+        dashboardTabResourcesRoom6QualityChoiceBox.setItems(FXCollections.observableArrayList("★", "★★", "★★★"));
+        dashboardTabResourcesRoom7QualityChoiceBox.setItems(FXCollections.observableArrayList("★", "★★", "★★★"));
+        dashboardTabResourcesRoom8QualityChoiceBox.setItems(FXCollections.observableArrayList("★", "★★", "★★★"));
+        dashboardTabResourcesRoom9QualityChoiceBox.setItems(FXCollections.observableArrayList("★", "★★", "★★★"));
+        dashboardTabResourcesRoom10QualityChoiceBox.setItems(FXCollections.observableArrayList("★", "★★", "★★★"));
+        dashboardTabResourcesRoom11QualityChoiceBox.setItems(FXCollections.observableArrayList("★", "★★", "★★★"));
+        dashboardTabResourcesRoom12QualityChoiceBox.setItems(FXCollections.observableArrayList("★", "★★", "★★★"));
+        dashboardTabResourcesRoom1QualityChoiceBox.setValue("★");
+        dashboardTabResourcesRoom2QualityChoiceBox.setValue("★");
+        dashboardTabResourcesRoom3QualityChoiceBox.setValue("★");
+        dashboardTabResourcesRoom4QualityChoiceBox.setValue("★");
+        dashboardTabResourcesRoom5QualityChoiceBox.setValue("★");
+        dashboardTabResourcesRoom6QualityChoiceBox.setValue("★");
+        dashboardTabResourcesRoom7QualityChoiceBox.setValue("★");
+        dashboardTabResourcesRoom8QualityChoiceBox.setValue("★");
+        dashboardTabResourcesRoom9QualityChoiceBox.setValue("★");
+        dashboardTabResourcesRoom10QualityChoiceBox.setValue("★");
+        dashboardTabResourcesRoom11QualityChoiceBox.setValue("★");
+        dashboardTabResourcesRoom12QualityChoiceBox.setValue("★");
     }
 
     /**
@@ -693,10 +933,17 @@ public class DashboardController {
     @FXML
     private void buyRoom(Event event) {
         String buttonId = ((Control)event.getSource()).getId();
-        int roomId = Integer.parseInt(String.valueOf(buttonId.charAt(buttonId.length() - 5))) - 1;
+        String roomId1 = String.valueOf(buttonId.charAt(buttonId.length() - 6));
+        int roomId;
+        if(roomId1.equals("m")) {
+            roomId = Integer.parseInt(String.valueOf(buttonId.charAt(buttonId.length() - 5))) - 1;
+        } else {
+            roomId = Integer.parseInt(String.valueOf(buttonId.charAt(buttonId.length() - 6) + "" + buttonId.charAt(buttonId.length() - 5))) - 1;
+        }
         int quality = Integer.parseInt(String.valueOf(buttonId.charAt(buttonId.length() - 1))) - 1;
         if(RoomsManagement.rooms[roomId].isBought() && RoomsManagement.rooms[roomId].getQualityBought() == quality) {
-            roomsTotalPrice -= RoomsManagement.rooms[roomId].getFurnishingPrices()[RoomsManagement.rooms[roomId].getQualityBought()];
+            int roomPrice = RoomsManagement.rooms[roomId].getFurnishingPrices()[RoomsManagement.rooms[roomId].getQualityBought()];
+            CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() + roomPrice);
             RoomsManagement.rooms[roomId].setBought(false);
             switch (roomId) {
                 case 0:
@@ -737,53 +984,62 @@ public class DashboardController {
                     break;
             }
         } else if(RoomsManagement.rooms[roomId].isBought()) {
-            roomsTotalPrice -= RoomsManagement.rooms[roomId].getFurnishingPrices()[RoomsManagement.rooms[roomId].getQualityBought()];
-            RoomsManagement.rooms[roomId].setQualityBought(quality);
-            roomsTotalPrice += RoomsManagement.rooms[roomId].getFurnishingPrices()[quality];
+            int roomPriceOld = RoomsManagement.rooms[roomId].getFurnishingPrices()[RoomsManagement.rooms[roomId].getQualityBought()];
+            int roomPriceNew = RoomsManagement.rooms[roomId].getFurnishingPrices()[quality];
+            if(roomPriceNew <= roomPriceOld) {
+                RoomsManagement.rooms[roomId].setQualityBought(quality);
+                CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() + (roomPriceOld - roomPriceNew));
+            } else if(CurrentlyPlayedGame.getBalance() + roomPriceOld >= roomPriceNew) {
+                RoomsManagement.rooms[roomId].setQualityBought(quality);
+                CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() + roomPriceOld - roomPriceNew);
+            }
         } else {
-            RoomsManagement.rooms[roomId].setBought(true);
-            RoomsManagement.rooms[roomId].setQualityBought(quality);
-            roomsTotalPrice += RoomsManagement.rooms[roomId].getFurnishingPrices()[quality];
-            switch (roomId) {
-                case 0:
-                    dashboardTabOfferButtonBuyRoom1.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
-                    break;
-                case 1:
-                    dashboardTabOfferButtonBuyRoom2.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
-                    break;
-                case 2:
-                    dashboardTabOfferButtonBuyRoom3.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
-                    break;
-                case 3:
-                    dashboardTabOfferButtonBuyRoom4.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
-                    break;
-                case 4:
-                    dashboardTabOfferButtonBuyRoom5.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
-                    break;
-                case 5:
-                    dashboardTabOfferButtonBuyRoom6.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
-                    break;
-                case 6:
-                    dashboardTabOfferButtonBuyRoom7.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
-                    break;
-                case 7:
-                    dashboardTabOfferButtonBuyRoom8.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
-                    break;
-                case 8:
-                    dashboardTabOfferButtonBuyRoom9.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
-                    break;
-                case 9:
-                    dashboardTabOfferButtonBuyRoom10.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
-                    break;
-                case 10:
-                    dashboardTabOfferButtonBuyRoom11.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
-                    break;
-                case 11:
-                    dashboardTabOfferButtonBuyRoom12.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
-                    break;
+            int roomPrice = RoomsManagement.rooms[roomId].getFurnishingPrices()[quality];
+            if(CurrentlyPlayedGame.getBalance() >= roomPrice) {
+                RoomsManagement.rooms[roomId].setBought(true);
+                RoomsManagement.rooms[roomId].setQualityBought(quality);
+                CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() - roomPrice);
+                switch (roomId) {
+                    case 0:
+                        dashboardTabOfferButtonBuyRoom1.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
+                        break;
+                    case 1:
+                        dashboardTabOfferButtonBuyRoom2.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
+                        break;
+                    case 2:
+                        dashboardTabOfferButtonBuyRoom3.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
+                        break;
+                    case 3:
+                        dashboardTabOfferButtonBuyRoom4.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
+                        break;
+                    case 4:
+                        dashboardTabOfferButtonBuyRoom5.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
+                        break;
+                    case 5:
+                        dashboardTabOfferButtonBuyRoom6.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
+                        break;
+                    case 6:
+                        dashboardTabOfferButtonBuyRoom7.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
+                        break;
+                    case 7:
+                        dashboardTabOfferButtonBuyRoom8.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
+                        break;
+                    case 8:
+                        dashboardTabOfferButtonBuyRoom9.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
+                        break;
+                    case 9:
+                        dashboardTabOfferButtonBuyRoom10.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
+                        break;
+                    case 10:
+                        dashboardTabOfferButtonBuyRoom11.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
+                        break;
+                    case 11:
+                        dashboardTabOfferButtonBuyRoom12.setText("ZMIEŃ JAKOŚĆ/SPRZEDAJ");
+                        break;
+                }
             }
         }
-        dashboardTabOfferTotalPrice.setText(String.valueOf(roomsTotalPrice));
+        dashboardTabOfferBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
         switchToRoomInfo(roomId);
     }
 
@@ -952,6 +1208,130 @@ public class DashboardController {
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
             dashboardTabOfferHBoxSeasoningRoom12VBoxesIndex++;
         }
+    }
+
+    @FXML
+    private void buyResources(Event event) {
+        String buttonId = ((Control)event.getSource()).getId();
+        String roomIdString = buttonId.substring(buttonId.length() - 5);
+        String qualityStars = "", amount = "";
+        int roomId, quality;
+        if(roomIdString.charAt(0) == 'm') {
+            roomId = Integer.parseInt(String.valueOf(roomIdString.charAt(1)));
+        } else {
+            roomId = Integer.parseInt(roomIdString.charAt(0) + "" +  roomIdString.charAt(1));
+        }
+        switch (roomId) {
+            case 1:
+                amount = dashboardTabResourcesRoom1PriceTextField.getText();
+                qualityStars = dashboardTabResourcesRoom1QualityChoiceBox.getValue();
+                dashboardTabResourcesRoom1PriceTextField.setText("");
+                dashboardTabResourcesRoom1QualityChoiceBox.setValue("★");
+                break;
+            case 2:
+                amount = dashboardTabResourcesRoom2PriceTextField.getText();
+                qualityStars = dashboardTabResourcesRoom2QualityChoiceBox.getValue();
+                dashboardTabResourcesRoom2PriceTextField.setText("");
+                dashboardTabResourcesRoom2QualityChoiceBox.setValue("★");
+                break;
+            case 3:
+                amount = dashboardTabResourcesRoom3PriceTextField.getText();
+                qualityStars = dashboardTabResourcesRoom3QualityChoiceBox.getValue();
+                dashboardTabResourcesRoom3PriceTextField.setText("");
+                dashboardTabResourcesRoom3QualityChoiceBox.setValue("★");
+                break;
+            case 4:
+                amount = dashboardTabResourcesRoom4PriceTextField.getText();
+                qualityStars = dashboardTabResourcesRoom4QualityChoiceBox.getValue();
+                dashboardTabResourcesRoom4PriceTextField.setText("");
+                dashboardTabResourcesRoom4QualityChoiceBox.setValue("★");
+                break;
+            case 5:
+                amount = dashboardTabResourcesRoom5PriceTextField.getText();
+                qualityStars = dashboardTabResourcesRoom5QualityChoiceBox.getValue();
+                dashboardTabResourcesRoom5PriceTextField.setText("");
+                dashboardTabResourcesRoom5QualityChoiceBox.setValue("★");
+                break;
+            case 6:
+                amount = dashboardTabResourcesRoom6PriceTextField.getText();
+                qualityStars = dashboardTabResourcesRoom6QualityChoiceBox.getValue();
+                dashboardTabResourcesRoom6PriceTextField.setText("");
+                dashboardTabResourcesRoom6QualityChoiceBox.setValue("★");
+                break;
+            case 7:
+                amount = dashboardTabResourcesRoom7PriceTextField.getText();
+                qualityStars = dashboardTabResourcesRoom7QualityChoiceBox.getValue();
+                dashboardTabResourcesRoom7PriceTextField.setText("");
+                dashboardTabResourcesRoom7QualityChoiceBox.setValue("★");
+                break;
+            case 8:
+                amount = dashboardTabResourcesRoom8PriceTextField.getText();
+                qualityStars = dashboardTabResourcesRoom8QualityChoiceBox.getValue();
+                dashboardTabResourcesRoom8PriceTextField.setText("");
+                dashboardTabResourcesRoom8QualityChoiceBox.setValue("★");
+                break;
+            case 9:
+                amount = dashboardTabResourcesRoom9PriceTextField.getText();
+                qualityStars = dashboardTabResourcesRoom9QualityChoiceBox.getValue();
+                dashboardTabResourcesRoom9PriceTextField.setText("");
+                dashboardTabResourcesRoom9QualityChoiceBox.setValue("★");
+                break;
+            case 10:
+                amount = dashboardTabResourcesRoom10PriceTextField.getText();
+                qualityStars = dashboardTabResourcesRoom10QualityChoiceBox.getValue();
+                dashboardTabResourcesRoom10PriceTextField.setText("");
+                dashboardTabResourcesRoom10QualityChoiceBox.setValue("★");
+                break;
+            case 11:
+                amount = dashboardTabResourcesRoom11PriceTextField.getText();
+                qualityStars = dashboardTabResourcesRoom11QualityChoiceBox.getValue();
+                dashboardTabResourcesRoom11PriceTextField.setText("");
+                dashboardTabResourcesRoom11QualityChoiceBox.setValue("★");
+                break;
+            case 12:
+                amount = dashboardTabResourcesRoom12PriceTextField.getText();
+                qualityStars = dashboardTabResourcesRoom12QualityChoiceBox.getValue();
+                dashboardTabResourcesRoom12PriceTextField.setText("");
+                dashboardTabResourcesRoom12QualityChoiceBox.setValue("★");
+                break;
+        }
+        if(qualityStars.equals("★★★")) {
+            quality = 3;
+        } else if(qualityStars.equals("★★")) {
+            quality = 2;
+        } else {
+            quality = 1;
+        }
+
+        int totalPrice = RoomsManagement.rooms[roomId - 1].getResourcesPrices()[quality - 1] * Integer.parseInt(amount);
+        if(CurrentlyPlayedGame.getBalance() >= totalPrice) {
+            ManageResources.addResourcesToStorage(roomId, quality, Integer.parseInt(amount));
+            CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() - totalPrice);
+            dashboardTabResourcesBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
+            fillResourcesFromStorage();
+        }
+    }
+
+    /**
+     * Metoda ustawiająca widoczność okien do zakupu zasobów.
+     */
+    @FXML
+    private void resourcesPanesVisibility() {
+        dashboardTabResourcesPaneRoom1.setVisible(RoomsManagement.rooms[0].isBought());
+        dashboardTabResourcesPaneRoom2.setVisible(RoomsManagement.rooms[1].isBought());
+        dashboardTabResourcesPaneRoom3.setVisible(RoomsManagement.rooms[2].isBought());
+        dashboardTabResourcesPaneRoom4.setVisible(RoomsManagement.rooms[3].isBought());
+        dashboardTabResourcesPaneRoom5.setVisible(RoomsManagement.rooms[4].isBought());
+        dashboardTabResourcesPaneRoom6.setVisible(RoomsManagement.rooms[5].isBought());
+        dashboardTabResourcesPaneRoom7.setVisible(RoomsManagement.rooms[6].isBought());
+        dashboardTabResourcesPaneRoom8.setVisible(RoomsManagement.rooms[7].isBought());
+        dashboardTabResourcesPaneRoom9.setVisible(RoomsManagement.rooms[8].isBought());
+        dashboardTabResourcesPaneRoom10.setVisible(RoomsManagement.rooms[9].isBought());
+        dashboardTabResourcesPaneRoom11.setVisible(RoomsManagement.rooms[10].isBought());
+        dashboardTabResourcesPaneRoom12.setVisible(RoomsManagement.rooms[11].isBought());
+        dashboardTabResourcesHBoxTitle1.setVisible(RoomsManagement.rooms[0].isBought() || RoomsManagement.rooms[1].isBought() || RoomsManagement.rooms[2].isBought() || RoomsManagement.rooms[3].isBought() || RoomsManagement.rooms[4].isBought() || RoomsManagement.rooms[5].isBought());
+        dashboardTabResourcesHBoxTitle2.setVisible(RoomsManagement.rooms[6].isBought() || RoomsManagement.rooms[7].isBought() || RoomsManagement.rooms[8].isBought());
+        dashboardTabResourcesHBoxTitle3.setVisible(RoomsManagement.rooms[9].isBought() || RoomsManagement.rooms[10].isBought() || RoomsManagement.rooms[11].isBought());
     }
 
     @FXML
