@@ -1,14 +1,23 @@
 package game;
 
+import javafx.scene.image.Image;
+
+import java.io.File;
+
 /**
  * Klasa reprezentująca grę.
  */
 public class Game {
     private int gameId;
+    private int hotelId;
     private int currentRound;
     private boolean isGameOnGoing;
     private boolean isGameReadyForNextRound;
     private int numberOfPlayers;
+    private Image hotelLogo;
+    private File hotelLogoFile;
+    private String hotelName;
+    private String hotelMission;
 
     public Game(int gameId, int currentRound, boolean isGameOnGoing, boolean isGameReadyForNextRound, int numberOfPlayers) {
         this.gameId = gameId;
@@ -18,8 +27,9 @@ public class Game {
         this.numberOfPlayers = numberOfPlayers;
     }
 
-    public Game(String gameId, String currentRound, String isGameOnGoing, boolean isGameReadyForNextRound, String numberOfPlayers) {
+    public Game(String gameId, String hotelId, String currentRound, String isGameOnGoing, boolean isGameReadyForNextRound, String numberOfPlayers) {
         this.gameId = Integer.parseInt(gameId);
+        this.hotelId = Integer.parseInt(hotelId);
         this.currentRound = Integer.parseInt(currentRound);
         this.isGameOnGoing = isGameOnGoing.equals("t");
         this.isGameReadyForNextRound = isGameReadyForNextRound;
@@ -36,6 +46,14 @@ public class Game {
 
     public int getCurrentRound() {
         return currentRound;
+    }
+
+    public void setHotelLogo(Image hotelLogo) {
+        this.hotelLogo = hotelLogo;
+    }
+
+    public Image getHotelLogo() {
+        return hotelLogo;
     }
 
     public void setCurrentRound(int currentRound) {
@@ -64,5 +82,37 @@ public class Game {
 
     public void setNumberOfPlayers(int numberOfPlayers) {
         this.numberOfPlayers = numberOfPlayers;
+    }
+
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+    public String getHotelMission() {
+        return hotelMission;
+    }
+
+    public void setHotelMission(String hotelMission) {
+        this.hotelMission = hotelMission;
+    }
+
+    public int getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    public File getHotelLogoFile() {
+        return hotelLogoFile;
+    }
+
+    public void setHotelLogoFile(File hotelLogoFile) {
+        this.hotelLogoFile = hotelLogoFile;
     }
 }

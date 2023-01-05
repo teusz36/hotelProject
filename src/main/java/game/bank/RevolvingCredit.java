@@ -7,8 +7,8 @@ public class RevolvingCredit extends Credit{
     int fullAmountOfCredit = 0;
     int monthlyInterest = 0;
 
-    public RevolvingCredit(String bankName, int startMonth, int fullAmountOfCredit, int monthlyInterest, int numberOfMonths) {
-        super(bankName, startMonth, fullAmountOfCredit, monthlyInterest, numberOfMonths);
+    public RevolvingCredit(String bankName, int bankId, int startMonth, int fullAmountOfCredit, int monthlyInterest, int numberOfMonths) {
+        super(bankName, bankId, startMonth, fullAmountOfCredit, monthlyInterest, numberOfMonths);
     }
 
     public RevolvingCredit(int fullAmountOfCredit, int monthlyInterest) {

@@ -117,7 +117,7 @@ public class PanelAdminGamesScreenController {
      * @return numer rundy wybranej gry.
      */
     @FXML
-    private int getGameNumber() {
+    private int getRoundNumber() {
         try {
             ObservableList selectedSession;
             selectedSession = gamesTable.getSelectionModel().getSelectedItems();
@@ -164,7 +164,7 @@ public class PanelAdminGamesScreenController {
     @FXML
     private void moveGameToNextRound() throws SQLException, IOException {
         if(ManageGame.isGameReady(String.valueOf(getGameId()))) {
-            ManageGame.moveGameToNextRound(getGameId(), getGameNumber() + 1);
+            ManageGame.moveGameToNextRound(getGameId(), getRoundNumber() + 1);
         }
         App.setRoot("paneladmingamesscreen");
     }

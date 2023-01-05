@@ -147,6 +147,36 @@
     -fx-opacity: 0;
 }
 
+.error-tab-view {
+    -fx-cursor: default;
+}
+
+.error-tab-view .column-header-background {
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+}
+
+.error-tab-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+    -fx-font-size: 24px;
+    -fx-max-height: 15;
+    -fx-min-height: 15;
+    -fx-background-color: transparent;
+}
+.error-tab-view .table-row-cell: odd{
+    -fx-background-color: transparent;
+}
+.error-tab-view .table-row-cell: even{
+    -fx-background-color: transparent;
+}
+.error-tab-view .table-row-cell: hover {
+    -fx-background-color: transparent;
+}
+.error-tab-view:focused .table-row-cell:selected {
+    -fx-background-color: transparent;
+}
 
 .choice-box .context-menu {
      -fx-background-color: white;

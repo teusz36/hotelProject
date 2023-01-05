@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class Bank {
     private String name;
+    private int bankId;
     private int accountCost;
     private int cardCost;
     private int depositInterestRate;
     private int creditInterestRate;
     private int revolvingCreditInterestRate;
-    private long accountNumber;
-    private ArrayList<Deposit> deposits = new ArrayList<Deposit> ();
 
-    public Bank(String name, int accountCost, int cardCost, int depositInterestRate, int creditInterestRate, int revolvingCreditInterestRate, long accountNumber) {
+    public Bank(String name, int id, int accountCost, int cardCost, int depositInterestRate, int creditInterestRate, int revolvingCreditInterestRate) {
         this.name = name;
+        this.bankId = id;
         this.accountCost = accountCost;
         this.cardCost = cardCost;
         this.depositInterestRate = depositInterestRate;
@@ -73,23 +73,11 @@ public class Bank {
         this.revolvingCreditInterestRate = revolvingCreditInterestRate;
     }
 
-    public long getAccountNumber() {
-        return accountNumber;
+    public int getBankId() {
+        return bankId;
     }
 
-    public void setAccountNumber(long accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public ArrayList<Deposit> getDeposits() {
-        return deposits;
-    }
-
-    public void addDeposit(Deposit deposit) {
-        deposits.add(deposit);
-    }
-
-    public void setDeposits(ArrayList<Deposit> deposits) {
-        this.deposits = deposits;
+    public void setBankId(int bankId) {
+        this.bankId = bankId;
     }
 }

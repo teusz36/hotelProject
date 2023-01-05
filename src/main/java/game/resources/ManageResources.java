@@ -52,6 +52,8 @@ public abstract class ManageResources {
         return resourcesStorage[11];
     }
 
+    public static int[] getResources(int id) { return resourcesStorage[id - 1]; };
+
     public static void addResourcesToStorage(int room, int quality, int amount) {
         resourcesStorage[room - 1][quality - 1] += amount;
     }

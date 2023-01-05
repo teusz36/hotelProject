@@ -39,9 +39,9 @@ public abstract class GameDisplayer {
      * @return ResultSet z danymi o grze.
      * @throws SQLException
      */
-    public static ResultSet getGameByID(String game_id) throws SQLException {
+    public static ResultSet getGameByID(String game_id, String user_id) throws SQLException {
         if(Connect.getConnection() != null) {
-            return executeQuery("SELECT g.game_id, g.start_date, g.end_date, g.isongoing, g.current_round, COUNT(*) FROM hotelprojekt.game g LEFT JOIN hotelprojekt.game_users gu ON g.game_id = gu.game_id WHERE gu.game_id = " + game_id + " GROUP BY g.game_id, g.current_round, g.start_date, g.end_date, g.isongoing ORDER BY game_id;");
+            return executeQuery("SELECT g.game_id, g.start_date, g.end_date, g.isongoing, g.current_round, COUNT(*), gu.hotel_id FROM hotelprojekt.game g LEFT JOIN hotelprojekt.game_users gu ON g.game_id = gu.game_id WHERE gu.game_id = " + game_id + " AND gu.user_id = " + user_id + " GROUP BY g.game_id, g.current_round, g.start_date, g.end_date, g.isongoing, gu.hotel_id ORDER BY game_id;");
         } else {
             return null;
         }

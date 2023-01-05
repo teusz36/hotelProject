@@ -4,6 +4,7 @@ import game.Player;
 
 public class Credit {
     private String bankName;
+    private int bankId;
     private int startMonth;
     private int fullAmountOfCredit;
     private int monthlyPayment;
@@ -12,8 +13,9 @@ public class Credit {
     private int restAmountOfCredit;
     private boolean isActive = true;
 
-    public Credit(String bankName, int startMonth, int fullAmountOfCredit,  int monthlyInterest, int numberOfMonths) {
+    public Credit(String bankName, int bankId, int startMonth, int fullAmountOfCredit,  int monthlyInterest, int numberOfMonths) {
         this.bankName = bankName;
+        this.bankId = bankId;
         this.startMonth = startMonth;
         this.fullAmountOfCredit = fullAmountOfCredit;
         this.monthlyPayment = (int) (fullAmountOfCredit/numberOfMonths * (1 + (0.01 * monthlyInterest)));
@@ -91,5 +93,13 @@ public class Credit {
 
     public void endCredit() {
         this.isActive = false;
+    }
+
+    public int getBankId() {
+        return bankId;
+    }
+
+    public void setBankId(int bankId) {
+        this.bankId = bankId;
     }
 }

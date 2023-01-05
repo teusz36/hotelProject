@@ -39,15 +39,216 @@
 
       <TabPane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab onSelectionChanged="#tabRefresh" text="Dashboard">
+            <Tab fx:id="dashboardTab" onSelectionChanged="#tabRefresh" text="Dashboard">
                 <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                         <children>
-                            <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
+                            <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
+                           <children>
+                              <VBox prefHeight="635.0" prefWidth="891.0">
+                                 <children>
+                                    <GridPane hgap="15.0" prefHeight="635.0" prefWidth="891.0" vgap="15.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" styleClass="offer-item-pane">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="148.8" prefWidth="234.4">
+                                                   <children>
+                                                      <Label styleClass="offer-item-title" text="INFORMACJE O FIRMIE">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ImageView fx:id="dashboardTabDashboardImage" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                         <image>
+                                                            <Image url="@../../images/logo_empty.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <Label fx:id="dashboardTabDashboardName" text="Brak nazwy firmy">
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets top="10.0" />
+                                                   </padding>
+                                                </VBox>
+                                             </children></Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" styleClass="offer-item-pane" GridPane.rowIndex="1">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="148.8" prefWidth="234.4">
+                                                   <padding>
+                                                      <Insets top="10.0" />
+                                                   </padding>
+                                                   <children>
+                                                      <Label styleClass="offer-item-title" text="DOCHÓD">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children></Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" styleClass="offer-item-pane" GridPane.rowIndex="2">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="148.8" prefWidth="234.4">
+                                                   <padding>
+                                                      <Insets top="10.0" />
+                                                   </padding>
+                                                   <children>
+                                                      <Label styleClass="offer-item-title" text="LICZBA PRACOWNIKÓW">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children></Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" styleClass="offer-item-pane" GridPane.columnIndex="1">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="148.8" prefWidth="234.4">
+                                                   <padding>
+                                                      <Insets top="10.0" />
+                                                   </padding>
+                                                   <children>
+                                                      <Label styleClass="offer-item-title" text="MIEJSCE">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                         <children>
+                                                            <Label fx:id="dashboardTabDashboardRank" style="-fx-margin-top: 20;" text="Ranking dostępny od 2 rundy">
+                                                               <VBox.margin>
+                                                                  <Insets />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                             </children></Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" styleClass="offer-item-pane" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="148.8" prefWidth="234.4">
+                                                   <padding>
+                                                      <Insets top="10.0" />
+                                                   </padding>
+                                                   <children>
+                                                      <Label styleClass="offer-item-title" text="SALDO KONTA">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="dashboardTabDashboardBalance" text="&lt;value&gt;">
+                                                         <font>
+                                                            <Font size="30.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="20.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children></Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" styleClass="offer-item-pane" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="148.8" prefWidth="234.4">
+                                                   <padding>
+                                                      <Insets top="10.0" />
+                                                   </padding>
+                                                   <children>
+                                                      <Label styleClass="offer-item-title" text="Label">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children></Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" styleClass="offer-item-pane" GridPane.columnIndex="2">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="148.8" prefWidth="234.4">
+                                                   <children>
+                                                      <Label styleClass="offer-item-title" text="OBECNA RUNDA">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="dashboardTabDashboardRoundNumber" text="&lt;value&gt;">
+                                                         <font>
+                                                            <Font size="62.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets top="10.0" />
+                                                   </padding>
+                                                </VBox>
+                                             </children></Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" styleClass="offer-item-pane" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="148.8" prefWidth="234.4">
+                                                   <padding>
+                                                      <Insets top="10.0" />
+                                                   </padding>
+                                                   <children>
+                                                      <Label styleClass="offer-item-title" text="MIESIĘCZNE OPŁATY">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" styleClass="offer-item-pane" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="148.8" prefWidth="234.4">
+                                                   <padding>
+                                                      <Insets top="10.0" />
+                                                   </padding>
+                                                   <children>
+                                                      <Label styleClass="offer-item-title" text="Label">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="80.0" left="80.0" right="80.0" top="80.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets top="30.0" />
+                           </padding></Pane>
                         </children></AnchorPane>
                 </content>
             </Tab>
-            <Tab onSelectionChanged="#tabRefresh" text="Informacje o firmie">
+            <Tab fx:id="infoTab" onSelectionChanged="#tabRefresh" text="Informacje o firmie">
                 <content>
                     <AnchorPane prefHeight="635.0" prefWidth="891.0">
                         <children>
@@ -102,7 +303,7 @@
                                                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                         </padding>
                                                     </Label>
-                                                    <TextArea fx:id="dashboardTabInfoCompanyName" minHeight="15.0" prefHeight="15.0" prefWidth="430.0">
+                                                    <TextArea fx:id="dashboardTabInfoCompanyName" minHeight="15.0" onInputMethodTextChanged="#saveNameAndMission" onKeyTyped="#saveNameAndMission" prefHeight="15.0" prefWidth="430.0">
                                                         <HBox.margin>
                                                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                         </HBox.margin>
@@ -125,7 +326,7 @@
                                                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                         </padding>
                                                     </Label>
-                                                    <TextArea fx:id="dashboardTabInfoCompanyMission" minHeight="15.0" prefHeight="15.0" prefWidth="430.0">
+                                                    <TextArea fx:id="dashboardTabInfoCompanyMission" minHeight="15.0" onInputMethodTextChanged="#saveNameAndMission" onKeyTyped="#saveNameAndMission" prefHeight="15.0" prefWidth="430.0">
                                                         <HBox.margin>
                                                             <Insets bottom="10.0" left="25.0" right="10.0" top="10.0" />
                                                         </HBox.margin>
@@ -142,7 +343,7 @@
                         </children></AnchorPane>
                 </content>
             </Tab>
-          <Tab fx:id="dashboardTabOfferHBoxSeasoning" onSelectionChanged="#tabRefresh" text="Oferta">
+          <Tab fx:id="offerTab" onSelectionChanged="#tabRefresh" text="Oferta">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -2681,7 +2882,7 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab onSelectionChanged="#tabRefresh" text="Zasoby">
+          <Tab fx:id="resourcesTab" onSelectionChanged="#tabRefresh" text="Zasoby">
               <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -2720,7 +2921,7 @@
                                              </Label>
                                          </children>
                                      </HBox>
-                                    <HBox minHeight="330.0" prefHeight="300.0" prefWidth="300.0">
+                                    <HBox fx:id="dashboardTabResourcesHBoxSet1" minHeight="330.0">
                                         <Pane fx:id="dashboardTabResourcesPaneRoom1" maxHeight="300.0" minHeight="280.0" prefHeight="280.0" prefWidth="271.0" styleClass="offer-item-pane" stylesheets="@styles.css">
                                             <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -2737,17 +2938,22 @@
                                                             </font></Label>
                                                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                                             <children>
-
-                                                                        <HBox alignment="CENTER" prefHeight="200.0" prefWidth="271.0" spacing="20.0">
-                                                                            <children>
-                                                                                <Label text="Jakość" />
-                                                                                <Label text="W magazynie">
-                                                                  <HBox.margin>
-                                                                     <Insets left="20.0" />
-                                                                  </HBox.margin></Label>
-                                                                                <Label text="Cena za zestaw" />
-                                                                            </children>
-                                                                        </HBox>
+                                                                <HBox alignment="CENTER" prefHeight="200.0" prefWidth="271.0" spacing="20.0">
+                                                                    <children>
+                                                                        <Label text="Jakość" />
+                                                                        <Label text="W magazynie">
+                                                                            <HBox.margin>
+                                                                                <Insets left="20.0" />
+                                                                            </HBox.margin>
+                                                                        </Label>
+                                                                    <HBox alignment="CENTER" prefHeight="100.0" spacing="3.0">
+                                                                        <children>
+                                                                            <Label text="Cena za zestaw" />
+                                                                            <Label fx:id="dashboardTabResourcesSetPrice1" text="?" />
+                                                                        </children>
+                                                                    </HBox>
+                                                                   </children>
+                                                               </HBox>
 
                                                             </children>
                                                             <VBox.margin>
@@ -2930,7 +3136,12 @@
                                                                             <HBox.margin>
                                                                                 <Insets left="20.0" />
                                                                             </HBox.margin></Label>
-                                                                        <Label text="Cena za zestaw" />
+                                                                        <HBox alignment="CENTER" prefHeight="100.0" spacing="3.0">
+                                                                            <children>
+                                                                                <Label text="Cena za zestaw" />
+                                                                                <Label fx:id="dashboardTabResourcesSetPrice2" text="?" />
+                                                                            </children>
+                                                                        </HBox>
                                                                     </children>
                                                                 </HBox>
 
@@ -3115,7 +3326,12 @@
                                                                             <HBox.margin>
                                                                                 <Insets left="20.0" />
                                                                             </HBox.margin></Label>
-                                                                        <Label text="Cena za zestaw" />
+                                                                        <HBox alignment="CENTER" prefHeight="100.0" spacing="3.0">
+                                                                            <children>
+                                                                                <Label text="Cena za zestaw" />
+                                                                                <Label fx:id="dashboardTabResourcesSetPrice3" text="?" />
+                                                                            </children>
+                                                                        </HBox>
                                                                     </children>
                                                                 </HBox>
 
@@ -3278,7 +3494,7 @@
                                             </children></Pane>
                                     </HBox>
 
-                                     <HBox minHeight="330.0" prefHeight="300.0" prefWidth="300.0">
+                                     <HBox fx:id="dashboardTabResourcesHBoxSet2" minHeight="330.0" prefHeight="300.0" prefWidth="300.0">
                                          <Pane fx:id="dashboardTabResourcesPaneRoom4" maxHeight="300.0" minHeight="280.0" prefHeight="280.0" prefWidth="271.0" styleClass="offer-item-pane" stylesheets="@styles.css">
                                              <HBox.margin>
                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -3303,7 +3519,12 @@
                                                                              <HBox.margin>
                                                                                  <Insets left="20.0" />
                                                                              </HBox.margin></Label>
-                                                                         <Label text="Cena za zestaw" />
+                                                                         <HBox alignment="CENTER" prefHeight="100.0" spacing="3.0">
+                                                                             <children>
+                                                                                 <Label text="Cena za zestaw" />
+                                                                                 <Label fx:id="dashboardTabResourcesSetPrice4" text="?" />
+                                                                             </children>
+                                                                         </HBox>
                                                                      </children>
                                                                  </HBox>
 
@@ -3488,7 +3709,12 @@
                                                                              <HBox.margin>
                                                                                  <Insets left="20.0" />
                                                                              </HBox.margin></Label>
-                                                                         <Label text="Cena za zestaw" />
+                                                                         <HBox alignment="CENTER" prefHeight="100.0" spacing="3.0">
+                                                                             <children>
+                                                                                 <Label text="Cena za zestaw" />
+                                                                                 <Label fx:id="dashboardTabResourcesSetPrice5" text="?" />
+                                                                             </children>
+                                                                         </HBox>
                                                                      </children>
                                                                  </HBox>
 
@@ -3673,7 +3899,12 @@
                                                                              <HBox.margin>
                                                                                  <Insets left="20.0" />
                                                                              </HBox.margin></Label>
-                                                                         <Label text="Cena za zestaw" />
+                                                                         <HBox alignment="CENTER" prefHeight="100.0" spacing="3.0">
+                                                                             <children>
+                                                                                 <Label text="Cena za zestaw" />
+                                                                                 <Label fx:id="dashboardTabResourcesSetPrice6" text="?" />
+                                                                             </children>
+                                                                         </HBox>
                                                                      </children>
                                                                  </HBox>
 
@@ -3853,7 +4084,7 @@
                                              </Label>
                                          </children>
                                      </HBox>
-                                    <HBox minHeight="330.0" prefHeight="330.0" prefWidth="200.0">
+                                    <HBox fx:id="dashboardTabResourcesHBoxSet3" minHeight="330.0" prefHeight="330.0" prefWidth="200.0">
                                         <Pane fx:id="dashboardTabResourcesPaneRoom7" maxHeight="300.0" minHeight="280.0" prefHeight="280.0" prefWidth="271.0" styleClass="offer-item-pane" stylesheets="@styles.css">
                                             <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -3878,7 +4109,12 @@
                                                                             <HBox.margin>
                                                                                 <Insets left="20.0" />
                                                                             </HBox.margin></Label>
-                                                                        <Label text="Cena za zestaw" />
+                                                                        <HBox alignment="CENTER" prefHeight="100.0" spacing="3.0">
+                                                                            <children>
+                                                                                <Label text="Cena za zestaw" />
+                                                                                <Label fx:id="dashboardTabResourcesSetPrice7" text="?" />
+                                                                            </children>
+                                                                        </HBox>
                                                                     </children>
                                                                 </HBox>
 
@@ -4063,7 +4299,12 @@
                                                                             <HBox.margin>
                                                                                 <Insets left="20.0" />
                                                                             </HBox.margin></Label>
-                                                                        <Label text="Cena za zestaw" />
+                                                                        <HBox alignment="CENTER" prefHeight="100.0" spacing="3.0">
+                                                                            <children>
+                                                                                <Label text="Cena za zestaw" />
+                                                                                <Label fx:id="dashboardTabResourcesSetPrice8" text="?" />
+                                                                            </children>
+                                                                        </HBox>
                                                                     </children>
                                                                 </HBox>
 
@@ -4248,7 +4489,12 @@
                                                                             <HBox.margin>
                                                                                 <Insets left="20.0" />
                                                                             </HBox.margin></Label>
-                                                                        <Label text="Cena za zestaw" />
+                                                                        <HBox alignment="CENTER" prefHeight="100.0" spacing="3.0">
+                                                                            <children>
+                                                                                <Label text="Cena za zestaw" />
+                                                                                <Label fx:id="dashboardTabResourcesSetPrice9" text="?" />
+                                                                            </children>
+                                                                        </HBox>
                                                                     </children>
                                                                 </HBox>
 
@@ -4428,7 +4674,7 @@
                                              </Label>
                                          </children>
                                      </HBox>
-                                    <HBox minHeight="330.0" prefHeight="330.0" prefWidth="200.0">
+                                    <HBox fx:id="dashboardTabResourcesHBoxSet4" minHeight="330.0" prefHeight="330.0" prefWidth="200.0">
                                         <Pane fx:id="dashboardTabResourcesPaneRoom10" maxHeight="300.0" minHeight="280.0" prefHeight="280.0" prefWidth="271.0" styleClass="offer-item-pane" stylesheets="@styles.css">
                                             <HBox.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -4453,7 +4699,12 @@
                                                                             <HBox.margin>
                                                                                 <Insets left="20.0" />
                                                                             </HBox.margin></Label>
-                                                                        <Label text="Cena za zestaw" />
+                                                                        <HBox alignment="CENTER" prefHeight="100.0" spacing="3.0">
+                                                                            <children>
+                                                                                <Label text="Cena za zestaw" />
+                                                                                <Label fx:id="dashboardTabResourcesSetPrice10" text="?" />
+                                                                            </children>
+                                                                        </HBox>
                                                                     </children>
                                                                 </HBox>
 
@@ -4638,7 +4889,12 @@
                                                                             <HBox.margin>
                                                                                 <Insets left="20.0" />
                                                                             </HBox.margin></Label>
-                                                                        <Label text="Cena za zestaw" />
+                                                                        <HBox alignment="CENTER" prefHeight="100.0" spacing="3.0">
+                                                                            <children>
+                                                                                <Label text="Cena za zestaw" />
+                                                                                <Label fx:id="dashboardTabResourcesSetPrice11" text="?" />
+                                                                            </children>
+                                                                        </HBox>
                                                                     </children>
                                                                 </HBox>
 
@@ -4823,7 +5079,12 @@
                                                                             <HBox.margin>
                                                                                 <Insets left="20.0" />
                                                                             </HBox.margin></Label>
-                                                                        <Label text="Cena za zestaw" />
+                                                                        <HBox alignment="CENTER" prefHeight="100.0" spacing="3.0">
+                                                                            <children>
+                                                                                <Label text="Cena za zestaw" />
+                                                                                <Label fx:id="dashboardTabResourcesSetPrice12" text="?" />
+                                                                            </children>
+                                                                        </HBox>
                                                                     </children>
                                                                 </HBox>
 
@@ -4994,7 +5255,7 @@
                      </children></AnchorPane>
               </content>
           </Tab>
-          <Tab onSelectionChanged="#tabRefresh" text="Stanowiska">
+          <Tab fx:id="officesTab" onSelectionChanged="#tabRefresh" text="Stanowiska">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
@@ -5002,21 +5263,13 @@
                   </children></AnchorPane>
             </content>
           </Tab>
-          <Tab onSelectionChanged="#tabRefresh" text="Pracownicy">
-              <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                      <children>
-                          <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
-                      </children></AnchorPane>
-              </content>
-          </Tab>
-          <Tab onSelectionChanged="#tabRefresh" text="Bank">
+          <Tab fx:id="bankTab" onSelectionChanged="#tabRefresh" text="Bank">
               <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
                           <Pane prefHeight="605.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
                            <children>
-                              <VBox fx:id="dashboardTabBankVBoxInfo" alignment="TOP_CENTER" prefHeight="605.0" prefWidth="891.0" visible="false">
+                              <VBox fx:id="dashboardTabBankVBoxInfo" alignment="TOP_CENTER" prefHeight="605.0" prefWidth="891.0">
                                  <children>
                                     <Pane prefHeight="550.0" prefWidth="200.0" styleClass="offer-item-pane" stylesheets="@styles.css">
                                        <children>
@@ -5041,11 +5294,6 @@
                                                                <children>
                                                                   <VBox prefHeight="59.0">
                                                                      <children>
-                                                                        <Label stylesheets="@styles.css" text="NUMER RACHUNKU:">
-                                                                           <font>
-                                                                              <Font size="14.0" />
-                                                                           </font>
-                                                                        </Label>
                                                                         <Label stylesheets="@styles.css" text="WALUTA:">
                                                                            <font>
                                                                               <Font size="14.0" />
@@ -5078,11 +5326,6 @@
                                                                   </VBox>
                                                                   <VBox prefHeight="59.0" prefWidth="166.0">
                                                                      <children>
-                                                                        <Label fx:id="dashboardTabBankAccountNumber" text="&lt;account nr&gt;">
-                                                                           <font>
-                                                                              <Font size="14.0" />
-                                                                           </font>
-                                                                        </Label>
                                                                         <Label text="PLN">
                                                                            <font>
                                                                               <Font size="14.0" />
@@ -5134,7 +5377,7 @@
                                                                      <children>
                                                                         <VBox alignment="TOP_CENTER" maxWidth="800.0" minWidth="830.0" prefHeight="200.0" prefWidth="800.0">
                                                                            <children>
-                                                                              <TableView fx:id="dashboardTabBankTableViewDeposit" minHeight="250.0" minWidth="810.0" prefHeight="250.0" prefWidth="830.4" style="-fx-background-color: #63081f;">
+                                                                              <TableView fx:id="dashboardTabBankTableViewDeposit" minHeight="270.0" minWidth="810.0" prefHeight="270.0" prefWidth="830.4" style="-fx-background-color: #63081f;">
                                                                                   <placeholder>
                                                                                       <Label text="Nie masz żadnych aktywnych lokat" />
                                                                                   </placeholder>
@@ -5383,7 +5626,7 @@
                                     </Pane>
                                  </children>
                               </VBox>
-                              <HBox fx:id="dashboardTabBankHBoxSelect" alignment="CENTER" prefHeight="605.0" prefWidth="891.0" spacing="15.0">
+                              <HBox fx:id="dashboardTabBankHBoxSelect" alignment="CENTER" prefHeight="605.0" prefWidth="891.0" spacing="15.0" visible="false">
                                  <children>
                                     <Pane maxHeight="280.0" minHeight="255.0" prefHeight="280.0" prefWidth="280.0" styleClass="offer-item-pane" stylesheets="@styles.css">
                                        <children>
@@ -5741,7 +5984,7 @@
                       </children></AnchorPane>
               </content>
           </Tab>
-          <Tab onSelectionChanged="#tabRefresh" text="Biuro rachunkowe">
+          <Tab fx:id="accountingTab" onSelectionChanged="#tabRefresh" text="Biuro rachunkowe">
               <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
@@ -5749,7 +5992,7 @@
                       </children></AnchorPane>
               </content>
           </Tab>
-          <Tab onSelectionChanged="#tabRefresh" text="Karta wyników">
+          <Tab fx:id="saleTab" onSelectionChanged="#tabRefresh" text="Sprzedaż">
               <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
@@ -5757,14 +6000,43 @@
                       </children></AnchorPane>
               </content>
           </Tab>
-          <Tab onSelectionChanged="#tabRefresh" text="Zgłoś gotowość">
+          <Tab fx:id="resultsTab" onSelectionChanged="#tabRefresh" text="Karta wyników">
+              <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                          <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
+                      </children></AnchorPane>
+              </content>
+          </Tab>
+          <Tab fx:id="readyTab" onSelectionChanged="#tabRefresh" text="Zgłoś gotowość">
               <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
                           <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
                            <children>
-                              <Button layoutX="265.0" layoutY="132.0" mnemonicParsing="false" onAction="#up" text="Up" />
-                              <Button layoutX="385.0" layoutY="145.0" mnemonicParsing="false" onAction="#moneyUp" text="MoneyUP" />
+                              <VBox alignment="TOP_CENTER" prefHeight="635.0" prefWidth="891.0">
+                                 <padding>
+                                    <Insets left="50.0" right="50.0" top="20.0" />
+                                 </padding>
+                                 <children>
+                                    <TableView fx:id="dashboardTabReadyTableViewErrors" prefHeight="200.0" prefWidth="200.0" styleClass="error-tab-view" stylesheets="@styles.css">
+                                        <placeholder>
+                                            <VBox alignment="CENTER" maxHeight="200.0" maxWidth="200.0">
+                                                <Button mnemonicParsing="false" onAction="#markGameAsReady" styleClass="menu-sub-button" text="Zgłoś gotowość" />
+                                                <Button mnemonicParsing="false" onAction="#up" text="Up" />
+                                                <Button mnemonicParsing="false" onAction="#moneyUp" text="MoneyUP" />
+                                            </VBox>
+                                        </placeholder>
+                                        <columns>
+                                        <TableColumn prefWidth="75.0" text="C1" />
+                                        <TableColumn prefWidth="75.0" text="C2" />
+                                      </columns>
+                                       <VBox.margin>
+                                          <Insets bottom="30.0" />
+                                       </VBox.margin>
+                                    </TableView>
+                                 </children>
+                              </VBox>
                            </children></Pane>
                       </children></AnchorPane>
               </content>

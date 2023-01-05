@@ -1,7 +1,10 @@
 package org.openjfx;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,8 +36,22 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import jdbc.Connect;
+
+import static jdbc.DataManager.executeQuery;
 
 public class DashboardController {
+
+    @FXML Tab dashboardTab;
+    @FXML Tab infoTab;
+    @FXML Tab offerTab;
+    @FXML Tab resourcesTab;
+    @FXML Tab officesTab;
+    @FXML Tab bankTab;
+    @FXML Tab accountingTab;
+    @FXML Tab saleTab;
+    @FXML Tab resultsTab;
+    @FXML Tab readyTab;
 
     @FXML VBox dashboardTabOfferVBoxRoom1;
     @FXML Label dashboardTabOfferRoom1YearlyDemand;
@@ -255,7 +272,6 @@ public class DashboardController {
     @FXML Label dashboardTabBankSelectBank3value5;
 
     @FXML Label dashboardTabBankName;
-    @FXML Label dashboardTabBankAccountNumber;
     @FXML Label dashboardTabBankBalance;
     @FXML HBox dashboardTabBankHBoxSelect;
     @FXML VBox dashboardTabBankVBoxInfo;
@@ -397,20 +413,124 @@ public class DashboardController {
     @FXML ChoiceBox<String> dashboardTabResourcesRoom10QualityChoiceBox;
     @FXML ChoiceBox<String> dashboardTabResourcesRoom11QualityChoiceBox;
     @FXML ChoiceBox<String> dashboardTabResourcesRoom12QualityChoiceBox;
+    @FXML Label dashboardTabResourcesSetPrice1;
+    @FXML Label dashboardTabResourcesSetPrice2;
+    @FXML Label dashboardTabResourcesSetPrice3;
+    @FXML Label dashboardTabResourcesSetPrice4;
+    @FXML Label dashboardTabResourcesSetPrice5;
+    @FXML Label dashboardTabResourcesSetPrice6;
+    @FXML Label dashboardTabResourcesSetPrice7;
+    @FXML Label dashboardTabResourcesSetPrice8;
+    @FXML Label dashboardTabResourcesSetPrice9;
+    @FXML Label dashboardTabResourcesSetPrice10;
+    @FXML Label dashboardTabResourcesSetPrice11;
+    @FXML Label dashboardTabResourcesSetPrice12;
+    @FXML HBox dashboardTabResourcesHBoxSet1;
+    @FXML HBox dashboardTabResourcesHBoxSet2;
+    @FXML HBox dashboardTabResourcesHBoxSet3;
+    @FXML HBox dashboardTabResourcesHBoxSet4;
+
+    @FXML Label dashboardTabDashboardBalance;
+    @FXML ImageView dashboardTabDashboardImage;
+    @FXML Label dashboardTabDashboardName;
+    @FXML Label dashboardTabDashboardRank;
+    @FXML Label dashboardTabDashboardRoundNumber;
+
+    @FXML TableView dashboardTabReadyTableViewErrors;
 
     int lastBankGenerateRoundNumber = 1;
 
     @FXML
     private void initialize() {
         try {
-            CurrentlyPlayedGame.getCurrentGame().setCurrentRound(6);
-            initializeRoomsInfo();
+            Player.reset();
+            System.out.println("1");
+            initializeDataFromDatabase();
+            System.out.println("2");
             ManageBanks.generateBankOptions();
+            System.out.println("3");
+            checkDepositsAfterNewRound();
+            System.out.println("4");
             dashboardTabBankGenerateDataInBankOptions();
+            System.out.println("5");
+            initializeRoomsInfo();
+            System.out.println("6");
             revolvingCreditCheck();
+            System.out.println("7");
             setUpChoiceBoxes();
+            System.out.println("8");
             fillResourcesFromStorage();
+            System.out.println("9");
             resourcesPanesVisibility();
+            System.out.println("10");
+            generateDashboardContent();
+            System.out.println("11");
+            setUpTooltips();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @FXML
+    private void initializeDataFromDatabase() {
+        try {
+            dashboardTabInfoCompanyName.setText(CurrentlyPlayedGame.getCurrentGame().getHotelName());
+            dashboardTabInfoCompanyMission.setText(CurrentlyPlayedGame.getCurrentGame().getHotelMission());
+            ResultSet hotelRS = executeQuery("SELECT chosen_bank_id, balance, revolving_credit_amount, logo FROM hotelprojekt.hotel WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId());
+            while (hotelRS.next()) {
+                int bankId = Integer.parseInt(hotelRS.getString(1));
+                int balance = Integer.parseInt(hotelRS.getString(2));
+                int rca = Integer.parseInt(hotelRS.getString(3));
+                byte[] logoByte = hotelRS.getBytes(4);
+                FileOutputStream fos = new FileOutputStream(new File("logo.png"));
+                fos.write(logoByte);
+                fos.close();
+                File logo = new File("logo.png");
+                Image image = new Image(logo.toURI().toString(), 240, 240, true, true,true);
+                dashboardTabInfoLogo.setImage(image);
+                CurrentlyPlayedGame.getCurrentGame().setHotelLogo(image);
+                CurrentlyPlayedGame.getCurrentGame().setHotelLogoFile(logo);
+                ManageBanks.setChosenBank(bankId);
+                CurrentlyPlayedGame.setBalance(balance);
+                Player.getRevolvingCredit().getCredit(rca);
+            }
+            ResultSet balanceRS = executeQuery("SELECT balance FROM hotelprojekt.hotel WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId());
+            while (balanceRS.next()) {
+                int balance = Integer.parseInt(balanceRS.getString(1));
+                CurrentlyPlayedGame.setBalance(balance);
+            }
+            ResultSet creditsRS = executeQuery("SELECT * FROM hotelprojekt.credit WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId());
+            while (creditsRS.next()) {
+                int bank_id = Integer.parseInt(creditsRS.getString(3));
+                int start = Integer.parseInt(creditsRS.getString(4));
+                int full = Integer.parseInt(creditsRS.getString(5));
+                int monthsno = Integer.parseInt(creditsRS.getString(6));
+                Player.addCredit(new Credit(ManageBanks.bankNames[bank_id - 1], bank_id, start, full,  ManageBanks.bankValues[bank_id - 1][2], monthsno));
+            }
+            ResultSet depositsRS = executeQuery("SELECT * FROM hotelprojekt.deposit WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId());
+            while (depositsRS.next()) {
+                int start = Integer.parseInt(depositsRS.getString(3));
+                int monthsno = Integer.parseInt(depositsRS.getString(4));
+                int initial = Integer.parseInt(depositsRS.getString(5));
+                int tiv = Integer.parseInt(depositsRS.getString(6));
+                Player.addDeposit(new Deposit(start, monthsno, initial, tiv));
+            }
+            ResultSet roomsRS = executeQuery("SELECT * FROM hotelprojekt.room WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId());
+            while (roomsRS.next()) {
+                int number = roomsRS.getInt(3);
+                boolean isBought = roomsRS.getBoolean(4);
+                int qualityBought = roomsRS.getInt(5);
+                int res1 = roomsRS.getInt(6);
+                int res2 = roomsRS.getInt(7);
+                int res3 = roomsRS.getInt(8);
+                RoomsManagement.rooms[number - 1].setBought(isBought);
+                RoomsManagement.rooms[number - 1].setQualityBought(qualityBought);
+                ManageResources.addResourcesToStorage(number, 1, res1);
+                ManageResources.addResourcesToStorage(number, 2, res2);
+                ManageResources.addResourcesToStorage(number, 3, res3);
+            }
+
+            Player.getRevolvingCredit().setMonthlyResolvingInterest(ManageBanks.getCurrentlyChosenBank().getRevolvingCreditInterestRate());
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -599,8 +719,93 @@ public class DashboardController {
             dashboardTabBankBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
             dashboardTabResourcesBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
             resourcesPanesVisibility();
+            generateDashboardContent();
+            initializeRoomsInfo();
+            checkErrors();
         } catch (Exception e) {}
 
+    }
+
+    /**
+     * Metoda generująca informacje do dashboardu.
+     */
+    @FXML
+    private void generateDashboardContent() {
+        dashboardTabDashboardBalance.setText(CurrentlyPlayedGame.getBalance() + " PLN");
+        if(CurrentlyPlayedGame.getCurrentGame().getHotelLogo() != null) {
+            dashboardTabDashboardImage.setImage(CurrentlyPlayedGame.getCurrentGame().getHotelLogo());
+        }
+        if(CurrentlyPlayedGame.getCurrentGame().getHotelName() != null) {
+            dashboardTabDashboardName.setText(CurrentlyPlayedGame.getCurrentGame().getHotelName());
+        }
+        if(CurrentlyPlayedGame.getCurrentGame().getCurrentRound() > 1) {
+            dashboardTabDashboardRank.setText("1"); //TODO rank number
+            dashboardTabDashboardRank.setStyle("-fx-font-size: 62;");
+        }
+        dashboardTabDashboardRoundNumber.setText(String.valueOf(CurrentlyPlayedGame.getCurrentGame().getCurrentRound()));
+    }
+
+    /**
+     * Metoda sprawdzająca, czy gracz musi zrobić jeszcze coś, zanim zgłosi grę do przeniesienia.
+     */
+    @FXML
+    private void checkErrors() {
+        ArrayList<String> allErrors = new ArrayList<>();
+        if(CurrentlyPlayedGame.getCurrentGame().getHotelName() == null || CurrentlyPlayedGame.getCurrentGame().getHotelName().equals("")) {
+            allErrors.add("Nie wybrano nazwy firmy");
+        }
+        if(CurrentlyPlayedGame.getCurrentGame().getHotelMission() == null || CurrentlyPlayedGame.getCurrentGame().getHotelMission().equals("")) {
+            allErrors.add("Nie wybrano misji firmy");
+        }
+        if(CurrentlyPlayedGame.getCurrentGame().getHotelLogo() == null) {
+            allErrors.add("Nie wybrano logo firmy");
+        }
+        if(!ManageBanks.isBankChosen()) {
+            allErrors.add("Nie wybrano banku");
+        }
+        if(allErrors.size() > 0) {
+            viewAllErrorsTable(allErrors);
+        } else {
+            dashboardTabReadyTableViewErrors.getItems().clear();
+            dashboardTabReadyTableViewErrors.getColumns().clear();
+        }
+    }
+
+    @FXML
+    public void viewAllErrorsTable(ArrayList<String> allErrors) {
+        try {
+            int numberOfColumns;
+            String[] columnKeys = {"ErrorKey"};
+            String[] columnNames = {"Error"};
+            dashboardTabReadyTableViewErrors.getItems().clear();
+            dashboardTabReadyTableViewErrors.getColumns().clear();
+            numberOfColumns = columnNames.length;
+
+            for(int j = 0; j < numberOfColumns; j++) {
+                TableColumn<Map, String> col = new TableColumn<>(columnNames[j]);
+                col.setCellValueFactory(new MapValueFactory(columnKeys[j]));
+                dashboardTabReadyTableViewErrors.getColumns().add(col);
+            }
+            dashboardTabReadyTableViewErrors.getItems().setAll(generateDataInMapAllErrors(allErrors, columnKeys));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metoda generująca dane do tabeli z lokatami.
+     * @return ObservableList z lokatami.
+     * @throws SQLException
+     */
+    private ObservableList<Map> generateDataInMapAllErrors(ArrayList<String> allErrors, String[] columnKeys) throws SQLException {
+        ObservableList<Map> allData = FXCollections.observableArrayList();
+        for(int i = 0; i < allErrors.size(); i++) {
+           Map<String, String> dataRow = new HashMap<>();
+           dataRow.put(columnKeys[0], String.valueOf(allErrors.get(i)));
+           allData.add(dataRow);
+
+        }
+        return allData;
     }
 
     @FXML
@@ -669,6 +874,32 @@ public class DashboardController {
         dashboardTabResourcesRoom10QualityChoiceBox.setValue("★");
         dashboardTabResourcesRoom11QualityChoiceBox.setValue("★");
         dashboardTabResourcesRoom12QualityChoiceBox.setValue("★");
+    }
+
+    @FXML
+    private void setUpTooltips() {
+        dashboardTabResourcesSetPrice1.setTooltip(new Tooltip("Zestaw to wszystkie zasoby potrzebne dla 1 klienta."));
+        dashboardTabResourcesSetPrice2.setTooltip(new Tooltip("Zestaw to wszystkie zasoby potrzebne dla 1 klienta."));
+        dashboardTabResourcesSetPrice3.setTooltip(new Tooltip("Zestaw to wszystkie zasoby potrzebne dla 1 klienta."));
+        dashboardTabResourcesSetPrice4.setTooltip(new Tooltip("Zestaw to wszystkie zasoby potrzebne dla 1 klienta."));
+        dashboardTabResourcesSetPrice5.setTooltip(new Tooltip("Zestaw to wszystkie zasoby potrzebne dla 1 klienta."));
+        dashboardTabResourcesSetPrice6.setTooltip(new Tooltip("Zestaw to wszystkie zasoby potrzebne dla 1 klienta."));
+        dashboardTabResourcesSetPrice7.setTooltip(new Tooltip("Zestaw to wszystkie zasoby potrzebne dla 1 klienta."));
+        dashboardTabResourcesSetPrice8.setTooltip(new Tooltip("Zestaw to wszystkie zasoby potrzebne dla 1 klienta."));
+        dashboardTabResourcesSetPrice9.setTooltip(new Tooltip("Zestaw to wszystkie zasoby potrzebne dla 1 klienta."));
+        dashboardTabResourcesSetPrice10.setTooltip(new Tooltip("Zestaw to wszystkie zasoby potrzebne dla 1 klienta."));
+        dashboardTabResourcesSetPrice11.setTooltip(new Tooltip("Zestaw to wszystkie zasoby potrzebne dla 1 klienta."));
+        dashboardTabResourcesSetPrice12.setTooltip(new Tooltip("Zestaw to wszystkie zasoby potrzebne dla 1 klienta."));
+        dashboardTab.setTooltip(new Tooltip("Karta przechowująca najważniejsze informacje o twoim biznesie"));
+        infoTab.setTooltip(new Tooltip("Karta zawierająca informacje o firmie takie jak nazwa, logo i misja"));
+        offerTab.setTooltip(new Tooltip("Karta zawierające dostępne do kupienia pokoje"));
+        resourcesTab.setTooltip(new Tooltip("Karta zawierająca zasoby potrzebne do sprzedaży pokoi"));
+        officesTab.setTooltip(new Tooltip("Karta zawierająca stanowiska do zakupu oraz umożliwiająca zatrudnianie pracowników"));
+        bankTab.setTooltip(new Tooltip("Karta zawierająca bank, lokaty i kredyty"));
+        accountingTab.setTooltip(new Tooltip("Karta zawierająca biuro rachunkowe"));
+        saleTab.setTooltip(new Tooltip("Karta zawierająca kupione pokoje. Tutaj gracz udostępnia pokoje klientom po ustalonej cenie"));
+        resultsTab.setTooltip(new Tooltip("Karta zawierająca wyniki działalności hotelu"));
+        readyTab.setTooltip(new Tooltip("Karta zawierająca listę błędów oraz przycisk zatwierdzający gotowość przejścia do następnej rundy"));
     }
 
     /**
@@ -1332,6 +1563,26 @@ public class DashboardController {
         dashboardTabResourcesHBoxTitle1.setVisible(RoomsManagement.rooms[0].isBought() || RoomsManagement.rooms[1].isBought() || RoomsManagement.rooms[2].isBought() || RoomsManagement.rooms[3].isBought() || RoomsManagement.rooms[4].isBought() || RoomsManagement.rooms[5].isBought());
         dashboardTabResourcesHBoxTitle2.setVisible(RoomsManagement.rooms[6].isBought() || RoomsManagement.rooms[7].isBought() || RoomsManagement.rooms[8].isBought());
         dashboardTabResourcesHBoxTitle3.setVisible(RoomsManagement.rooms[9].isBought() || RoomsManagement.rooms[10].isBought() || RoomsManagement.rooms[11].isBought());
+        if(RoomsManagement.rooms[0].isBought() || RoomsManagement.rooms[1].isBought() || RoomsManagement.rooms[2].isBought()) {
+            dashboardTabResourcesHBoxSet1.setMinHeight(330.0);
+        } else {
+            dashboardTabResourcesHBoxSet1.setMinHeight(0.0);
+        }
+        if(RoomsManagement.rooms[3].isBought() || RoomsManagement.rooms[4].isBought() || RoomsManagement.rooms[5].isBought()) {
+            dashboardTabResourcesHBoxSet2.setMinHeight(330.0);
+        } else {
+            dashboardTabResourcesHBoxSet2.setMinHeight(0.0);
+        }
+        if(RoomsManagement.rooms[6].isBought() || RoomsManagement.rooms[7].isBought() || RoomsManagement.rooms[8].isBought()) {
+            dashboardTabResourcesHBoxSet3.setMinHeight(330.0);
+        } else {
+            dashboardTabResourcesHBoxSet3.setMinHeight(0.0);
+        }
+        if(RoomsManagement.rooms[9].isBought() || RoomsManagement.rooms[10].isBought() || RoomsManagement.rooms[11].isBought()) {
+            dashboardTabResourcesHBoxSet4.setMinHeight(330.0);
+        } else {
+            dashboardTabResourcesHBoxSet4.setMinHeight(0.0);
+        }
     }
 
     @FXML
@@ -1359,8 +1610,20 @@ public class DashboardController {
             dashboardTabInfoLogoLabel.setText("Zostało Wybrane Logo:");
             Image image = new Image(selectedFile.toURI().toString(), 240, 240, true, true,true);
             dashboardTabInfoLogo.setImage(image);
+            CurrentlyPlayedGame.getCurrentGame().setHotelLogo(image);
+            CurrentlyPlayedGame.getCurrentGame().setHotelLogoFile(selectedFile);
         } else {
             dashboardTabInfoLogoLabel.setText("Wybierz Logo Firmy");
+        }
+    }
+
+    @FXML
+    private void saveNameAndMission() {
+        if(dashboardTabInfoCompanyName.getText() != null)  {
+            CurrentlyPlayedGame.getCurrentGame().setHotelName(dashboardTabInfoCompanyName.getText());
+        }
+        if(dashboardTabInfoCompanyMission.getText() != null) {
+            CurrentlyPlayedGame.getCurrentGame().setHotelMission((dashboardTabInfoCompanyMission.getText()));
         }
     }
 
@@ -1372,7 +1635,6 @@ public class DashboardController {
             dashboardTabBankDepositPopUpScreen.setVisible(false);
 
             dashboardTabBankName.setText(ManageBanks.getCurrentlyChosenBank().getName());
-            dashboardTabBankAccountNumber.setText(String.valueOf(ManageBanks.getCurrentlyChosenBank().getAccountNumber()));
             dashboardTabBankBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
             dashboardTabBankDepositInterestRate.setText(String.valueOf(ManageBanks.getCurrentlyChosenBank().getDepositInterestRate()) + "%");
             dashboardTabBankCreditInterestRate.setText(String.valueOf(ManageBanks.getCurrentlyChosenBank().getCreditInterestRate()) + "%");
@@ -1420,13 +1682,13 @@ public class DashboardController {
             ArrayList<Deposit> allDeposits;
             int numberOfDeposits = 0;
             String depositIdString = "";
-            if(ManageBanks.getCurrentlyChosenBank().getDeposits().size() > 0) {
+            if(Player.getDeposits().size() > 0) {
                 depositIdString = depositsId[0];
                 for(int i = 1; i < numberOfDeposits; i++) {
                     depositIdString = depositIdString + ", " + depositsId[i];
                 }
             }
-            allDeposits = ManageBanks.getCurrentlyChosenBank().getDeposits();
+            allDeposits = Player.getDeposits();
             dashboardTabBankTableViewDeposit.getItems().clear();
             dashboardTabBankTableViewDeposit.getColumns().clear();
             numberOfColumns = columnNames.length;
@@ -1505,7 +1767,7 @@ public class DashboardController {
         int depositValue = Integer.parseInt(dashboardTabBankDepositPopUpDepositValue.getText());
         if(CurrentlyPlayedGame.getBalance() >= depositValue) {
             createDepositHidePopUp();
-            ManageBanks.getCurrentlyChosenBank().addDeposit(new Deposit(CurrentlyPlayedGame.getCurrentGame().getCurrentRound(), depositTime, ManageBanks.getCurrentlyChosenBank().getDepositInterestRate(), depositValue));
+            Player.addDeposit(new Deposit(CurrentlyPlayedGame.getCurrentGame().getCurrentRound(), depositTime, ManageBanks.getCurrentlyChosenBank().getDepositInterestRate(), depositValue));
             CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() - depositValue);
             viewDepositsTable();
             dashboardTabBankBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
@@ -1514,7 +1776,7 @@ public class DashboardController {
 
     @FXML
     private void changeBank() {
-        if(CurrentlyPlayedGame.getCurrentGame().getCurrentRound() > lastBankGenerateRoundNumber) {
+
             ManageBanks.resetBankOptions();
             ManageBanks.generateBankOptions();
             lastBankGenerateRoundNumber = CurrentlyPlayedGame.getCurrentGame().getCurrentRound();
@@ -1522,11 +1784,7 @@ public class DashboardController {
             dashboardTabBankVBoxInfo.setVisible(false);
             dashboardTabBankDepositPopUpScreen.setVisible(false);
             dashboardTabBankGenerateDataInBankOptions();
-        } else {
-            dashboardTabBankHBoxSelect.setVisible(true);
-            dashboardTabBankVBoxInfo.setVisible(false);
-            dashboardTabBankDepositPopUpScreen.setVisible(false);
-        }
+
     }
 
     @FXML
@@ -1587,7 +1845,7 @@ public class DashboardController {
 
     @FXML
     private void getCreditButtonClicked() {
-        if(Player.addCredit(new Credit(ManageBanks.getCurrentlyChosenBank().getName(), CurrentlyPlayedGame.getCurrentGame().getCurrentRound(), Integer.parseInt(dashboardTabBankCreditPopUpCreditValue.getText()), ManageBanks.getCurrentlyChosenBank().getCreditInterestRate(), (int) dashboardTabBankCreditPopUpCreditTimeSlider.getValue()))) {
+        if(Player.addCredit(new Credit(ManageBanks.getCurrentlyChosenBank().getName(), ManageBanks.getCurrentlyChosenBank().getBankId(), CurrentlyPlayedGame.getCurrentGame().getCurrentRound(), Integer.parseInt(dashboardTabBankCreditPopUpCreditValue.getText()), ManageBanks.getCurrentlyChosenBank().getCreditInterestRate(), (int) dashboardTabBankCreditPopUpCreditTimeSlider.getValue()))) {
             getCreditHidePopUp();
             CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() + Integer.parseInt(dashboardTabBankCreditPopUpCreditValue.getText()));
             dashboardTabBankGenerateDataInBankOptions();
@@ -1606,8 +1864,12 @@ public class DashboardController {
 
     @FXML
     private void revolvingCreditCheck() {
-        if(Player.getRevolvingCredit().getFullAmountOfRevolvingCredit() > 0) {
-            dashboardTabBankRevolvingCreditAmount.setText("Wysokość niespłaconego kredytu odnawialnego: " + Player.getRevolvingCredit().getFullAmountOfRevolvingCredit());
+        if(Player.getRevolvingCredit() != null) {
+            if (Player.getRevolvingCredit().getFullAmountOfRevolvingCredit() > 0) {
+                dashboardTabBankRevolvingCreditAmount.setText("Wysokość niespłaconego kredytu odnawialnego: " + Player.getRevolvingCredit().getFullAmountOfRevolvingCredit());
+            } else {
+                dashboardTabBankRevolvingCreditAmount.setText("Nie masz zaciągniętego kredytu odnawialnego.");
+            }
         } else {
             dashboardTabBankRevolvingCreditAmount.setText("Nie masz zaciągniętego kredytu odnawialnego.");
         }
@@ -1620,6 +1882,47 @@ public class DashboardController {
     private void logout() throws IOException {
         LoginAccount.logOutUser();
         App.setRoot("loginscreen");
+    }
+
+    @FXML
+    private void markGameAsReady() {
+        try {
+            executeQuery("UPDATE hotelprojekt.hotel SET hotel_name = '" + CurrentlyPlayedGame.getCurrentGame().getHotelName() + "' WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ";");
+            executeQuery("UPDATE hotelprojekt.hotel SET hotel_mission = '" + CurrentlyPlayedGame.getCurrentGame().getHotelMission() + "' WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ";");
+            executeQuery("UPDATE hotelprojekt.hotel SET chosen_bank_id = " + ManageBanks.getCurrentlyChosenBank().getBankId() + " WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ";");
+            executeQuery("UPDATE hotelprojekt.hotel SET balance = " + CurrentlyPlayedGame.getBalance() + " WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ";");
+            for(Credit credit: Player.getCredits()) {
+                executeQuery("INSERT INTO hotelprojekt.credit (credit_id, hotel_id, bank_id, start_month, full_amount, number_of_months) VALUES (DEFAULT, " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ", " + ManageBanks.getCurrentlyChosenBank().getBankId() + ", " + credit.getStartMonth() +", " + credit.getFullAmountOfCredit() + ", " + credit.getNumberOfMonths() + ");");
+            }
+            for(Deposit deposit: Player.getDeposits()) {
+                executeQuery("INSERT INTO hotelprojekt.deposit (deposit_id, hotel_id, start_month, number_of_months, initial_rate, total_interest_value) VALUES (DEFAULT, " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ", " + deposit.getStartMonth() + ", " + deposit.getNumberOfMonths() + ", " + deposit.getInitialRate() + ", " + deposit.getTotalInterestValue() + ");");
+            }
+            executeQuery("UPDATE hotelprojekt.hotel SET revolving_credit_amount = '" + Player.getRevolvingCredit().getFullAmountOfRevolvingCredit() + "' WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ";");
+            int roomNumber = 1;
+            for(Room room: RoomsManagement.rooms) {
+                if(CurrentlyPlayedGame.getCurrentGame().getCurrentRound() == 1) {
+                    executeQuery("INSERT INTO hotelprojekt.room (room_id, hotel_id, room_number, is_bought, quality_bought, resources_1, resources_2, resources_3) VALUES (DEFAULT, " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ", " + roomNumber + ", " + room.isBought() + ", " + room.getQualityBought() + ", " + ManageResources.getResources(roomNumber)[0] + ", " + ManageResources.getResources(roomNumber)[1] + ", " + ManageResources.getResources(roomNumber)[2] + ")");
+                    roomNumber++;
+                } else {
+                    executeQuery("UPDATE hotelprojekt.room SET is_bought = " + room.isBought() + ", quality_bought = " + room.getQualityBought() + ", resources_1 = " + ManageResources.getResources(roomNumber)[0] + ", resources_2 = " + ManageResources.getResources(roomNumber)[1] + ", resources_3 = " + ManageResources.getResources(roomNumber)[2] + " WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + " AND room_number = " + roomNumber + ";");
+                    roomNumber++;
+                }
+            }
+            String query = "UPDATE hotelprojekt.hotel SET logo = ? WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ";";
+            PreparedStatement pst = Connect.getConnection().prepareStatement(query);
+            try (FileInputStream fin = new FileInputStream(CurrentlyPlayedGame.getCurrentGame().getHotelLogoFile())) {
+
+                pst.setBinaryStream(1, fin, (int) CurrentlyPlayedGame.getCurrentGame().getHotelLogoFile().length());
+                pst.executeUpdate();
+            } catch (IOException ex) {
+                System.out.println(ex);
+            }
+
+            ManageGame.markGameAsReady(CurrentlyPlayedGame.getCurrentGame().getGameId(), LoggedInAccount.getLoggedInAccount().getAccountId());
+            //TODO wyłączenie gry do czasu przejścia do następnej rundy
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     //TODO usunąć
@@ -1655,9 +1958,11 @@ public class DashboardController {
      * Metoda aktualizująca lokaty po przejściu do nowej rundy.
      */
     private void checkDepositsAfterNewRound() {
-        for(Deposit deposit: ManageBanks.getBankOption1().getDeposits()) {
+        for(Deposit deposit: Player.getDeposits()) {
             if(CurrentlyPlayedGame.getCurrentGame().getCurrentRound() == (deposit.getStartMonth() + deposit.getNumberOfMonths())) {
                 CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() + deposit.endDeposit());
+            } else if(CurrentlyPlayedGame.getCurrentGame().getCurrentRound() > (deposit.getStartMonth() + deposit.getNumberOfMonths())) {
+                deposit.setActive(false);
             }
         }
     }

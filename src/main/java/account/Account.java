@@ -10,17 +10,19 @@ public class Account {
     private String email;
     private String password;
     private int accountType;
+    private int accountId;
 
     public static int PLAYER = 1;
     public static int GAME_ADMIN = 2;
 
-    public Account(String username, String name, String lastName, String email, String password, int accountType) {
+    public Account(String username, String name, String lastName, String email, String password, int accountType, int accountId) {
         this.username = username;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.accountType = accountType;
+        this.accountId = accountId;
     }
 
     @Override
@@ -84,5 +86,11 @@ public class Account {
         this.accountType = accountType;
     }
 
+    public int getAccountId() {
+        return accountId;
+    }
 
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
 }

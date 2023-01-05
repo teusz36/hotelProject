@@ -1,12 +1,14 @@
 package game;
 
 import game.bank.Credit;
+import game.bank.Deposit;
 import game.bank.RevolvingCredit;
 
 import java.util.ArrayList;
 
 public abstract class Player {
     private static ArrayList<Credit> credits = new ArrayList<Credit> ();
+    private static ArrayList<Deposit> deposits = new ArrayList<Deposit> ();
     private static int activeCreditNumbers = 0;
     private static RevolvingCredit revolvingCredit = new RevolvingCredit(0, 0);
 
@@ -57,5 +59,25 @@ public abstract class Player {
 
     public static RevolvingCredit getRevolvingCredit() {
         return revolvingCredit;
+    }
+
+    public static ArrayList<Deposit> getDeposits() {
+        return deposits;
+    }
+
+    public static void addDeposit(Deposit deposit) {
+        deposits.add(deposit);
+    }
+
+    public static void setDeposits(ArrayList<Deposit> deposits) {
+        Player.deposits = deposits;
+    }
+
+
+    public static void reset() {
+        credits = new ArrayList<Credit> ();
+        deposits = new ArrayList<Deposit> ();
+        activeCreditNumbers = 0;
+        revolvingCredit = new RevolvingCredit(0, 0);
     }
 }

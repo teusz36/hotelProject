@@ -10,6 +10,7 @@ public class CurrentlyPlayedGame {
     private static boolean isGameActive;
     private static int balance = 100000; //początkowe saldo konta
 
+
     public static Game getCurrentGame() {
         return currentGame;
     }
