@@ -62,7 +62,7 @@ public abstract class RegisterAccount {
                 if(!lastName.equals("")) {
                     if(!email.equals("")) {
                         if(!password.equals("")) {
-                            RegisterAccount.registerUser(new Account(username, firstName, lastName, email, password, accountType));
+                            RegisterAccount.registerUser(new Account(username, firstName, lastName, email, password, accountType, 0));
                         } else {
                             throw new AccountException("Podaj hasło");
                         }

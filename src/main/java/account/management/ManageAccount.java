@@ -75,7 +75,7 @@ public abstract class ManageAccount {
                 if(!isUsernameReserved) {
                     try {
                         executeQuery("UPDATE hotelprojekt.users SET username = '" + username + "', first_name = '" + firstname + "', last_name = '" + lastname + "', email = '" + email + "', password = '" + password + "' WHERE username = '" + LoggedInAccount.getLoggedInAccount().getUsername() + "';");
-                        LoggedInAccount.setLoggedInAccount(new Account(username, firstname, lastname, email, password, LoggedInAccount.getLoggedInAccount().getAccountType()));
+                        LoggedInAccount.setLoggedInAccount(new Account(username, firstname, lastname, email, password, LoggedInAccount.getLoggedInAccount().getAccountType(), LoggedInAccount.getLoggedInAccount().getAccountId()));
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }

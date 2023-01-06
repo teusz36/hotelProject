@@ -33,7 +33,7 @@ public abstract class LoginAccount {
                 if (rsTable.getString(2).equals(username)) { //sprawdzenie, czy username w bazie zgadza się z podanym do logowania
                     if (rsTable.getString(6).equals(password)) { //sprawdzenie haseł
                         loginSuccess = true;
-                        account = new Account(username, rsTable.getString(3), rsTable.getString(4), rsTable.getString(5), password, Integer.parseInt(rsTable.getString(7)));
+                        account = new Account(username, rsTable.getString(3), rsTable.getString(4), rsTable.getString(5), password, Integer.parseInt(rsTable.getString(7)), Integer.parseInt(rsTable.getString(1)));
                     } else {
                         throw new AccountException("Błędne hasło");
                     }

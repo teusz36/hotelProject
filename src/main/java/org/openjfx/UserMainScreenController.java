@@ -20,6 +20,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static jdbc.DataManager.executeQuery;
+
 public class UserMainScreenController {
 
     private ResultSet games;
@@ -102,12 +104,18 @@ public class UserMainScreenController {
             selectedSession = userGamesTable.getSelectionModel().getSelectedItems();
             String[] daneSplit = selectedSession.get(0).toString().split(",");
             String[] daneSplit2 = daneSplit[2].split("=");
-            ResultSet gameInfo = GameDisplayer.getGameByID(daneSplit2[1]);
+            ResultSet gameInfo = GameDisplayer.getGameByID(daneSplit2[1], String.valueOf(LoggedInAccount.getLoggedInAccount().getAccountId()));
             while (gameInfo.next()) {
-                CurrentlyPlayedGame.setCurrentGame(new Game(gameInfo.getString(1), gameInfo.getString(5), gameInfo.getString(4), ManageGame.isGameReady(gameInfo.getString(1)), gameInfo.getString(6)));
+                CurrentlyPlayedGame.setCurrentGame(new Game(gameInfo.getString(1), gameInfo.getString(7), gameInfo.getString(5), gameInfo.getString(4), ManageGame.isGameReady(gameInfo.getString(1)), gameInfo.getString(6)));
+                ResultSet rs = executeQuery("SELECT hotel_name, hotel_mission FROM hotelprojekt.hotel WHERE hotel_id = " + gameInfo.getString(7) + ";");
+                while (rs.next()) {
+                    CurrentlyPlayedGame.getCurrentGame().setHotelName(rs.getString(1));
+                    CurrentlyPlayedGame.getCurrentGame().setHotelMission(rs.getString(2));
+                }
             }
             App.setRoot("gamedashboard");
         } catch (Exception e) {
+            System.out.println(e);
             System.out.println("Nie wybrano gry");
         }
     }
