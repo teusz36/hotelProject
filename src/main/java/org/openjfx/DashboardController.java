@@ -23,8 +23,11 @@ import game.management.ManageGame;
 import game.resources.ManageResources;
 import game.room.Room;
 import game.room.RoomsManagement;
+import game.accounting.Accounting;
+import game.accounting.ManageAccounting;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -37,6 +40,7 @@ import javafx.stage.FileChooser;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import jdbc.Connect;
+
 
 import static jdbc.DataManager.executeQuery;
 
@@ -438,6 +442,33 @@ public class DashboardController {
 
     @FXML TableView dashboardTabReadyTableViewErrors;
 
+    //dashboard Tab Accounting
+    @FXML Pane dashboardTabAccountingPaneWithOffice1;
+    @FXML Pane dashboardTabAccountingPaneWithOffice2;
+    @FXML Pane dashboardTabAccountingPaneWithOffice3;
+
+    @FXML Label dashboardTabAccountingNameOfOffice1;
+    @FXML Label dashboardTabAccountingNameOfOffice2;
+    @FXML Label dashboardTabAccountingNameOfOffice3;
+
+    @FXML Label dashboardTabAccountingPaymantForSingleValue1;
+    @FXML Label dashboardTabAccountingPaymantForSingleValue2;
+    @FXML Label dashboardTabAccountingPaymantForSingleValue3;
+
+    @FXML Label dashboardTabAccountingPaymantForFullEmployeValue1;
+    @FXML Label dashboardTabAccountingPaymantForFullEmployeValue2;
+    @FXML Label dashboardTabAccountingPaymantForFullEmployeValue3;
+
+    @FXML Label dashboardTabAccountingPaymantForLawEmployeValue1;
+    @FXML Label dashboardTabAccountingPaymantForLawEmployeValue2;
+    @FXML Label dashboardTabAccountingPaymantForLawEmployeValue3;
+
+    @FXML Button dashboardTabAccountingSelectOffice1;
+    @FXML Button dashboardTabAccountingSelectOffice2;
+    @FXML Button dashboardTabAccountingSelectOffice3;
+
+
+
     int lastBankGenerateRoundNumber = 1;
 
     @FXML
@@ -465,6 +496,8 @@ public class DashboardController {
             System.out.println("10");
             generateDashboardContent();
             System.out.println("11");
+            dashboardTabBankGenerateDataInAccountingOptions();
+            System.out.println("12");
             setUpTooltips();
         } catch (Exception e) {
             System.out.println(e);
@@ -1982,5 +2015,72 @@ public class DashboardController {
         }
         viewCreditsTable();
         dashboardTabBankGenerateDataInBankOptions();
+    }
+
+    @FXML
+    private void dashboardTabBankGenerateDataInAccountingOptions() {
+        if(ManageAccounting.isAccountingOfficeChosen()) {
+            dashboardTabAccountingNameOfOffice1.setText(ManageAccounting.getCurrentlyChosenAccountingOffice().getAccountingOfficeName());
+            dashboardTabAccountingPaymantForSingleValue1.setText(String.valueOf(ManageAccounting.getCurrentlyChosenAccountingOffice().getAccountingOfficeSingleCost()));
+            dashboardTabAccountingPaymantForFullEmployeValue1.setText(String.valueOf(ManageAccounting.getCurrentlyChosenAccountingOffice().getAccountingOfficeFullCost()));
+            dashboardTabAccountingPaymantForLawEmployeValue1.setText(String.valueOf(ManageAccounting.getCurrentlyChosenAccountingOffice().getAccountingOfficeLawCost()));
+            dashboardTabAccountingSelectOffice1.setText("Wybrane Biuro");
+            dashboardTabAccountingPaneWithOffice1.setStyle("-fx-border-color: linear-gradient(to bottom, #ff7f50, #6a5acd);"
+                    + " -fx-border-width: 5px 5px 7px 5px; -fx-border-style: solid; -fx-border-color: green;");
+            dashboardTabAccountingSelectOffice2.setText("Wybierz Biuro");
+            dashboardTabAccountingPaneWithOffice2.setStyle("-fx-border-color: black; -fx-border-width: 2px");
+            dashboardTabAccountingSelectOffice3.setText("Wybierz Biuro");
+            dashboardTabAccountingPaneWithOffice3.setStyle("-fx-border-color: black; -fx-border-width: 2px");
+        } else {
+            ManageAccounting.generateAccountingOfficeOption();
+            dashboardTabAccountingNameOfOffice1.setText(ManageAccounting.getAccoutingOption1().getAccountingOfficeName());
+            dashboardTabAccountingNameOfOffice2.setText(ManageAccounting.getAccountingOption2().getAccountingOfficeName());
+            dashboardTabAccountingNameOfOffice3.setText(ManageAccounting.getAccountingOption3().getAccountingOfficeName());
+
+            dashboardTabAccountingPaymantForSingleValue1.setText(String.valueOf(ManageAccounting.getAccoutingOption1().getAccountingOfficeSingleCost()));
+            dashboardTabAccountingPaymantForSingleValue2.setText(String.valueOf(ManageAccounting.getAccountingOption2().getAccountingOfficeSingleCost()));
+            dashboardTabAccountingPaymantForSingleValue3.setText(String.valueOf(ManageAccounting.getAccountingOption3().getAccountingOfficeSingleCost()));
+
+            dashboardTabAccountingPaymantForFullEmployeValue1.setText(String.valueOf(ManageAccounting.getAccoutingOption1().getAccountingOfficeFullCost()));
+            dashboardTabAccountingPaymantForFullEmployeValue2.setText(String.valueOf(ManageAccounting.getAccountingOption2().getAccountingOfficeFullCost()));
+            dashboardTabAccountingPaymantForFullEmployeValue3.setText(String.valueOf(ManageAccounting.getAccountingOption3().getAccountingOfficeFullCost()));
+
+            dashboardTabAccountingPaymantForLawEmployeValue1.setText(String.valueOf(ManageAccounting.getAccoutingOption1().getAccountingOfficeLawCost()));
+            dashboardTabAccountingPaymantForLawEmployeValue2.setText(String.valueOf(ManageAccounting.getAccountingOption2().getAccountingOfficeLawCost()));
+            dashboardTabAccountingPaymantForLawEmployeValue3.setText(String.valueOf(ManageAccounting.getAccountingOption3().getAccountingOfficeLawCost()));
+        }
+    }
+
+    public void selectOfficeNr1(ActionEvent event) {
+        dashboardTabAccountingSelectOffice1.setText("Wybrane Biuro");
+        dashboardTabAccountingPaneWithOffice1.setStyle("-fx-border-color: linear-gradient(to bottom, #ff7f50, #6a5acd);"
+                + " -fx-border-width: 5px 5px 7px 5px; -fx-border-style: solid; -fx-border-color: green;");
+        dashboardTabAccountingSelectOffice2.setText("Wybierz Biuro");
+        dashboardTabAccountingPaneWithOffice2.setStyle("-fx-border-color: black; -fx-border-width: 2px");
+        dashboardTabAccountingSelectOffice3.setText("Wybierz Biuro");
+        dashboardTabAccountingPaneWithOffice3.setStyle("-fx-border-color: black; -fx-border-width: 2px");
+
+        //pobranie id biura do wyboru
+        ManageAccounting.setChosenAccountingOffice(1);
+    }
+
+    public void selectOfficeNr2(ActionEvent event) {
+        dashboardTabAccountingSelectOffice2.setText("Wybrane Biuro");
+        dashboardTabAccountingPaneWithOffice2.setStyle("-fx-border-color: linear-gradient(to bottom, #ff7f50, #6a5acd);"
+                + " -fx-border-width: 5px 5px 7px 5px; -fx-border-style: solid; -fx-border-color: green;");
+        dashboardTabAccountingSelectOffice3.setText("Wybierz Biuro");
+        dashboardTabAccountingPaneWithOffice3.setStyle("-fx-border-color: black; -fx-border-width: 2px");
+        dashboardTabAccountingSelectOffice1.setText("Wybierz Biuro");
+        dashboardTabAccountingPaneWithOffice1.setStyle("-fx-border-color: black; -fx-border-width: 2px");
+    }
+
+    public void selectOfficeNr3(ActionEvent event) {
+        dashboardTabAccountingSelectOffice3.setStyle("-fx-border-color: linear-gradient(to bottom, #ff7f50, #6a5acd);"
+                + " -fx-border-width: 5px 5px 7px 5px; -fx-border-style: solid; -fx-border-color: green;");
+        dashboardTabAccountingSelectOffice2.setText("Wybierz Biuro");
+        dashboardTabAccountingPaneWithOffice2.setStyle("-fx-border-color: black; -fx-border-width: 2px");
+        dashboardTabAccountingSelectOffice1.setText("Wybierz Biuro");
+        dashboardTabAccountingPaneWithOffice1.setStyle("-fx-border-color: black; -fx-border-width: 2px");
+
     }
 }
