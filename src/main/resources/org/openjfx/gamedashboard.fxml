@@ -6046,7 +6046,7 @@
                                                                   <Insets left="20.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label fx:id="dashboardTabAccountingPaymantForFullEmployeValue1" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
+                                                            <Label fx:id="dashboardTabAccountingPaymantForLawEmployeValue1" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
@@ -6066,7 +6066,7 @@
                                                                   <Insets left="20.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label fx:id="dashboardTabAccountingPaymantForLawEmployeValue1" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
+                                                            <Label fx:id="dashboardTabAccountingPaymantForFullEmployeValue1" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>

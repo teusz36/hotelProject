@@ -601,12 +601,13 @@ public class DashboardController {
         try {
             dashboardTabInfoCompanyName.setText(CurrentlyPlayedGame.getCurrentGame().getHotelName());
             dashboardTabInfoCompanyMission.setText(CurrentlyPlayedGame.getCurrentGame().getHotelMission());
-            ResultSet hotelRS = executeQuery("SELECT chosen_bank_id, balance, revolving_credit_amount, logo FROM hotelprojekt.hotel WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId());
+            ResultSet hotelRS = executeQuery("SELECT chosen_bank_id, balance, revolving_credit_amount, chosen_accounting_id, logo FROM hotelprojekt.hotel WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId());
             while (hotelRS.next()) {
                 int bankId = Integer.parseInt(hotelRS.getString(1));
                 int balance = Integer.parseInt(hotelRS.getString(2));
                 int rca = Integer.parseInt(hotelRS.getString(3));
-                byte[] logoByte = hotelRS.getBytes(4);
+                int accountingId = hotelRS.getInt(4);
+                byte[] logoByte = hotelRS.getBytes(5);
                 FileOutputStream fos = new FileOutputStream(new File("logo.png"));
                 fos.write(logoByte);
                 fos.close();
@@ -616,6 +617,7 @@ public class DashboardController {
                 CurrentlyPlayedGame.getCurrentGame().setHotelLogo(image);
                 CurrentlyPlayedGame.getCurrentGame().setHotelLogoFile(logo);
                 ManageBanks.setChosenBank(bankId);
+                ManageAccounting.setChosenAccountingOffice(accountingId);
                 CurrentlyPlayedGame.setBalance(balance);
                 Player.getRevolvingCredit().getCredit(rca);
             }
@@ -2106,6 +2108,7 @@ public class DashboardController {
             executeQuery("UPDATE hotelprojekt.hotel SET hotel_name = '" + CurrentlyPlayedGame.getCurrentGame().getHotelName() + "' WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ";");
             executeQuery("UPDATE hotelprojekt.hotel SET hotel_mission = '" + CurrentlyPlayedGame.getCurrentGame().getHotelMission() + "' WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ";");
             executeQuery("UPDATE hotelprojekt.hotel SET chosen_bank_id = " + ManageBanks.getCurrentlyChosenBank().getBankId() + " WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ";");
+            executeQuery("UPDATE hotelprojekt.hotel SET chosen_accounting_id = " + ManageAccounting.getCurrentlyChosenAccountingOffice().getAccountingOfficeId() + " WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ";");
             executeQuery("UPDATE hotelprojekt.hotel SET balance = " + CurrentlyPlayedGame.getBalance() + " WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ";");
             for(Credit credit: Player.getCredits()) {
                 executeQuery("INSERT INTO hotelprojekt.credit (credit_id, hotel_id, bank_id, start_month, full_amount, number_of_months) VALUES (DEFAULT, " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ", " + ManageBanks.getCurrentlyChosenBank().getBankId() + ", " + credit.getStartMonth() +", " + credit.getFullAmountOfCredit() + ", " + credit.getNumberOfMonths() + ");");
@@ -2212,10 +2215,19 @@ public class DashboardController {
     @FXML
     private void dashboardTabAccountingGenerateDataInAccountingOptions() {
         if(ManageAccounting.isAccountingOfficeChosen()) {
+            ManageAccounting.generateAccountingOfficeOption();
             dashboardTabAccountingNameOfOffice1.setText(ManageAccounting.getCurrentlyChosenAccountingOffice().getAccountingOfficeName());
+            dashboardTabAccountingNameOfOffice2.setText(ManageAccounting.getAccountingOption2().getAccountingOfficeName());
+            dashboardTabAccountingNameOfOffice3.setText(ManageAccounting.getAccountingOption3().getAccountingOfficeName());
             dashboardTabAccountingPaymantForSingleValue1.setText(String.valueOf(ManageAccounting.getCurrentlyChosenAccountingOffice().getAccountingOfficeSingleCost()));
+            dashboardTabAccountingPaymantForSingleValue2.setText(String.valueOf(ManageAccounting.getAccountingOption2().getAccountingOfficeSingleCost()));
+            dashboardTabAccountingPaymantForSingleValue3.setText(String.valueOf(ManageAccounting.getAccountingOption3().getAccountingOfficeSingleCost()));
             dashboardTabAccountingPaymantForFullEmployeValue1.setText(String.valueOf(ManageAccounting.getCurrentlyChosenAccountingOffice().getAccountingOfficeFullCost()));
+            dashboardTabAccountingPaymantForFullEmployeValue2.setText(String.valueOf(ManageAccounting.getAccountingOption2().getAccountingOfficeFullCost()));
+            dashboardTabAccountingPaymantForFullEmployeValue3.setText(String.valueOf(ManageAccounting.getAccountingOption3().getAccountingOfficeFullCost()));
             dashboardTabAccountingPaymantForLawEmployeValue1.setText(String.valueOf(ManageAccounting.getCurrentlyChosenAccountingOffice().getAccountingOfficeLawCost()));
+            dashboardTabAccountingPaymantForLawEmployeValue2.setText(String.valueOf(ManageAccounting.getAccountingOption2().getAccountingOfficeLawCost()));
+            dashboardTabAccountingPaymantForLawEmployeValue3.setText(String.valueOf(ManageAccounting.getAccountingOption3().getAccountingOfficeLawCost()));
             dashboardTabAccountingSelectOffice1.setText("Wybrane Biuro");
             dashboardTabAccountingPaneWithOffice1.setStyle("-fx-border-color: linear-gradient(to bottom, #ff7f50, #6a5acd);"
                     + " -fx-border-width: 5px 5px 7px 5px; -fx-border-style: solid; -fx-border-color: green;");
@@ -2253,7 +2265,7 @@ public class DashboardController {
         dashboardTabAccountingPaneWithOffice3.setStyle("-fx-border-color: black; -fx-border-width: 2px");
 
         //pobranie id biura do wyboru
-        ManageAccounting.setChosenAccountingOffice(1);
+        ManageAccounting.setChosenAccountingOffice(ManageAccounting.getAccountingOption1().getAccountingOfficeId());
     }
 
     public void selectOfficeNr2(ActionEvent event) {
@@ -2264,7 +2276,7 @@ public class DashboardController {
         dashboardTabAccountingPaneWithOffice3.setStyle("-fx-border-color: black; -fx-border-width: 2px");
         dashboardTabAccountingSelectOffice1.setText("Wybierz Biuro");
         dashboardTabAccountingPaneWithOffice1.setStyle("-fx-border-color: black; -fx-border-width: 2px");
-        ManageAccounting.setChosenAccountingOffice(2);
+        ManageAccounting.setChosenAccountingOffice(ManageAccounting.getAccountingOption2().getAccountingOfficeId());
     }
 
     public void selectOfficeNr3(ActionEvent event) {
@@ -2275,6 +2287,6 @@ public class DashboardController {
         dashboardTabAccountingPaneWithOffice2.setStyle("-fx-border-color: black; -fx-border-width: 2px");
         dashboardTabAccountingSelectOffice1.setText("Wybierz Biuro");
         dashboardTabAccountingPaneWithOffice1.setStyle("-fx-border-color: black; -fx-border-width: 2px");
-        ManageAccounting.setChosenAccountingOffice(3);
+        ManageAccounting.setChosenAccountingOffice(ManageAccounting.getAccountingOption3().getAccountingOfficeId());
     }
 }

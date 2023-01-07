@@ -87,6 +87,7 @@ public abstract class ManageAccounting {
             do { accounting2Values = random.nextInt(officesValues.length); } while (accounting2Values == accounting1Values);
             do { accounting3Values = random.nextInt(officesValues.length); } while (accounting3Values == accounting1Values || accounting3Values == accounting2Values);
 
+            System.out.println(accounting1Values + ", " + accounting2Values + ", " + accounting3Values);
             //ustawienie wartości dla propozycji biura 1
             accountingOption1.setAccountingOfficeName(previouslyChosenAccountingOffice.getAccountingOfficeName());
             accountingOption1.setAccountingOfficeId(previouslyChosenAccountingOffice.getAccountingOfficeId());
