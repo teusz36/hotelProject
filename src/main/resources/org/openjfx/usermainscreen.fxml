@@ -23,12 +23,17 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="accountscreenAccount" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#switchToAccount" styleClass="menu-sub-button" stylesheets="@styles.css" text="MOJE KONTO" textFill="WHITE">
+                <Button fx:id="accountscreenGames" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#switchToGames" styleClass="menu-sub-button" stylesheets="@styles.css" text="MOJE GRY" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="userScreenLogOut" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#logout" styleClass="menu-button" stylesheets="@styles.css" text="WYLOGUJ" textFill="WHITE">
+                <Button fx:id="accountscreenAccount" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#switchToAccount" styleClass="menu-sub-button" stylesheets="@styles.css" text="MOJE KONTO" textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="userScreenLogOut" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#logout" styleClass="menu-button" stylesheets="@styles.css" text="WYLOGUJ" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>

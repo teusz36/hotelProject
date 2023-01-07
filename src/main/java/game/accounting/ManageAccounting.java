@@ -1,8 +1,5 @@
 package game.accounting;
 
-import game.bank.Bank;
-import game.bank.ManageBanks;
-
 import java.util.Random;
 
 public abstract class ManageAccounting {
@@ -24,7 +21,7 @@ public abstract class ManageAccounting {
             do { accounting2Values = random.nextInt(officesValues.length); } while (accounting2Values == accounting1Values);
             do { accounting3Values = random.nextInt(officesValues.length); } while (accounting3Values == accounting1Values || accounting3Values == accounting2Values);
 
-            //ustawienie wartości dla propozycji banku 1
+            //ustawienie wartości dla propozycji biura 1
             accountingOption1.setAccountingOfficeName(officesNames[accounting1Values]);
             accountingOption1.setAccountingOfficeId(accounting1Values + 1);
             accountingOption1.setAccountingOfficeSingleCost(officesValues[accounting1Values][0]);
@@ -32,7 +29,7 @@ public abstract class ManageAccounting {
             accountingOption1.setAccountingOfficeLawCost(officesValues[accounting1Values][2]);
 
 
-            //ustawienie wartości dla propozycji banku 2
+            //ustawienie wartości dla propozycji biura 2
             accountingOption2.setAccountingOfficeName(officesNames[accounting2Values]);
             accountingOption2.setAccountingOfficeId(accounting2Values + 1);
             accountingOption2.setAccountingOfficeSingleCost(officesValues[accounting2Values][0]);
@@ -40,7 +37,7 @@ public abstract class ManageAccounting {
             accountingOption2.setAccountingOfficeLawCost(officesValues[accounting2Values][2]);
 
 
-            //ustawienie wartości dla propozycji banku 3
+            //ustawienie wartości dla propozycji biura 3
             accountingOption3.setAccountingOfficeName(officesNames[accounting3Values]);
             accountingOption3.setAccountingOfficeId(accounting3Values + 1);
             accountingOption3.setAccountingOfficeSingleCost(officesValues[accounting3Values][0]);
@@ -48,12 +45,12 @@ public abstract class ManageAccounting {
             accountingOption3.setAccountingOfficeLawCost(officesValues[accounting3Values][2]);
 
         } else if(currentlyChosenAccountingOffice == null) {
-            //wylosowanie wartości dla banków
+            //wylosowanie wartości dla biur
             int accounting1Values = previouslyChosenAccountingOffice.getAccountingOfficeId() - 1, accounting2Values, accounting3Values;
             do { accounting2Values = random.nextInt(officesValues.length); } while (accounting2Values == accounting1Values);
             do { accounting3Values = random.nextInt(officesValues.length); } while (accounting3Values == accounting1Values || accounting3Values == accounting2Values);
 
-            //ustawienie wartości dla propozycji banku 1
+            //ustawienie wartości dla propozycji biura 1
             accountingOption1.setAccountingOfficeName(officesNames[accounting1Values]);
             accountingOption1.setAccountingOfficeId(accounting1Values + 1);
             accountingOption1.setAccountingOfficeSingleCost(officesValues[accounting1Values][0]);
@@ -61,7 +58,7 @@ public abstract class ManageAccounting {
             accountingOption1.setAccountingOfficeLawCost(officesValues[accounting1Values][2]);
 
 
-            //ustawienie wartości dla propozycji banku 2
+            //ustawienie wartości dla propozycji biura 2
             accountingOption2.setAccountingOfficeName(officesNames[accounting2Values]);
             accountingOption2.setAccountingOfficeId(accounting2Values + 1);
             accountingOption2.setAccountingOfficeSingleCost(officesValues[accounting2Values][0]);
@@ -69,7 +66,7 @@ public abstract class ManageAccounting {
             accountingOption2.setAccountingOfficeLawCost(officesValues[accounting2Values][2]);
 
 
-            //ustawienie wartości dla propozycji banku 3
+            //ustawienie wartości dla propozycji biura 3
             accountingOption3.setAccountingOfficeName(officesNames[accounting3Values]);
             accountingOption3.setAccountingOfficeId(accounting3Values + 1);
             accountingOption3.setAccountingOfficeSingleCost(officesValues[accounting3Values][0]);
@@ -78,7 +75,7 @@ public abstract class ManageAccounting {
 
 
         } else {
-            //jest już wybrany bank
+            //jest już wybrane biuro
             int accounting1Values = 0, i = 0, accounting3Values, accounting2Values;
             for(String name: officesNames) {
                 if(name.equals(previouslyChosenAccountingOffice.getAccountingOfficeName())) {
@@ -90,7 +87,7 @@ public abstract class ManageAccounting {
             do { accounting2Values = random.nextInt(officesValues.length); } while (accounting2Values == accounting1Values);
             do { accounting3Values = random.nextInt(officesValues.length); } while (accounting3Values == accounting1Values || accounting3Values == accounting2Values);
 
-            //ustawienie wartości dla propozycji banku 1
+            //ustawienie wartości dla propozycji biura 1
             accountingOption1.setAccountingOfficeName(previouslyChosenAccountingOffice.getAccountingOfficeName());
             accountingOption1.setAccountingOfficeId(previouslyChosenAccountingOffice.getAccountingOfficeId());
             accountingOption1.setAccountingOfficeSingleCost(previouslyChosenAccountingOffice.getAccountingOfficeSingleCost());
@@ -98,7 +95,7 @@ public abstract class ManageAccounting {
             accountingOption1.setAccountingOfficeLawCost(previouslyChosenAccountingOffice.getAccountingOfficeLawCost());
 
 
-            //ustawienie wartości dla propozycji banku 2
+            //ustawienie wartości dla propozycji biura 2
             accountingOption2.setAccountingOfficeName(officesNames[accounting2Values]);
             accountingOption2.setAccountingOfficeId(accounting2Values + 1);
             accountingOption2.setAccountingOfficeSingleCost(officesValues[accounting2Values][0]);
@@ -106,7 +103,7 @@ public abstract class ManageAccounting {
             accountingOption2.setAccountingOfficeLawCost(officesValues[accounting2Values][2]);
 
 
-            //ustawienie wartości dla propozycji banku 3
+            //ustawienie wartości dla propozycji biura 3
             accountingOption3.setAccountingOfficeName(officesNames[accounting3Values]);
             accountingOption3.setAccountingOfficeId(accounting3Values + 1);
             accountingOption3.setAccountingOfficeSingleCost(officesValues[accounting3Values][0]);
@@ -118,7 +115,8 @@ public abstract class ManageAccounting {
     public static Accounting getCurrentlyChosenAccountingOffice() {
         return currentlyChosenAccountingOffice;
     }
-    public static void choseAccountinOffice(int accountingOfficeID) {
+
+    public static void choseAccountingOffice(int accountingOfficeID) {
         switch (accountingOfficeID) {
             case 1:
                 if(ManageAccounting.isAccountingOfficeChosen()) {
@@ -135,47 +133,39 @@ public abstract class ManageAccounting {
         }
     }
 
-        public static Accounting getAccoutingOption1() {
-            if(currentlyChosenAccountingOffice != null) {
-                return currentlyChosenAccountingOffice;
-            }
-            return accountingOption1;
+    public static Accounting getAccountingOption1() {
+        if(currentlyChosenAccountingOffice != null) {
+            return currentlyChosenAccountingOffice;
         }
+        return accountingOption1;
+    }
 
-        public static Accounting getAccountingOption2() {
+    public static Accounting getAccountingOption2() {
             return accountingOption2;
         }
 
-        public static Accounting getAccountingOption3() {
+    public static Accounting getAccountingOption3() {
             return accountingOption3;
         }
-    public static void resetBank() {
-        currentlyChosenAccountingOffice = new Accounting();
+
+    public static void resetAccounting() {
+        currentlyChosenAccountingOffice = null;
         accountingOption1 = new Accounting();
         accountingOption2 = new Accounting();
         accountingOption3 = new Accounting();
     }
-        public static void setChosenAccountingOffice(int accountingOfficeID) {
-            currentlyChosenAccountingOffice = new Accounting();
-            currentlyChosenAccountingOffice.setAccountingOfficeName(officesNames[accountingOfficeID - 1]);
-            currentlyChosenAccountingOffice.setAccountingOfficeId(accountingOfficeID);
-            currentlyChosenAccountingOffice.setAccountingOfficeSingleCost(officesValues[accountingOfficeID - 1][0]);
-            currentlyChosenAccountingOffice.setAccountingOfficeFullCost(officesValues[accountingOfficeID - 1][1]);
-            currentlyChosenAccountingOffice.setAccountingOfficeLawCost(officesValues[accountingOfficeID - 1][2]);
-            previouslyChosenAccountingOffice = new Accounting(currentlyChosenAccountingOffice.getAccountingOfficeName(),
-                    currentlyChosenAccountingOffice.getAccountingOfficeId(),
-                    currentlyChosenAccountingOffice.getAccountingOfficeSingleCost(),
-                    currentlyChosenAccountingOffice.getAccountingOfficeFullCost(),
-                    currentlyChosenAccountingOffice.getAccountingOfficeLawCost());
+    public static void setChosenAccountingOffice(int accountingOfficeID) {
+        currentlyChosenAccountingOffice = new Accounting();
+        currentlyChosenAccountingOffice.setAccountingOfficeName(officesNames[accountingOfficeID - 1]);
+        currentlyChosenAccountingOffice.setAccountingOfficeId(accountingOfficeID);
+        currentlyChosenAccountingOffice.setAccountingOfficeSingleCost(officesValues[accountingOfficeID - 1][0]);
+        currentlyChosenAccountingOffice.setAccountingOfficeFullCost(officesValues[accountingOfficeID - 1][1]);
+        currentlyChosenAccountingOffice.setAccountingOfficeLawCost(officesValues[accountingOfficeID - 1][2]);
+        previouslyChosenAccountingOffice = new Accounting(currentlyChosenAccountingOffice.getAccountingOfficeName(), currentlyChosenAccountingOffice.getAccountingOfficeId(), currentlyChosenAccountingOffice.getAccountingOfficeSingleCost(), currentlyChosenAccountingOffice.getAccountingOfficeFullCost(), currentlyChosenAccountingOffice.getAccountingOfficeLawCost());
         }
-
-
 
     public static boolean isAccountingOfficeChosen() {
         return ManageAccounting.currentlyChosenAccountingOffice != null;
     }
-
-
-
 
 }

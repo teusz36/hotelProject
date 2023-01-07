@@ -1,7 +1,5 @@
 package game.accounting;
 
-import java.util.ArrayList;
-
 public class Accounting {
     private String AccountingOfficeName;
     private int AccountingOfficeId;
@@ -9,17 +7,18 @@ public class Accounting {
     private int AccountingOfficeFullCost;
     private int AccountingOfficeLawCost;
 
-    public Accounting(String name, int id, int singlecost, int fullcost, int lawcost) {
+    public Accounting(String name, int id, int singleCost, int fullCost, int lawCost) {
         this.AccountingOfficeName = name;
         this.AccountingOfficeId = id;
-        this.AccountingOfficeSingleCost = singlecost;
-        this.AccountingOfficeFullCost = fullcost;
-        this.AccountingOfficeLawCost = lawcost;
+        this.AccountingOfficeSingleCost = singleCost;
+        this.AccountingOfficeFullCost = fullCost;
+        this.AccountingOfficeLawCost = lawCost;
     }
 
     public Accounting() {
 
     }
+
     public String getAccountingOfficeName(){
         return AccountingOfficeName;
     }

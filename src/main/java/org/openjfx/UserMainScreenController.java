@@ -126,6 +126,15 @@ public class UserMainScreenController {
     }
 
     /**
+     * Metoda przełączająca na usermainscreen
+     * @throws IOException
+     */
+    @FXML
+    private void switchToGames() throws IOException {
+        App.setRoot("usermainscreen");
+    }
+
+    /**
      * Metoda wylogowująca użytkownika
      */
     @FXML

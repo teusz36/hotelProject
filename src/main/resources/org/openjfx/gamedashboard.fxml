@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="TOP_CENTER" prefHeight="675.0" prefWidth="1200.0" spacing="20.0" style="-fx-background-color: #4c0013;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.DashboardController">
+<HBox alignment="TOP_CENTER" prefHeight="675.0" prefWidth="1200.0" spacing="20.0" style="-fx-background-color: #4c0013;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.DashboardController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -24,12 +24,17 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="accountscreenAccount" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#switchToAccount" styleClass="menu-sub-button" stylesheets="@styles.css" text="MOJE KONTO" textFill="WHITE">
+                <Button fx:id="accountscreenGames" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#switchToGames" styleClass="menu-sub-button" stylesheets="@styles.css" text="MOJE GRY" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="userScreenLogOut" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#logout" styleClass="menu-button" stylesheets="@styles.css" text="WYLOGUJ" textFill="WHITE">
+                <Button fx:id="accountscreenAccount" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#switchToAccount" styleClass="menu-sub-button" stylesheets="@styles.css" text="MOJE KONTO" textFill="WHITE">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <Button fx:id="userScreenLogOut" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#logout" styleClass="menu-button" stylesheets="@styles.css" text="WYLOGUJ" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -5992,80 +5997,89 @@
                            <children>
                               <VBox prefHeight="607.0" prefWidth="891.0">
                                  <children>
-                                    <Label prefHeight="82.0" prefWidth="891.0" text="        Wybierz biuro rachunkowe które będzie prowadziło księgowość twojej firmy" textAlignment="CENTER" textFill="#817b7b">
+                                    <Label alignment="CENTER" prefHeight="82.0" prefWidth="891.0" text="        Wybierz biuro rachunkowe które będzie prowadziło księgowość twojej firmy" textAlignment="CENTER" textFill="WHITE">
                                        <font>
-                                          <Font size="24.0" />
+                                          <Font size="18.0" />
                                        </font>
                                     </Label>
                                     <HBox prefHeight="402.0" prefWidth="891.0">
                                        <children>
-                                          <Pane fx:id="dashboardTabAccountingPaneWithOffice1" prefHeight="150.0" prefWidth="245.0" styleClass="offer-item-pane" stylesheets="@styles.css">
+                                          <Pane fx:id="dashboardTabAccountingPaneWithOffice1" minWidth="250.0" prefHeight="150.0" prefWidth="250.0" styleClass="offer-item-pane" stylesheets="@styles.css">
                                              <HBox.margin>
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                              </HBox.margin>
                                              <children>
-                                                <VBox prefHeight="350.0" prefWidth="246.0">
+                                                <VBox alignment="TOP_CENTER" prefHeight="350.0" prefWidth="250.0">
                                                    <children>
-                                                      <Label fx:id="dashboardTabAccountingNameOfOffice1" prefHeight="55.0" prefWidth="245.0" styleClass="offer-item-title" stylesheets="@styles.css" text="&lt;value&gt;">
-                                                         <padding>
-                                                            <Insets left="25.0" />
-                                                         </padding>
+                                                      <Label fx:id="dashboardTabAccountingNameOfOffice1" prefHeight="55.0" styleClass="offer-item-title" stylesheets="@styles.css" text="&lt;value&gt;">
                                                          <font>
                                                             <Font size="18.0" />
                                                          </font>
+                                                         <VBox.margin>
+                                                            <Insets bottom="10.0" top="5.0" />
+                                                         </VBox.margin>
                                                       </Label>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: black;">
+                                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 0; -fx-border-color: black;">
                                                          <children>
-                                                            <Label prefHeight="98.0" prefWidth="162.0" style="-fx-background-color: 1; -fx-border-width: 1;" text="Opłata za pojedyncze księgowanie" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                                                            <Label prefHeight="98.0" prefWidth="162.0" style="-fx-border-width: 1;" text="Opłata za pojedyncze księgowanie" textOverrun="WORD_ELLIPSIS" wrapText="true">
                                                                <HBox.margin>
-                                                                  <Insets left="10.0" />
+                                                                  <Insets left="20.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label fx:id="dashboardTabAccountingPaymantForSingleValue1" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
+                                                            <Label fx:id="dashboardTabAccountingPaymantForSingleValue1" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                                <padding>
                                                                   <Insets left="10.0" />
                                                                </padding>
+                                                               <HBox.margin>
+                                                                  <Insets right="15.0" />
+                                                               </HBox.margin>
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;">
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                                          <children>
                                                             <Label prefHeight="98.0" prefWidth="162.0" text="Opłata kadrowa za pracownika etatowego" textOverrun="WORD_ELLIPSIS" wrapText="true">
                                                                <HBox.margin>
-                                                                  <Insets left="10.0" />
+                                                                  <Insets left="20.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label fx:id="dashboardTabAccountingPaymantForFullEmployeValue1" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
+                                                            <Label fx:id="dashboardTabAccountingPaymantForFullEmployeValue1" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                                <padding>
                                                                   <Insets left="10.0" />
                                                                </padding>
+                                                               <HBox.margin>
+                                                                  <Insets right="15.0" />
+                                                               </HBox.margin>
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;">
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                                          <children>
                                                             <Label prefHeight="98.0" prefWidth="162.0" text="Opłata kadrowa za pracownika na umowie cywilno-prawnej" textOverrun="WORD_ELLIPSIS" wrapText="true">
                                                                <HBox.margin>
-                                                                  <Insets left="10.0" />
+                                                                  <Insets left="20.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label fx:id="dashboardTabAccountingPaymantForLawEmployeValue1" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
+                                                            <Label fx:id="dashboardTabAccountingPaymantForLawEmployeValue1" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                                <padding>
                                                                   <Insets left="10.0" />
                                                                </padding>
+                                                               <HBox.margin>
+                                                                  <Insets right="15.0" />
+                                                               </HBox.margin>
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <Button fx:id="dashboardTabAccountingSelectOffice1" mnemonicParsing="false" onAction="#selectOfficeNr1" prefHeight="27.0" prefWidth="245.0" text="Wybierz Biuro">
+                                                      <Button fx:id="dashboardTabAccountingSelectOffice1" mnemonicParsing="false" onAction="#selectOfficeNr1" prefHeight="27.0" prefWidth="245.0" styleClass="menu-sub-button" text="Wybierz Biuro">
                                                          <VBox.margin>
                                                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                          </VBox.margin></Button>
@@ -6073,73 +6087,79 @@
                                                 </VBox>
                                              </children>
                                           </Pane>
-                                          <Pane fx:id="dashboardTabAccountingPaneWithOffice2" prefHeight="200.0" prefWidth="245.0" styleClass="offer-item-pane" stylesheets="@styles.css">
+                                          <Pane fx:id="dashboardTabAccountingPaneWithOffice2" minWidth="250.0" prefHeight="200.0" prefWidth="250.0" styleClass="offer-item-pane" stylesheets="@styles.css">
                                              <HBox.margin>
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                              </HBox.margin>
                                              <children>
-                                                <VBox prefHeight="350.0" prefWidth="246.0">
+                                                <VBox alignment="CENTER" prefHeight="350.0" prefWidth="250.0">
                                                    <children>
-                                                      <Label fx:id="dashboardTabAccountingNameOfOffice2" prefHeight="55.0" prefWidth="245.0" styleClass="offer-item-title" stylesheets="@styles.css" text="&lt;value&gt;">
-                                                         <padding>
-                                                            <Insets left="25.0" />
-                                                         </padding>
+                                                      <Label fx:id="dashboardTabAccountingNameOfOffice2" prefHeight="55.0" styleClass="offer-item-title" stylesheets="@styles.css" text="&lt;value&gt;">
                                                          <font>
                                                             <Font size="18.0" />
                                                          </font>
                                                       </Label>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: black;">
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                                          <children>
-                                                            <Label prefHeight="98.0" prefWidth="162.0" style="-fx-background-color: 1; -fx-border-width: 1;" text="Opłata za pojedyncze księgowanie" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                                                            <Label prefHeight="98.0" prefWidth="162.0" style="-fx-border-width: 1;" text="Opłata za pojedyncze księgowanie" textOverrun="WORD_ELLIPSIS" wrapText="true">
                                                                <HBox.margin>
-                                                                  <Insets left="10.0" />
+                                                                  <Insets left="20.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label fx:id="dashboardTabAccountingPaymantForSingleValue2" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
+                                                            <Label fx:id="dashboardTabAccountingPaymantForSingleValue2" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                                <padding>
                                                                   <Insets left="10.0" />
                                                                </padding>
+                                                               <HBox.margin>
+                                                                  <Insets right="15.0" />
+                                                               </HBox.margin>
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;">
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                                          <children>
                                                             <Label prefHeight="98.0" prefWidth="162.0" text="Opłata kadrowa za pracownika etatowego" textOverrun="WORD_ELLIPSIS" wrapText="true">
                                                                <HBox.margin>
-                                                                  <Insets left="10.0" />
+                                                                  <Insets left="20.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label fx:id="dashboardTabAccountingPaymantForLawEmployeValue2" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
+                                                            <Label fx:id="dashboardTabAccountingPaymantForLawEmployeValue2" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                                <padding>
                                                                   <Insets left="10.0" />
                                                                </padding>
+                                                               <HBox.margin>
+                                                                  <Insets right="15.0" />
+                                                               </HBox.margin>
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;">
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                                          <children>
                                                             <Label prefHeight="98.0" prefWidth="162.0" text="Opłata kadrowa za pracownika na umowie cywilno-prawnej" textOverrun="WORD_ELLIPSIS" wrapText="true">
                                                                <HBox.margin>
-                                                                  <Insets left="10.0" />
+                                                                  <Insets left="20.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label fx:id="dashboardTabAccountingPaymantForFullEmployeValue2" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
+                                                            <Label fx:id="dashboardTabAccountingPaymantForFullEmployeValue2" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                                <padding>
                                                                   <Insets left="10.0" />
                                                                </padding>
+                                                               <HBox.margin>
+                                                                  <Insets right="15.0" />
+                                                               </HBox.margin>
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <Button fx:id="dashboardTabAccountingSelectOffice2" mnemonicParsing="false" onAction="#selectOfficeNr2" prefHeight="28.0" prefWidth="245.0" text="Wybierz Biuro">
+                                                      <Button fx:id="dashboardTabAccountingSelectOffice2" mnemonicParsing="false" onAction="#selectOfficeNr2" prefHeight="28.0" prefWidth="245.0" styleClass="menu-sub-button" text="Wybierz Biuro">
                                                          <VBox.margin>
                                                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                          </VBox.margin></Button>
@@ -6147,73 +6167,79 @@
                                                 </VBox>
                                              </children>
                                           </Pane>
-                                          <Pane fx:id="dashboardTabAccountingPaneWithOffice3" prefHeight="200.0" prefWidth="245.0" styleClass="offer-item-pane" stylesheets="@styles.css">
+                                          <Pane fx:id="dashboardTabAccountingPaneWithOffice3" minWidth="250.0" prefHeight="200.0" prefWidth="250.0" styleClass="offer-item-pane" stylesheets="@styles.css">
                                              <HBox.margin>
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                              </HBox.margin>
                                              <children>
-                                                <VBox prefHeight="350.0" prefWidth="246.0">
+                                                <VBox alignment="CENTER" prefHeight="350.0" prefWidth="250.0">
                                                    <children>
-                                                      <Label fx:id="dashboardTabAccountingNameOfOffice3" prefHeight="55.0" prefWidth="245.0" styleClass="offer-item-title" stylesheets="@styles.css" text="&lt;value&gt;">
-                                                         <padding>
-                                                            <Insets left="25.0" />
-                                                         </padding>
+                                                      <Label fx:id="dashboardTabAccountingNameOfOffice3" prefHeight="55.0" styleClass="offer-item-title" stylesheets="@styles.css" text="&lt;value&gt;">
                                                          <font>
                                                             <Font size="18.0" />
                                                          </font>
                                                       </Label>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-width: 1; -fx-border-color: black;">
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                                          <children>
-                                                            <Label prefHeight="98.0" prefWidth="162.0" style="-fx-background-color: 1; -fx-border-width: 1;" text="Opłata za pojedyncze księgowanie" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                                                            <Label prefHeight="98.0" prefWidth="162.0" style="-fx-border-width: 1;" text="Opłata za pojedyncze księgowanie" textOverrun="WORD_ELLIPSIS" wrapText="true">
                                                                <HBox.margin>
-                                                                  <Insets left="10.0" />
+                                                                  <Insets left="20.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label fx:id="dashboardTabAccountingPaymantForSingleValue3" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
+                                                            <Label fx:id="dashboardTabAccountingPaymantForSingleValue3" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                                <padding>
                                                                   <Insets left="10.0" />
                                                                </padding>
+                                                               <HBox.margin>
+                                                                  <Insets right="15.0" />
+                                                               </HBox.margin>
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;">
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                                          <children>
                                                             <Label prefHeight="98.0" prefWidth="162.0" text="Opłata kadrowa za pracownika etatowego" textOverrun="WORD_ELLIPSIS" wrapText="true">
                                                                <HBox.margin>
-                                                                  <Insets left="10.0" />
+                                                                  <Insets left="20.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label fx:id="dashboardTabAccountingPaymantForFullEmployeValue3" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
+                                                            <Label fx:id="dashboardTabAccountingPaymantForFullEmployeValue3" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                                <padding>
                                                                   <Insets left="10.0" />
                                                                </padding>
+                                                               <HBox.margin>
+                                                                  <Insets right="15.0" />
+                                                               </HBox.margin>
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: black;">
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                                          <children>
                                                             <Label prefHeight="98.0" prefWidth="162.0" text="Opłata kadrowa za pracownika na umowie cywilno-prawnej" textOverrun="WORD_ELLIPSIS" wrapText="true">
                                                                <HBox.margin>
-                                                                  <Insets left="10.0" />
+                                                                  <Insets left="20.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <Label fx:id="dashboardTabAccountingPaymantForLawEmployeValue3" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
+                                                            <Label fx:id="dashboardTabAccountingPaymantForLawEmployeValue3" alignment="CENTER_RIGHT" prefHeight="97.0" prefWidth="70.0" text="&lt;value&gt;" textAlignment="CENTER">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                                <padding>
                                                                   <Insets left="10.0" />
                                                                </padding>
+                                                               <HBox.margin>
+                                                                  <Insets right="15.0" />
+                                                               </HBox.margin>
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <Button fx:id="dashboardTabAccountingSelectOffice3" mnemonicParsing="false" onAction="#selectOfficeNr3" prefHeight="28.0" prefWidth="245.0" text="Wybierz Biuro">
+                                                      <Button fx:id="dashboardTabAccountingSelectOffice3" mnemonicParsing="false" onAction="#selectOfficeNr3" prefHeight="28.0" prefWidth="245.0" styleClass="menu-sub-button" text="Wybierz Biuro">
                                                          <VBox.margin>
                                                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                          </VBox.margin></Button>
@@ -6235,9 +6261,963 @@
           <Tab fx:id="saleTab" onSelectionChanged="#tabRefresh" text="Sprzedaż">
               <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                      <children>
-                          <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
-                      </children></AnchorPane>
+                     <children>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="605.0" prefWidth="891.0" styleClass="menu-pane">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="891.0">
+                                 <children>
+                                    <VBox prefWidth="891.0" styleClass="menu-pane">
+                                       <padding>
+                                          <Insets top="20.0" />
+                                       </padding>
+                                       <children>
+                                          <HBox alignment="CENTER">
+                                             <padding>
+                                                <Insets right="20.0" top="20.0" />
+                                             </padding>
+                                             <children>
+                                                <Pane fx:id="saleTabRoom1Pane" prefHeight="250.0" prefWidth="250.0">
+                                                   <HBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </HBox.margin>
+                                                   <children>
+                                                      <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0" styleClass="offer-item-pane">
+                                                         <children>
+                                                            <Label fx:id="saleTabRoom1Name" styleClass="offer-item-title" text="&lt;value&gt;">
+                                                               <font>
+                                                                  <Font size="16.0" />
+                                                               </font>
+                                                               <VBox.margin>
+                                                                  <Insets top="15.0" />
+                                                               </VBox.margin>
+                                                            </Label>
+                                                            <HBox prefWidth="200.0">
+                                                               <children>
+                                                                  <VBox prefWidth="125.0">
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                     <padding>
+                                                                        <Insets left="10.0" />
+                                                                     </padding>
+                                                                     <children>
+                                                                        <Label fx:id="saleTabRoom1PreferredPriceLabel" text="Preferowana cena:" />
+                                                                     </children>
+                                                                  </VBox>
+                                                                  <VBox alignment="CENTER_RIGHT" prefWidth="125.0">
+                                                                     <padding>
+                                                                        <Insets right="10.0" />
+                                                                     </padding>
+                                                                     <children>
+                                                                            <Label fx:id="saleTabRoom1PreferredPrice" text="&lt;value&gt;" />
+                                                                     </children>
+                                                                  </VBox>
+                                                               </children>
+                                                               <VBox.margin>
+                                                                  <Insets top="30.0" />
+                                                               </VBox.margin>
+                                                            </HBox>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0">
+                                                               <VBox.margin>
+                                                                  <Insets top="15.0" />
+                                                               </VBox.margin>
+                                                               <children>
+                                                                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="125.0" spacing="18.0">
+                                                                     <padding>
+                                                                        <Insets left="10.0" />
+                                                                     </padding>
+                                                                     <children>
+                                                                        <Label text="Cena:" />
+                                                                        <Label text="Zniżka:" />
+                                                                     </children>
+                                                                  </VBox>
+                                                                  <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+                                                                     <padding>
+                                                                        <Insets right="10.0" />
+                                                                     </padding>
+                                                                     <children>
+                                                                        <TextField fx:id="saleTabRoom1Price" maxHeight="18.0" />
+                                                                        <TextField fx:id="saleTabRoom1Discount" maxHeight="18.0" />
+                                                                     </children>
+                                                                  </VBox>
+                                                               </children>
+                                                            </HBox>
+                                                            <Button fx:id="saleTabButtonRoom1" mnemonicParsing="false" onAction="#activateRoom" styleClass="menu-sub-button" text="Uruchom">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="10.0" top="20.0" />
+                                                               </VBox.margin>
+                                                            </Button>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </Pane>
+                                                 <Pane fx:id="saleTabRoom2Pane" prefHeight="250.0" prefWidth="250.0">
+                                                     <HBox.margin>
+                                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                     </HBox.margin>
+                                                     <children>
+                                                         <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0" styleClass="offer-item-pane">
+                                                             <children>
+                                                                 <Label fx:id="saleTabRoom2Name" styleClass="offer-item-title" text="&lt;value&gt;">
+                                                                     <font>
+                                                                         <Font size="16.0" />
+                                                                     </font>
+                                                                     <VBox.margin>
+                                                                         <Insets top="15.0" />
+                                                                     </VBox.margin>
+                                                                 </Label>
+                                                                 <HBox prefWidth="200.0">
+                                                                     <children>
+                                                                         <VBox prefWidth="125.0">
+                                                                             <HBox.margin>
+                                                                                 <Insets />
+                                                                             </HBox.margin>
+                                                                             <padding>
+                                                                                 <Insets left="10.0" />
+                                                                             </padding>
+                                                                             <children>
+                                                                                 <Label fx:id="saleTabRoom2PreferredPriceLabel" text="Preferowana cena:" />
+                                                                             </children>
+                                                                         </VBox>
+                                                                         <VBox alignment="CENTER_RIGHT" prefWidth="125.0">
+                                                                             <padding>
+                                                                                 <Insets right="10.0" />
+                                                                             </padding>
+                                                                             <children>
+                                                                                 <Label fx:id="saleTabRoom2PreferredPrice" text="&lt;value&gt;" />
+                                                                             </children>
+                                                                         </VBox>
+                                                                     </children>
+                                                                     <VBox.margin>
+                                                                         <Insets top="30.0" />
+                                                                     </VBox.margin>
+                                                                 </HBox>
+                                                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                     <VBox.margin>
+                                                                         <Insets top="15.0" />
+                                                                     </VBox.margin>
+                                                                     <children>
+                                                                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="125.0" spacing="18.0">
+                                                                             <padding>
+                                                                                 <Insets left="10.0" />
+                                                                             </padding>
+                                                                             <children>
+                                                                                 <Label text="Cena:" />
+                                                                                 <Label text="Zniżka:" />
+                                                                             </children>
+                                                                         </VBox>
+                                                                         <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+                                                                             <padding>
+                                                                                 <Insets right="10.0" />
+                                                                             </padding>
+                                                                             <children>
+                                                                                 <TextField fx:id="saleTabRoom2Price" maxHeight="18.0" />
+                                                                                 <TextField fx:id="saleTabRoom2Discount" maxHeight="18.0" />
+                                                                             </children>
+                                                                         </VBox>
+                                                                     </children>
+                                                                 </HBox>
+                                                                 <Button fx:id="saleTabButtonRoom2" mnemonicParsing="false" onAction="#activateRoom" styleClass="menu-sub-button" text="Uruchom">
+                                                                     <VBox.margin>
+                                                                         <Insets bottom="10.0" top="20.0" />
+                                                                     </VBox.margin>
+                                                                 </Button>
+                                                             </children>
+                                                         </VBox>
+                                                     </children>
+                                                 </Pane>
+                                                 <Pane fx:id="saleTabRoom3Pane" prefHeight="250.0" prefWidth="250.0">
+                                                     <HBox.margin>
+                                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                     </HBox.margin>
+                                                     <children>
+                                                         <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0" styleClass="offer-item-pane">
+                                                             <children>
+                                                                 <Label fx:id="saleTabRoom3Name" styleClass="offer-item-title" text="&lt;value&gt;">
+                                                                     <font>
+                                                                         <Font size="16.0" />
+                                                                     </font>
+                                                                     <VBox.margin>
+                                                                         <Insets top="15.0" />
+                                                                     </VBox.margin>
+                                                                 </Label>
+                                                                 <HBox prefWidth="200.0">
+                                                                     <children>
+                                                                         <VBox prefWidth="125.0">
+                                                                             <HBox.margin>
+                                                                                 <Insets />
+                                                                             </HBox.margin>
+                                                                             <padding>
+                                                                                 <Insets left="10.0" />
+                                                                             </padding>
+                                                                             <children>
+                                                                                 <Label fx:id="saleTabRoom3PreferredPriceLabel" text="Preferowana cena:" />
+                                                                             </children>
+                                                                         </VBox>
+                                                                         <VBox alignment="CENTER_RIGHT" prefWidth="125.0">
+                                                                             <padding>
+                                                                                 <Insets right="10.0" />
+                                                                             </padding>
+                                                                             <children>
+                                                                                 <Label fx:id="saleTabRoom3PreferredPrice" text="&lt;value&gt;" />
+                                                                             </children>
+                                                                         </VBox>
+                                                                     </children>
+                                                                     <VBox.margin>
+                                                                         <Insets top="30.0" />
+                                                                     </VBox.margin>
+                                                                 </HBox>
+                                                                 <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                     <VBox.margin>
+                                                                         <Insets top="15.0" />
+                                                                     </VBox.margin>
+                                                                     <children>
+                                                                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="125.0" spacing="18.0">
+                                                                             <padding>
+                                                                                 <Insets left="10.0" />
+                                                                             </padding>
+                                                                             <children>
+                                                                                 <Label text="Cena:" />
+                                                                                 <Label text="Zniżka:" />
+                                                                             </children>
+                                                                         </VBox>
+                                                                         <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+                                                                             <padding>
+                                                                                 <Insets right="10.0" />
+                                                                             </padding>
+                                                                             <children>
+                                                                                 <TextField fx:id="saleTabRoom3Price" maxHeight="18.0" />
+                                                                                 <TextField fx:id="saleTabRoom3Discount" maxHeight="18.0" />
+                                                                             </children>
+                                                                         </VBox>
+                                                                     </children>
+                                                                 </HBox>
+                                                                 <Button fx:id="saleTabButtonRoom3" mnemonicParsing="false" onAction="#activateRoom" styleClass="menu-sub-button" text="Uruchom">
+                                                                     <VBox.margin>
+                                                                         <Insets bottom="10.0" top="20.0" />
+                                                                     </VBox.margin>
+                                                                 </Button>
+                                                             </children>
+                                                         </VBox>
+                                                     </children>
+                                                 </Pane>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </HBox>
+                                           <HBox alignment="CENTER">
+                                               <padding>
+                                                   <Insets right="20.0" top="20.0" />
+                                               </padding>
+                                               <children>
+                                                   <Pane fx:id="saleTabRoom4Pane" prefHeight="250.0" prefWidth="250.0">
+                                                       <HBox.margin>
+                                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                       </HBox.margin>
+                                                       <children>
+                                                           <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0" styleClass="offer-item-pane">
+                                                               <children>
+                                                                   <Label fx:id="saleTabRoom4Name" styleClass="offer-item-title" text="&lt;value&gt;">
+                                                                       <font>
+                                                                           <Font size="16.0" />
+                                                                       </font>
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                   </Label>
+                                                                   <HBox prefWidth="200.0">
+                                                                       <children>
+                                                                           <VBox prefWidth="125.0">
+                                                                               <HBox.margin>
+                                                                                   <Insets />
+                                                                               </HBox.margin>
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom4PreferredPriceLabel" text="Preferowana cena:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefWidth="125.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom4PreferredPrice" text="&lt;value&gt;" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                       <VBox.margin>
+                                                                           <Insets top="30.0" />
+                                                                       </VBox.margin>
+                                                                   </HBox>
+                                                                   <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                       <children>
+                                                                           <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="125.0" spacing="18.0">
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label text="Cena:" />
+                                                                                   <Label text="Zniżka:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <TextField fx:id="saleTabRoom4Price" maxHeight="18.0" />
+                                                                                   <TextField fx:id="saleTabRoom4Discount" maxHeight="18.0" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                   </HBox>
+                                                                   <Button fx:id="saleTabButtonRoom4" mnemonicParsing="false" onAction="#activateRoom" styleClass="menu-sub-button" text="Uruchom">
+                                                                       <VBox.margin>
+                                                                           <Insets bottom="10.0" top="20.0" />
+                                                                       </VBox.margin>
+                                                                   </Button>
+                                                               </children>
+                                                           </VBox>
+                                                       </children>
+                                                   </Pane>
+                                                   <Pane fx:id="saleTabRoom5Pane" prefHeight="250.0" prefWidth="250.0">
+                                                       <HBox.margin>
+                                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                       </HBox.margin>
+                                                       <children>
+                                                           <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0" styleClass="offer-item-pane">
+                                                               <children>
+                                                                   <Label fx:id="saleTabRoom5Name" styleClass="offer-item-title" text="&lt;value&gt;">
+                                                                       <font>
+                                                                           <Font size="16.0" />
+                                                                       </font>
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                   </Label>
+                                                                   <HBox prefWidth="200.0">
+                                                                       <children>
+                                                                           <VBox prefWidth="125.0">
+                                                                               <HBox.margin>
+                                                                                   <Insets />
+                                                                               </HBox.margin>
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom5PreferredPriceLabel" text="Preferowana cena:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefWidth="125.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom5PreferredPrice" text="&lt;value&gt;" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                       <VBox.margin>
+                                                                           <Insets top="30.0" />
+                                                                       </VBox.margin>
+                                                                   </HBox>
+                                                                   <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                       <children>
+                                                                           <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="125.0" spacing="18.0">
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label text="Cena:" />
+                                                                                   <Label text="Zniżka:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <TextField fx:id="saleTabRoom5Price" maxHeight="18.0" />
+                                                                                   <TextField fx:id="saleTabRoom5Discount" maxHeight="18.0" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                   </HBox>
+                                                                   <Button fx:id="saleTabButtonRoom5" mnemonicParsing="false" onAction="#activateRoom" styleClass="menu-sub-button" text="Uruchom">
+                                                                       <VBox.margin>
+                                                                           <Insets bottom="10.0" top="20.0" />
+                                                                       </VBox.margin>
+                                                                   </Button>
+                                                               </children>
+                                                           </VBox>
+                                                       </children>
+                                                   </Pane>
+                                                   <Pane fx:id="saleTabRoom6Pane" prefHeight="250.0" prefWidth="250.0">
+                                                       <HBox.margin>
+                                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                       </HBox.margin>
+                                                       <children>
+                                                           <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0" styleClass="offer-item-pane">
+                                                               <children>
+                                                                   <Label fx:id="saleTabRoom6Name" styleClass="offer-item-title" text="&lt;value&gt;">
+                                                                       <font>
+                                                                           <Font size="16.0" />
+                                                                       </font>
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                   </Label>
+                                                                   <HBox prefWidth="200.0">
+                                                                       <children>
+                                                                           <VBox prefWidth="125.0">
+                                                                               <HBox.margin>
+                                                                                   <Insets />
+                                                                               </HBox.margin>
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom6PreferredPriceLabel" text="Preferowana cena:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefWidth="125.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom6PreferredPrice" text="&lt;value&gt;" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                       <VBox.margin>
+                                                                           <Insets top="30.0" />
+                                                                       </VBox.margin>
+                                                                   </HBox>
+                                                                   <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                       <children>
+                                                                           <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="125.0" spacing="18.0">
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label text="Cena:" />
+                                                                                   <Label text="Zniżka:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <TextField fx:id="saleTabRoom6Price" maxHeight="18.0" />
+                                                                                   <TextField fx:id="saleTabRoom6Discount" maxHeight="18.0" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                   </HBox>
+                                                                   <Button fx:id="saleTabButtonRoom6" mnemonicParsing="false" onAction="#activateRoom" styleClass="menu-sub-button" text="Uruchom">
+                                                                       <VBox.margin>
+                                                                           <Insets bottom="10.0" top="20.0" />
+                                                                       </VBox.margin>
+                                                                   </Button>
+                                                               </children>
+                                                           </VBox>
+                                                       </children>
+                                                   </Pane>
+                                               </children>
+                                               <VBox.margin>
+                                                   <Insets />
+                                               </VBox.margin>
+                                           </HBox>
+                                           <HBox alignment="CENTER">
+                                               <padding>
+                                                   <Insets right="20.0" top="20.0" />
+                                               </padding>
+                                               <children>
+                                                   <Pane fx:id="saleTabRoom7Pane" prefHeight="250.0" prefWidth="250.0">
+                                                       <HBox.margin>
+                                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                       </HBox.margin>
+                                                       <children>
+                                                           <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0" styleClass="offer-item-pane">
+                                                               <children>
+                                                                   <Label fx:id="saleTabRoom7Name" styleClass="offer-item-title" text="&lt;value&gt;">
+                                                                       <font>
+                                                                           <Font size="16.0" />
+                                                                       </font>
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                   </Label>
+                                                                   <HBox prefWidth="200.0">
+                                                                       <children>
+                                                                           <VBox prefWidth="125.0">
+                                                                               <HBox.margin>
+                                                                                   <Insets />
+                                                                               </HBox.margin>
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom7PreferredPriceLabel" text="Preferowana cena:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefWidth="125.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom7PreferredPrice" text="&lt;value&gt;" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                       <VBox.margin>
+                                                                           <Insets top="30.0" />
+                                                                       </VBox.margin>
+                                                                   </HBox>
+                                                                   <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                       <children>
+                                                                           <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="125.0" spacing="18.0">
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label text="Cena:" />
+                                                                                   <Label text="Zniżka:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <TextField fx:id="saleTabRoom7Price" maxHeight="18.0" />
+                                                                                   <TextField fx:id="saleTabRoom7Discount" maxHeight="18.0" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                   </HBox>
+                                                                   <Button fx:id="saleTabButtonRoom7" mnemonicParsing="false" onAction="#activateRoom" styleClass="menu-sub-button" text="Uruchom">
+                                                                       <VBox.margin>
+                                                                           <Insets bottom="10.0" top="20.0" />
+                                                                       </VBox.margin>
+                                                                   </Button>
+                                                               </children>
+                                                           </VBox>
+                                                       </children>
+                                                   </Pane>
+                                                   <Pane fx:id="saleTabRoom8Pane" prefHeight="250.0" prefWidth="250.0">
+                                                       <HBox.margin>
+                                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                       </HBox.margin>
+                                                       <children>
+                                                           <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0" styleClass="offer-item-pane">
+                                                               <children>
+                                                                   <Label fx:id="saleTabRoom8Name" styleClass="offer-item-title" text="&lt;value&gt;">
+                                                                       <font>
+                                                                           <Font size="16.0" />
+                                                                       </font>
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                   </Label>
+                                                                   <HBox prefWidth="200.0">
+                                                                       <children>
+                                                                           <VBox prefWidth="125.0">
+                                                                               <HBox.margin>
+                                                                                   <Insets />
+                                                                               </HBox.margin>
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom8PreferredPriceLabel" text="Preferowana cena:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefWidth="125.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom8PreferredPrice" text="&lt;value&gt;" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                       <VBox.margin>
+                                                                           <Insets top="30.0" />
+                                                                       </VBox.margin>
+                                                                   </HBox>
+                                                                   <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                       <children>
+                                                                           <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="125.0" spacing="18.0">
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label text="Cena:" />
+                                                                                   <Label text="Zniżka:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <TextField fx:id="saleTabRoom8Price" maxHeight="18.0" />
+                                                                                   <TextField fx:id="saleTabRoom8Discount" maxHeight="18.0" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                   </HBox>
+                                                                   <Button fx:id="saleTabButtonRoom8" mnemonicParsing="false" onAction="#activateRoom" styleClass="menu-sub-button" text="Uruchom">
+                                                                       <VBox.margin>
+                                                                           <Insets bottom="10.0" top="20.0" />
+                                                                       </VBox.margin>
+                                                                   </Button>
+                                                               </children>
+                                                           </VBox>
+                                                       </children>
+                                                   </Pane>
+                                                   <Pane fx:id="saleTabRoom9Pane" prefHeight="250.0" prefWidth="250.0">
+                                                       <HBox.margin>
+                                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                       </HBox.margin>
+                                                       <children>
+                                                           <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0" styleClass="offer-item-pane">
+                                                               <children>
+                                                                   <Label fx:id="saleTabRoom9Name" styleClass="offer-item-title" text="&lt;value&gt;">
+                                                                       <font>
+                                                                           <Font size="16.0" />
+                                                                       </font>
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                   </Label>
+                                                                   <HBox prefWidth="200.0">
+                                                                       <children>
+                                                                           <VBox prefWidth="125.0">
+                                                                               <HBox.margin>
+                                                                                   <Insets />
+                                                                               </HBox.margin>
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom9PreferredPriceLabel" text="Preferowana cena:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefWidth="125.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom9PreferredPrice" text="&lt;value&gt;" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                       <VBox.margin>
+                                                                           <Insets top="30.0" />
+                                                                       </VBox.margin>
+                                                                   </HBox>
+                                                                   <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                       <children>
+                                                                           <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="125.0" spacing="18.0">
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label text="Cena:" />
+                                                                                   <Label text="Zniżka:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <TextField fx:id="saleTabRoom9Price" maxHeight="18.0" />
+                                                                                   <TextField fx:id="saleTabRoom9Discount" maxHeight="18.0" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                   </HBox>
+                                                                   <Button fx:id="saleTabButtonRoom9" mnemonicParsing="false" onAction="#activateRoom" styleClass="menu-sub-button" text="Uruchom">
+                                                                       <VBox.margin>
+                                                                           <Insets bottom="10.0" top="20.0" />
+                                                                       </VBox.margin>
+                                                                   </Button>
+                                                               </children>
+                                                           </VBox>
+                                                       </children>
+                                                   </Pane>
+                                               </children>
+                                               <VBox.margin>
+                                                   <Insets />
+                                               </VBox.margin>
+                                           </HBox>
+                                           <HBox alignment="CENTER">
+                                               <padding>
+                                                   <Insets right="20.0" top="20.0" />
+                                               </padding>
+                                               <children>
+                                                   <Pane fx:id="saleTabRoom10Pane" prefHeight="250.0" prefWidth="250.0">
+                                                       <HBox.margin>
+                                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                       </HBox.margin>
+                                                       <children>
+                                                           <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0" styleClass="offer-item-pane">
+                                                               <children>
+                                                                   <Label fx:id="saleTabRoom10Name" styleClass="offer-item-title" text="&lt;value&gt;">
+                                                                       <font>
+                                                                           <Font size="16.0" />
+                                                                       </font>
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                   </Label>
+                                                                   <HBox prefWidth="200.0">
+                                                                       <children>
+                                                                           <VBox prefWidth="125.0">
+                                                                               <HBox.margin>
+                                                                                   <Insets />
+                                                                               </HBox.margin>
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom10PreferredPriceLabel" text="Preferowana cena:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefWidth="125.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom10PreferredPrice" text="&lt;value&gt;" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                       <VBox.margin>
+                                                                           <Insets top="30.0" />
+                                                                       </VBox.margin>
+                                                                   </HBox>
+                                                                   <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                       <children>
+                                                                           <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="125.0" spacing="18.0">
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label text="Cena:" />
+                                                                                   <Label text="Zniżka:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <TextField fx:id="saleTabRoom10Price" maxHeight="18.0" />
+                                                                                   <TextField fx:id="saleTabRoom10Discount" maxHeight="18.0" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                   </HBox>
+                                                                   <Button fx:id="saleTabButtonRoom10" mnemonicParsing="false" onAction="#activateRoom" styleClass="menu-sub-button" text="Uruchom">
+                                                                       <VBox.margin>
+                                                                           <Insets bottom="10.0" top="20.0" />
+                                                                       </VBox.margin>
+                                                                   </Button>
+                                                               </children>
+                                                           </VBox>
+                                                       </children>
+                                                   </Pane>
+                                                   <Pane fx:id="saleTabRoom11Pane" prefHeight="250.0" prefWidth="250.0">
+                                                       <HBox.margin>
+                                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                       </HBox.margin>
+                                                       <children>
+                                                           <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0" styleClass="offer-item-pane">
+                                                               <children>
+                                                                   <Label fx:id="saleTabRoom11Name" styleClass="offer-item-title" text="&lt;value&gt;">
+                                                                       <font>
+                                                                           <Font size="16.0" />
+                                                                       </font>
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                   </Label>
+                                                                   <HBox prefWidth="200.0">
+                                                                       <children>
+                                                                           <VBox prefWidth="125.0">
+                                                                               <HBox.margin>
+                                                                                   <Insets />
+                                                                               </HBox.margin>
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom11PreferredPriceLabel" text="Preferowana cena:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefWidth="125.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom11PreferredPrice" text="&lt;value&gt;" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                       <VBox.margin>
+                                                                           <Insets top="30.0" />
+                                                                       </VBox.margin>
+                                                                   </HBox>
+                                                                   <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                       <children>
+                                                                           <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="125.0" spacing="18.0">
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label text="Cena:" />
+                                                                                   <Label text="Zniżka:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <TextField fx:id="saleTabRoom11Price" maxHeight="18.0" />
+                                                                                   <TextField fx:id="saleTabRoom11Discount" maxHeight="18.0" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                   </HBox>
+                                                                   <Button fx:id="saleTabButtonRoom11" mnemonicParsing="false" onAction="#activateRoom" styleClass="menu-sub-button" text="Uruchom">
+                                                                       <VBox.margin>
+                                                                           <Insets bottom="10.0" top="20.0" />
+                                                                       </VBox.margin>
+                                                                   </Button>
+                                                               </children>
+                                                           </VBox>
+                                                       </children>
+                                                   </Pane>
+                                                   <Pane fx:id="saleTabRoom12Pane" prefHeight="250.0" prefWidth="250.0">
+                                                       <HBox.margin>
+                                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                       </HBox.margin>
+                                                       <children>
+                                                           <VBox alignment="TOP_CENTER" prefHeight="250.0" prefWidth="250.0" styleClass="offer-item-pane">
+                                                               <children>
+                                                                   <Label fx:id="saleTabRoom12Name" styleClass="offer-item-title" text="&lt;value&gt;">
+                                                                       <font>
+                                                                           <Font size="16.0" />
+                                                                       </font>
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                   </Label>
+                                                                   <HBox prefWidth="200.0">
+                                                                       <children>
+                                                                           <VBox prefWidth="125.0">
+                                                                               <HBox.margin>
+                                                                                   <Insets />
+                                                                               </HBox.margin>
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom12PreferredPriceLabel" text="Preferowana cena:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefWidth="125.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label fx:id="saleTabRoom12PreferredPrice" text="&lt;value&gt;" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                       <VBox.margin>
+                                                                           <Insets top="30.0" />
+                                                                       </VBox.margin>
+                                                                   </HBox>
+                                                                   <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                       <VBox.margin>
+                                                                           <Insets top="15.0" />
+                                                                       </VBox.margin>
+                                                                       <children>
+                                                                           <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="125.0" spacing="18.0">
+                                                                               <padding>
+                                                                                   <Insets left="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <Label text="Cena:" />
+                                                                                   <Label text="Zniżka:" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                           <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="125.0" spacing="10.0">
+                                                                               <padding>
+                                                                                   <Insets right="10.0" />
+                                                                               </padding>
+                                                                               <children>
+                                                                                   <TextField fx:id="saleTabRoom12Price" maxHeight="18.0" />
+                                                                                   <TextField fx:id="saleTabRoom12Discount" maxHeight="18.0" />
+                                                                               </children>
+                                                                           </VBox>
+                                                                       </children>
+                                                                   </HBox>
+                                                                   <Button fx:id="saleTabButtonRoom12" mnemonicParsing="false" onAction="#activateRoom" styleClass="menu-sub-button" text="Uruchom">
+                                                                       <VBox.margin>
+                                                                           <Insets bottom="10.0" top="20.0" />
+                                                                       </VBox.margin>
+                                                                   </Button>
+                                                               </children>
+                                                           </VBox>
+                                                       </children>
+                                                   </Pane>
+                                               </children>
+                                               <VBox.margin>
+                                                   <Insets />
+                                               </VBox.margin>
+                                           </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
+                     </children></AnchorPane>
               </content>
           </Tab>
           <Tab fx:id="resultsTab" onSelectionChanged="#tabRefresh" text="Karta wyników">

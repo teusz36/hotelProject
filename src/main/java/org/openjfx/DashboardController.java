@@ -440,6 +440,91 @@ public class DashboardController {
     @FXML Label dashboardTabDashboardRank;
     @FXML Label dashboardTabDashboardRoundNumber;
 
+    @FXML Pane saleTabRoom1Pane;
+    @FXML Pane saleTabRoom2Pane;
+    @FXML Pane saleTabRoom3Pane;
+    @FXML Pane saleTabRoom4Pane;
+    @FXML Pane saleTabRoom5Pane;
+    @FXML Pane saleTabRoom6Pane;
+    @FXML Pane saleTabRoom7Pane;
+    @FXML Pane saleTabRoom8Pane;
+    @FXML Pane saleTabRoom9Pane;
+    @FXML Pane saleTabRoom10Pane;
+    @FXML Pane saleTabRoom11Pane;
+    @FXML Pane saleTabRoom12Pane;
+    @FXML Label saleTabRoom1Name;
+    @FXML Label saleTabRoom2Name;
+    @FXML Label saleTabRoom3Name;
+    @FXML Label saleTabRoom4Name;
+    @FXML Label saleTabRoom5Name;
+    @FXML Label saleTabRoom6Name;
+    @FXML Label saleTabRoom7Name;
+    @FXML Label saleTabRoom8Name;
+    @FXML Label saleTabRoom9Name;
+    @FXML Label saleTabRoom10Name;
+    @FXML Label saleTabRoom11Name;
+    @FXML Label saleTabRoom12Name;
+    @FXML Label saleTabRoom1PreferredPriceLabel;
+    @FXML Label saleTabRoom2PreferredPriceLabel;
+    @FXML Label saleTabRoom3PreferredPriceLabel;
+    @FXML Label saleTabRoom4PreferredPriceLabel;
+    @FXML Label saleTabRoom5PreferredPriceLabel;
+    @FXML Label saleTabRoom6PreferredPriceLabel;
+    @FXML Label saleTabRoom7PreferredPriceLabel;
+    @FXML Label saleTabRoom8PreferredPriceLabel;
+    @FXML Label saleTabRoom9PreferredPriceLabel;
+    @FXML Label saleTabRoom10PreferredPriceLabel;
+    @FXML Label saleTabRoom11PreferredPriceLabel;
+    @FXML Label saleTabRoom12PreferredPriceLabel;
+    @FXML Label saleTabRoom1PreferredPrice;
+    @FXML Label saleTabRoom2PreferredPrice;
+    @FXML Label saleTabRoom3PreferredPrice;
+    @FXML Label saleTabRoom4PreferredPrice;
+    @FXML Label saleTabRoom5PreferredPrice;
+    @FXML Label saleTabRoom6PreferredPrice;
+    @FXML Label saleTabRoom7PreferredPrice;
+    @FXML Label saleTabRoom8PreferredPrice;
+    @FXML Label saleTabRoom9PreferredPrice;
+    @FXML Label saleTabRoom10PreferredPrice;
+    @FXML Label saleTabRoom11PreferredPrice;
+    @FXML Label saleTabRoom12PreferredPrice;
+    @FXML TextField saleTabRoom1Price;
+    @FXML TextField saleTabRoom2Price;
+    @FXML TextField saleTabRoom3Price;
+    @FXML TextField saleTabRoom4Price;
+    @FXML TextField saleTabRoom5Price;
+    @FXML TextField saleTabRoom6Price;
+    @FXML TextField saleTabRoom7Price;
+    @FXML TextField saleTabRoom8Price;
+    @FXML TextField saleTabRoom9Price;
+    @FXML TextField saleTabRoom10Price;
+    @FXML TextField saleTabRoom11Price;
+    @FXML TextField saleTabRoom12Price;
+    @FXML TextField saleTabRoom1Discount;
+    @FXML TextField saleTabRoom2Discount;
+    @FXML TextField saleTabRoom3Discount;
+    @FXML TextField saleTabRoom4Discount;
+    @FXML TextField saleTabRoom5Discount;
+    @FXML TextField saleTabRoom6Discount;
+    @FXML TextField saleTabRoom7Discount;
+    @FXML TextField saleTabRoom8Discount;
+    @FXML TextField saleTabRoom9Discount;
+    @FXML TextField saleTabRoom10Discount;
+    @FXML TextField saleTabRoom11Discount;
+    @FXML TextField saleTabRoom12Discount;
+    @FXML Button saleTabButtonRoom1;
+    @FXML Button saleTabButtonRoom2;
+    @FXML Button saleTabButtonRoom3;
+    @FXML Button saleTabButtonRoom4;
+    @FXML Button saleTabButtonRoom5;
+    @FXML Button saleTabButtonRoom6;
+    @FXML Button saleTabButtonRoom7;
+    @FXML Button saleTabButtonRoom8;
+    @FXML Button saleTabButtonRoom9;
+    @FXML Button saleTabButtonRoom10;
+    @FXML Button saleTabButtonRoom11;
+    @FXML Button saleTabButtonRoom12;
+
     @FXML TableView dashboardTabReadyTableViewErrors;
 
     //dashboard Tab Accounting
@@ -476,6 +561,10 @@ public class DashboardController {
         try {
             Player.reset();
             System.out.println("1");
+            ManageResources.reset();
+            System.out.println("1.1");
+            ManageAccounting.resetAccounting();
+            System.out.println("1.2");
             initializeDataFromDatabase();
             System.out.println("2");
             ManageBanks.generateBankOptions();
@@ -496,9 +585,12 @@ public class DashboardController {
             System.out.println("10");
             generateDashboardContent();
             System.out.println("11");
-            dashboardTabBankGenerateDataInAccountingOptions();
+            dashboardTabAccountingGenerateDataInAccountingOptions();
             System.out.println("12");
             setUpTooltips();
+            System.out.println("12");
+            generateSalePanes();
+            System.out.println("13");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -527,11 +619,6 @@ public class DashboardController {
                 CurrentlyPlayedGame.setBalance(balance);
                 Player.getRevolvingCredit().getCredit(rca);
             }
-            ResultSet balanceRS = executeQuery("SELECT balance FROM hotelprojekt.hotel WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId());
-            while (balanceRS.next()) {
-                int balance = Integer.parseInt(balanceRS.getString(1));
-                CurrentlyPlayedGame.setBalance(balance);
-            }
             ResultSet creditsRS = executeQuery("SELECT * FROM hotelprojekt.credit WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId());
             while (creditsRS.next()) {
                 int bank_id = Integer.parseInt(creditsRS.getString(3));
@@ -551,16 +638,13 @@ public class DashboardController {
             ResultSet roomsRS = executeQuery("SELECT * FROM hotelprojekt.room WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId());
             while (roomsRS.next()) {
                 int number = roomsRS.getInt(3);
-                boolean isBought = roomsRS.getBoolean(4);
-                int qualityBought = roomsRS.getInt(5);
-                int res1 = roomsRS.getInt(6);
-                int res2 = roomsRS.getInt(7);
-                int res3 = roomsRS.getInt(8);
-                RoomsManagement.rooms[number - 1].setBought(isBought);
-                RoomsManagement.rooms[number - 1].setQualityBought(qualityBought);
-                ManageResources.addResourcesToStorage(number, 1, res1);
-                ManageResources.addResourcesToStorage(number, 2, res2);
-                ManageResources.addResourcesToStorage(number, 3, res3);
+                RoomsManagement.rooms[number - 1].setBought(roomsRS.getBoolean(4));
+                RoomsManagement.rooms[number - 1].setActive(roomsRS.getBoolean(5));
+                RoomsManagement.rooms[number - 1].setQualityBought(roomsRS.getInt(6));
+                ManageResources.addResourcesToStorage(number, 1, roomsRS.getInt(7));
+                ManageResources.addResourcesToStorage(number, 2, roomsRS.getInt(8));
+                ManageResources.addResourcesToStorage(number, 3, roomsRS.getInt(9));
+                RoomsManagement.rooms[number - 1].setPrice(roomsRS.getInt(10));
             }
 
             Player.getRevolvingCredit().setMonthlyResolvingInterest(ManageBanks.getCurrentlyChosenBank().getRevolvingCreditInterestRate());
@@ -755,6 +839,7 @@ public class DashboardController {
             generateDashboardContent();
             initializeRoomsInfo();
             checkErrors();
+            generateSalePanes();
         } catch (Exception e) {}
 
     }
@@ -795,6 +880,9 @@ public class DashboardController {
         }
         if(!ManageBanks.isBankChosen()) {
             allErrors.add("Nie wybrano banku");
+        }
+        if(!ManageAccounting.isAccountingOfficeChosen()) {
+            allErrors.add("Nie wybranio biura rachunkowego");
         }
         if(allErrors.size() > 0) {
             viewAllErrorsTable(allErrors);
@@ -1305,6 +1393,7 @@ public class DashboardController {
         }
         dashboardTabOfferBalance.setText(String.valueOf(CurrentlyPlayedGame.getBalance()));
         switchToRoomInfo(roomId);
+        generateSalePanes();
     }
 
     /**
@@ -1392,6 +1481,8 @@ public class DashboardController {
         for(Node node: dashboardTabOfferHBoxSeasoningRoom1VBoxes) {
             double height = 15 * RoomsManagement.rooms[0].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom1VBoxesIndex];
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
+            Label l = (Label) node;
+            l.setTooltip(new Tooltip(String.valueOf(RoomsManagement.rooms[0].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom1VBoxesIndex])));
             dashboardTabOfferHBoxSeasoningRoom1VBoxesIndex++;
         }
         ObservableList<Node> dashboardTabOfferHBoxSeasoningRoom2VBoxes = dashboardTabOfferHBoxSeasoningRoom2.getChildren();
@@ -1399,6 +1490,8 @@ public class DashboardController {
         for(Node node: dashboardTabOfferHBoxSeasoningRoom2VBoxes) {
             double height = 15 * RoomsManagement.rooms[1].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom2VBoxesIndex];
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
+            Label l = (Label) node;
+            l.setTooltip(new Tooltip(String.valueOf(RoomsManagement.rooms[1].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom2VBoxesIndex])));
             dashboardTabOfferHBoxSeasoningRoom2VBoxesIndex++;
         }
         ObservableList<Node> dashboardTabOfferHBoxSeasoningRoom3VBoxes = dashboardTabOfferHBoxSeasoningRoom3.getChildren();
@@ -1406,6 +1499,8 @@ public class DashboardController {
         for(Node node: dashboardTabOfferHBoxSeasoningRoom3VBoxes) {
             double height = 15 * RoomsManagement.rooms[2].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom3VBoxesIndex];
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
+            Label l = (Label) node;
+            l.setTooltip(new Tooltip(String.valueOf(RoomsManagement.rooms[2].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom3VBoxesIndex])));
             dashboardTabOfferHBoxSeasoningRoom3VBoxesIndex++;
         }
         ObservableList<Node> dashboardTabOfferHBoxSeasoningRoom4VBoxes = dashboardTabOfferHBoxSeasoningRoom4.getChildren();
@@ -1413,6 +1508,8 @@ public class DashboardController {
         for(Node node: dashboardTabOfferHBoxSeasoningRoom4VBoxes) {
             double height = 15 * RoomsManagement.rooms[3].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom4VBoxesIndex];
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
+            Label l = (Label) node;
+            l.setTooltip(new Tooltip(String.valueOf(RoomsManagement.rooms[3].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom4VBoxesIndex])));
             dashboardTabOfferHBoxSeasoningRoom4VBoxesIndex++;
         }
         ObservableList<Node> dashboardTabOfferHBoxSeasoningRoom5VBoxes = dashboardTabOfferHBoxSeasoningRoom5.getChildren();
@@ -1420,6 +1517,8 @@ public class DashboardController {
         for(Node node: dashboardTabOfferHBoxSeasoningRoom5VBoxes) {
             double height = 15 * RoomsManagement.rooms[4].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom5VBoxesIndex];
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
+            Label l = (Label) node;
+            l.setTooltip(new Tooltip(String.valueOf(RoomsManagement.rooms[4].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom5VBoxesIndex])));
             dashboardTabOfferHBoxSeasoningRoom5VBoxesIndex++;
         }
         ObservableList<Node> dashboardTabOfferHBoxSeasoningRoom6VBoxes = dashboardTabOfferHBoxSeasoningRoom6.getChildren();
@@ -1427,6 +1526,8 @@ public class DashboardController {
         for(Node node: dashboardTabOfferHBoxSeasoningRoom6VBoxes) {
             double height = 15 * RoomsManagement.rooms[5].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom6VBoxesIndex];
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
+            Label l = (Label) node;
+            l.setTooltip(new Tooltip(String.valueOf(RoomsManagement.rooms[5].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom6VBoxesIndex])));
             dashboardTabOfferHBoxSeasoningRoom6VBoxesIndex++;
         }
 
@@ -1435,6 +1536,8 @@ public class DashboardController {
         for(Node node: dashboardTabOfferHBoxSeasoningRoom7VBoxes) {
             double height = 15 * RoomsManagement.rooms[6].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom7VBoxesIndex];
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
+            Label l = (Label) node;
+            l.setTooltip(new Tooltip(String.valueOf(RoomsManagement.rooms[6].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom7VBoxesIndex])));
             dashboardTabOfferHBoxSeasoningRoom7VBoxesIndex++;
         }
         ObservableList<Node> dashboardTabOfferHBoxSeasoningRoom8VBoxes = dashboardTabOfferHBoxSeasoningRoom8.getChildren();
@@ -1442,6 +1545,8 @@ public class DashboardController {
         for(Node node: dashboardTabOfferHBoxSeasoningRoom8VBoxes) {
             double height = 15 * RoomsManagement.rooms[7].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom8VBoxesIndex];
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
+            Label l = (Label) node;
+            l.setTooltip(new Tooltip(String.valueOf(RoomsManagement.rooms[7].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom8VBoxesIndex])));
             dashboardTabOfferHBoxSeasoningRoom8VBoxesIndex++;
         }
         ObservableList<Node> dashboardTabOfferHBoxSeasoningRoom9VBoxes = dashboardTabOfferHBoxSeasoningRoom9.getChildren();
@@ -1449,6 +1554,8 @@ public class DashboardController {
         for(Node node: dashboardTabOfferHBoxSeasoningRoom9VBoxes) {
             double height = 15 * RoomsManagement.rooms[8].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom9VBoxesIndex];
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
+            Label l = (Label) node;
+            l.setTooltip(new Tooltip(String.valueOf(RoomsManagement.rooms[8].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom9VBoxesIndex])));
             dashboardTabOfferHBoxSeasoningRoom9VBoxesIndex++;
         }
         ObservableList<Node> dashboardTabOfferHBoxSeasoningRoom10VBoxes = dashboardTabOfferHBoxSeasoningRoom10.getChildren();
@@ -1456,6 +1563,8 @@ public class DashboardController {
         for(Node node: dashboardTabOfferHBoxSeasoningRoom10VBoxes) {
             double height = 15 * RoomsManagement.rooms[9].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom10VBoxesIndex];
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
+            Label l = (Label) node;
+            l.setTooltip(new Tooltip(String.valueOf(RoomsManagement.rooms[9].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom10VBoxesIndex])));
             dashboardTabOfferHBoxSeasoningRoom10VBoxesIndex++;
         }
         ObservableList<Node> dashboardTabOfferHBoxSeasoningRoom11VBoxes = dashboardTabOfferHBoxSeasoningRoom11.getChildren();
@@ -1463,6 +1572,8 @@ public class DashboardController {
         for(Node node: dashboardTabOfferHBoxSeasoningRoom11VBoxes) {
             double height = 15 * RoomsManagement.rooms[10].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom11VBoxesIndex];
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
+            Label l = (Label) node;
+            l.setTooltip(new Tooltip(String.valueOf(RoomsManagement.rooms[10].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom11VBoxesIndex])));
             dashboardTabOfferHBoxSeasoningRoom11VBoxesIndex++;
         }
         ObservableList<Node> dashboardTabOfferHBoxSeasoningRoom12VBoxes = dashboardTabOfferHBoxSeasoningRoom12.getChildren();
@@ -1470,6 +1581,8 @@ public class DashboardController {
         for(Node node: dashboardTabOfferHBoxSeasoningRoom12VBoxes) {
             double height = 15 * RoomsManagement.rooms[11].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom12VBoxesIndex];
             node.setStyle("-fx-background-color: #7d0422; -fx-min-height: " + height + "; -fx-pref-height: " + height + ";");
+            Label l = (Label) node;
+            l.setTooltip(new Tooltip(String.valueOf(RoomsManagement.rooms[11].getSeasonality()[dashboardTabOfferHBoxSeasoningRoom12VBoxesIndex])));
             dashboardTabOfferHBoxSeasoningRoom12VBoxesIndex++;
         }
     }
@@ -1908,6 +2021,76 @@ public class DashboardController {
         }
     }
 
+    @FXML
+    private void generateSalePanes() {
+        Pane[] panes = new Pane[] {saleTabRoom1Pane, saleTabRoom2Pane, saleTabRoom3Pane, saleTabRoom4Pane, saleTabRoom5Pane, saleTabRoom6Pane, saleTabRoom7Pane, saleTabRoom8Pane, saleTabRoom9Pane, saleTabRoom10Pane, saleTabRoom11Pane, saleTabRoom12Pane};
+        Label[] names = new Label[] {saleTabRoom1Name, saleTabRoom2Name, saleTabRoom3Name, saleTabRoom4Name, saleTabRoom5Name, saleTabRoom6Name, saleTabRoom7Name, saleTabRoom8Name, saleTabRoom9Name, saleTabRoom10Name, saleTabRoom11Name, saleTabRoom12Name};
+        Label[] preferredPrice = new Label[] {saleTabRoom1PreferredPrice, saleTabRoom2PreferredPrice, saleTabRoom3PreferredPrice, saleTabRoom4PreferredPrice, saleTabRoom5PreferredPrice, saleTabRoom6PreferredPrice, saleTabRoom7PreferredPrice, saleTabRoom8PreferredPrice, saleTabRoom9PreferredPrice, saleTabRoom10PreferredPrice, saleTabRoom11PreferredPrice, saleTabRoom12PreferredPrice};
+        Button[] buttons = new Button[] {saleTabButtonRoom1, saleTabButtonRoom2, saleTabButtonRoom3, saleTabButtonRoom4, saleTabButtonRoom5, saleTabButtonRoom6, saleTabButtonRoom7, saleTabButtonRoom8, saleTabButtonRoom9, saleTabButtonRoom10, saleTabButtonRoom11, saleTabButtonRoom12};
+        TextField[] prices = new TextField[] {saleTabRoom1Price, saleTabRoom2Price, saleTabRoom3Price, saleTabRoom4Price, saleTabRoom5Price, saleTabRoom6Price, saleTabRoom7Price, saleTabRoom8Price, saleTabRoom9Price, saleTabRoom10Price, saleTabRoom11Price, saleTabRoom12Price};
+        TextField[] discounts = new TextField[] {saleTabRoom1Discount, saleTabRoom2Discount, saleTabRoom3Discount, saleTabRoom4Discount, saleTabRoom5Discount, saleTabRoom6Discount, saleTabRoom7Discount, saleTabRoom8Discount, saleTabRoom9Discount, saleTabRoom10Discount, saleTabRoom11Discount, saleTabRoom12Discount};
+
+        int roomNumber = 0;
+        int activeRooms = 0;
+        for(Room room: RoomsManagement.rooms) {
+            if(room.isBought()){
+                panes[activeRooms].setVisible(true);
+                names[activeRooms].setText(room.getName());
+                preferredPrice[activeRooms].setText(String.valueOf(room.getPreferredPrice()));
+                if(room.isActive()) {
+                    buttons[activeRooms].setText("Uruchomiono");
+                    if(!discounts[activeRooms].getText().equals("")) {
+                        prices[activeRooms].setText(String.valueOf(room.getPrice() + Integer.parseInt(discounts[activeRooms].getText())));
+                    } else {
+                        prices[activeRooms].setText(String.valueOf(room.getPrice()));
+                    }
+                    prices[activeRooms].setDisable(true);
+                    discounts[activeRooms].setDisable(true);
+                } else {
+                    buttons[activeRooms].setText("Uruchom");
+                    prices[activeRooms].setDisable(false);
+                    discounts[activeRooms].setDisable(false);
+                }
+                activeRooms++;
+            } else {
+                panes[roomNumber].setVisible(false);
+            }
+            roomNumber++;
+        }
+    }
+
+    @FXML
+    private void activateRoom(Event event) {
+        TextField[] prices = new TextField[] {saleTabRoom1Price, saleTabRoom2Price, saleTabRoom3Price, saleTabRoom4Price, saleTabRoom5Price, saleTabRoom6Price, saleTabRoom7Price, saleTabRoom8Price, saleTabRoom9Price, saleTabRoom10Price, saleTabRoom11Price, saleTabRoom12Price};
+        TextField[] discounts = new TextField[] {saleTabRoom1Discount, saleTabRoom2Discount, saleTabRoom3Discount, saleTabRoom4Discount, saleTabRoom5Discount, saleTabRoom6Discount, saleTabRoom7Discount, saleTabRoom8Discount, saleTabRoom9Discount, saleTabRoom10Discount, saleTabRoom11Discount, saleTabRoom12Discount};
+        String buttonId = ((Control)event.getSource()).getId();
+        String roomIdString = String.valueOf(buttonId.charAt(buttonId.length() - 2) + "" + buttonId.charAt(buttonId.length() - 1));
+        int roomId = 0;
+        if(roomIdString.charAt(0) == 'm') {
+            roomId = Integer.parseInt(String.valueOf(roomIdString.charAt(1)));
+        } else {
+            roomId = Integer.parseInt(roomIdString);
+        }
+        if(!RoomsManagement.rooms[roomId - 1].isActive()) {
+            int roomPrice = -1;
+            if (!prices[roomId - 1].getText().equals("") && Integer.parseInt(prices[roomId - 1].getText()) > 0 && discounts[roomId - 1].getText().equals("")) {
+                roomPrice = Integer.parseInt(prices[roomId - 1].getText());
+            } else if (!prices[roomId - 1].getText().equals("") && Integer.parseInt(prices[roomId - 1].getText()) > 0 && !discounts[roomId - 1].getText().equals("")) {
+                roomPrice = Integer.parseInt(prices[roomId - 1].getText()) - Integer.parseInt(discounts[roomId - 1].getText());
+            }
+            if (roomPrice > 0) {
+                RoomsManagement.rooms[roomId - 1].setActive(true);
+                RoomsManagement.rooms[roomId - 1].setPrice(roomPrice);
+                generateSalePanes();
+            }
+        } else {
+            RoomsManagement.rooms[roomId - 1].setActive(false);
+            prices[roomId - 1].setText("");
+            discounts[roomId - 1].setText("");
+            generateSalePanes();
+        }
+    }
+
     /**
      * Metoda wylogowująca użytkownika
      */
@@ -1934,10 +2117,10 @@ public class DashboardController {
             int roomNumber = 1;
             for(Room room: RoomsManagement.rooms) {
                 if(CurrentlyPlayedGame.getCurrentGame().getCurrentRound() == 1) {
-                    executeQuery("INSERT INTO hotelprojekt.room (room_id, hotel_id, room_number, is_bought, quality_bought, resources_1, resources_2, resources_3) VALUES (DEFAULT, " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ", " + roomNumber + ", " + room.isBought() + ", " + room.getQualityBought() + ", " + ManageResources.getResources(roomNumber)[0] + ", " + ManageResources.getResources(roomNumber)[1] + ", " + ManageResources.getResources(roomNumber)[2] + ")");
+                    executeQuery("INSERT INTO hotelprojekt.room (room_id, hotel_id, room_number, is_bought, is_active, quality_bought, resources_1, resources_2, resources_3, price) VALUES (DEFAULT, " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + ", " + roomNumber + ", " + room.isBought() + ", " + room.isActive() + ", " + room.getQualityBought() + ", " + ManageResources.getResources(roomNumber)[0] + ", " + ManageResources.getResources(roomNumber)[1] + ", " + ManageResources.getResources(roomNumber)[2] + ", " + room.getPrice() + ")");
                     roomNumber++;
                 } else {
-                    executeQuery("UPDATE hotelprojekt.room SET is_bought = " + room.isBought() + ", quality_bought = " + room.getQualityBought() + ", resources_1 = " + ManageResources.getResources(roomNumber)[0] + ", resources_2 = " + ManageResources.getResources(roomNumber)[1] + ", resources_3 = " + ManageResources.getResources(roomNumber)[2] + " WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + " AND room_number = " + roomNumber + ";");
+                    executeQuery("UPDATE hotelprojekt.room SET is_bought = " + room.isBought() + ", is_active = " + room.isActive() + ", quality_bought = " + room.getQualityBought() + ", resources_1 = " + ManageResources.getResources(roomNumber)[0] + ", resources_2 = " + ManageResources.getResources(roomNumber)[1] + ", resources_3 = " + ManageResources.getResources(roomNumber)[2] + ", price = " + room.getPrice() +  " WHERE hotel_id = " + CurrentlyPlayedGame.getCurrentGame().getHotelId() + " AND room_number = " + roomNumber + ";");
                     roomNumber++;
                 }
             }
@@ -1982,6 +2165,15 @@ public class DashboardController {
     }
 
     @FXML
+    private void switchToGames() {
+        try {
+            App.setRoot("usermainscreen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void moneyUp() {
         CurrentlyPlayedGame.setBalance(CurrentlyPlayedGame.getBalance() + 10000);
         dashboardTabBankGenerateDataInBankOptions();
@@ -2018,7 +2210,7 @@ public class DashboardController {
     }
 
     @FXML
-    private void dashboardTabBankGenerateDataInAccountingOptions() {
+    private void dashboardTabAccountingGenerateDataInAccountingOptions() {
         if(ManageAccounting.isAccountingOfficeChosen()) {
             dashboardTabAccountingNameOfOffice1.setText(ManageAccounting.getCurrentlyChosenAccountingOffice().getAccountingOfficeName());
             dashboardTabAccountingPaymantForSingleValue1.setText(String.valueOf(ManageAccounting.getCurrentlyChosenAccountingOffice().getAccountingOfficeSingleCost()));
@@ -2033,19 +2225,19 @@ public class DashboardController {
             dashboardTabAccountingPaneWithOffice3.setStyle("-fx-border-color: black; -fx-border-width: 2px");
         } else {
             ManageAccounting.generateAccountingOfficeOption();
-            dashboardTabAccountingNameOfOffice1.setText(ManageAccounting.getAccoutingOption1().getAccountingOfficeName());
+            dashboardTabAccountingNameOfOffice1.setText(ManageAccounting.getAccountingOption1().getAccountingOfficeName());
             dashboardTabAccountingNameOfOffice2.setText(ManageAccounting.getAccountingOption2().getAccountingOfficeName());
             dashboardTabAccountingNameOfOffice3.setText(ManageAccounting.getAccountingOption3().getAccountingOfficeName());
 
-            dashboardTabAccountingPaymantForSingleValue1.setText(String.valueOf(ManageAccounting.getAccoutingOption1().getAccountingOfficeSingleCost()));
+            dashboardTabAccountingPaymantForSingleValue1.setText(String.valueOf(ManageAccounting.getAccountingOption1().getAccountingOfficeSingleCost()));
             dashboardTabAccountingPaymantForSingleValue2.setText(String.valueOf(ManageAccounting.getAccountingOption2().getAccountingOfficeSingleCost()));
             dashboardTabAccountingPaymantForSingleValue3.setText(String.valueOf(ManageAccounting.getAccountingOption3().getAccountingOfficeSingleCost()));
 
-            dashboardTabAccountingPaymantForFullEmployeValue1.setText(String.valueOf(ManageAccounting.getAccoutingOption1().getAccountingOfficeFullCost()));
+            dashboardTabAccountingPaymantForFullEmployeValue1.setText(String.valueOf(ManageAccounting.getAccountingOption1().getAccountingOfficeFullCost()));
             dashboardTabAccountingPaymantForFullEmployeValue2.setText(String.valueOf(ManageAccounting.getAccountingOption2().getAccountingOfficeFullCost()));
             dashboardTabAccountingPaymantForFullEmployeValue3.setText(String.valueOf(ManageAccounting.getAccountingOption3().getAccountingOfficeFullCost()));
 
-            dashboardTabAccountingPaymantForLawEmployeValue1.setText(String.valueOf(ManageAccounting.getAccoutingOption1().getAccountingOfficeLawCost()));
+            dashboardTabAccountingPaymantForLawEmployeValue1.setText(String.valueOf(ManageAccounting.getAccountingOption1().getAccountingOfficeLawCost()));
             dashboardTabAccountingPaymantForLawEmployeValue2.setText(String.valueOf(ManageAccounting.getAccountingOption2().getAccountingOfficeLawCost()));
             dashboardTabAccountingPaymantForLawEmployeValue3.setText(String.valueOf(ManageAccounting.getAccountingOption3().getAccountingOfficeLawCost()));
         }
@@ -2072,15 +2264,17 @@ public class DashboardController {
         dashboardTabAccountingPaneWithOffice3.setStyle("-fx-border-color: black; -fx-border-width: 2px");
         dashboardTabAccountingSelectOffice1.setText("Wybierz Biuro");
         dashboardTabAccountingPaneWithOffice1.setStyle("-fx-border-color: black; -fx-border-width: 2px");
+        ManageAccounting.setChosenAccountingOffice(2);
     }
 
     public void selectOfficeNr3(ActionEvent event) {
-        dashboardTabAccountingSelectOffice3.setStyle("-fx-border-color: linear-gradient(to bottom, #ff7f50, #6a5acd);"
+        dashboardTabAccountingSelectOffice3.setText("Wybrane Biuro");
+        dashboardTabAccountingPaneWithOffice3.setStyle("-fx-border-color: linear-gradient(to bottom, #ff7f50, #6a5acd);"
                 + " -fx-border-width: 5px 5px 7px 5px; -fx-border-style: solid; -fx-border-color: green;");
         dashboardTabAccountingSelectOffice2.setText("Wybierz Biuro");
         dashboardTabAccountingPaneWithOffice2.setStyle("-fx-border-color: black; -fx-border-width: 2px");
         dashboardTabAccountingSelectOffice1.setText("Wybierz Biuro");
         dashboardTabAccountingPaneWithOffice1.setStyle("-fx-border-color: black; -fx-border-width: 2px");
-
+        ManageAccounting.setChosenAccountingOffice(3);
     }
 }
