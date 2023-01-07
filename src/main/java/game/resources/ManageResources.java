@@ -58,7 +58,11 @@ public abstract class ManageResources {
         resourcesStorage[room - 1][quality - 1] += amount;
     }
 
-    public static void removeResourcesToStorage(int room, int quality, int amount) {
+    public static void removeResourcesFromStorage(int room, int quality, int amount) {
         resourcesStorage[room - 1][quality - 1] -= amount;
+    }
+
+    public static void reset() {
+        resourcesStorage = new int[][] {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
     }
 }

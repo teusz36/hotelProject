@@ -12,6 +12,8 @@ public class Room {
     private int startRound;
     private int officeFurnishingPrices[];
     private int resourcesPrices[];
+    private boolean isActive = false;
+    private int price = 0;
 
     public Room(String name, int yearlyDemand, int preferredPrice, double employeeTime, int[] furnishingPrices, int[] officeFurnishingPrices, int[] resourcesPrices, double[] seasonality, int startRound) {
         this.name = name;
@@ -115,5 +117,21 @@ public class Room {
 
     public void setResourcesPrices(int[] resourcesPrices) {
         this.resourcesPrices = resourcesPrices;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
