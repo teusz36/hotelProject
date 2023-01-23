@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="TOP_CENTER" prefHeight="675.0" prefWidth="1200.0" spacing="20.0" style="-fx-background-color: #4c0013;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.DashboardController">
+<HBox alignment="TOP_CENTER" prefHeight="675.0" prefWidth="1200.0" style="-fx-background-color: #4c0013;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.DashboardController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -40,9 +40,12 @@
                     </cursor>
                 </Button>
             </children>
+         <HBox.margin>
+            <Insets right="20.0" />
+         </HBox.margin>
         </Pane>
 
-      <TabPane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="gameDashboardTabPane" prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE">
         <tabs>
             <Tab fx:id="dashboardTab" onSelectionChanged="#tabRefresh" text="Dashboard">
                 <content>
@@ -104,6 +107,14 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
+                                                       <Label fx:id="dashboardTabDashboardProfit" text="0 PLN">
+                                                           <font>
+                                                               <Font size="36.0" />
+                                                           </font>
+                                                           <VBox.margin>
+                                                               <Insets top="10.0" />
+                                                           </VBox.margin>
+                                                       </Label>
                                                    </children>
                                                 </VBox>
                                              </children></Pane>
@@ -114,10 +125,18 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                    <children>
-                                                      <Label styleClass="offer-item-title" text="LICZBA PRACOWNIKÓW">
+                                                      <Label styleClass="offer-item-title" text="LICZBA OTWARTYCH POKOI">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
+                                                      </Label>
+                                                      <Label fx:id="dashboardTabDashboardNumberOfActiveRooms">
+                                                         <font>
+                                                            <Font size="62.0" />
+                                                         </font>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
                                                       </Label>
                                                    </children>
                                                 </VBox>
@@ -176,11 +195,44 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                    <children>
-                                                      <Label styleClass="offer-item-title" text="Label">
+                                                      <Label styleClass="offer-item-title" text="BANK">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
+                                                      <HBox fx:id="dashboardTabBankHBoxValues" alignment="CENTER" minHeight="0.0" prefHeight="0.0" prefWidth="200.0" visible="false">
+                                                         <children>
+                                                            <VBox prefHeight="200.0" prefWidth="150.0">
+                                                               <HBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </HBox.margin>
+                                                               <children>
+                                                                  <Label text="Opłata za konto:" />
+                                                                  <Label text="Opłata za kartę:" />
+                                                                  <Label text="Oprocentowanie lokaty:" />
+                                                                  <Label text="Oprocentowanie kredytu:" />
+                                                                  <Label text="Oprocentowanie kredytu odnawialnego:" wrapText="true" />
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="50.0">
+                                                               <HBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </HBox.margin>
+                                                               <children>
+                                                                  <Label fx:id="dashboardTabBankPanelAccountCost" alignment="CENTER_RIGHT" text="&lt;value&gt;" textAlignment="RIGHT" />
+                                                                  <Label fx:id="dashboardTabBankPanelCardCost" alignment="CENTER_RIGHT" text="&lt;value&gt;" textAlignment="RIGHT" />
+                                                                  <Label fx:id="dashboardTabBankPanelDeposit" alignment="CENTER_RIGHT" text="&lt;value&gt;" textAlignment="RIGHT" />
+                                                                  <Label fx:id="dashboardTabBankPanelCredit" alignment="CENTER_RIGHT" text="&lt;value&gt;" textAlignment="RIGHT" />
+                                                                  <Label fx:id="dashboardTabBankPanelResolvingCredit" alignment="CENTER_RIGHT" minHeight="35.2" text="&lt;value&gt;" textAlignment="RIGHT" />
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <VBox fx:id="dashboardTabBankVBoxNoBankInfo" alignment="CENTER" minHeight="110.0" prefHeight="200.0" prefWidth="100.0">
+                                                         <children>
+                                                            <Label text="Brak wybranego banku" />
+                                                         </children>
+                                                      </VBox>
                                                    </children>
                                                 </VBox>
                                              </children></Pane>
@@ -219,6 +271,14 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
+                                                       <Label fx:id="dashboardTabDashboardMonthlyPayment" text="0 PLN">
+                                                           <font>
+                                                               <Font size="48.0" />
+                                                           </font>
+                                                           <VBox.margin>
+                                                               <Insets top="10.0" />
+                                                           </VBox.margin>
+                                                       </Label>
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -230,11 +290,40 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                    <children>
-                                                      <Label styleClass="offer-item-title" text="Label">
+                                                      <Label styleClass="offer-item-title" text="BIURO RACHUNKOWE">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
+                                                      <HBox fx:id="dashboardTabAccountingHBoxValues" alignment="CENTER" minHeight="0.0" prefHeight="0.0" prefWidth="200.0" visible="false">
+                                                         <children>
+                                                            <VBox prefHeight="200.0" prefWidth="150.0">
+                                                               <HBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </HBox.margin>
+                                                               <children>
+                                                                  <Label text="Opłata za pojedyncze księgowanie:" wrapText="true" />
+                                                                  <Label text="Opłata za pracownika etatowego:" wrapText="true" />
+                                                                  <Label text="Opłata za pracownika na umowie cywilno-prawnej:" wrapText="true" />
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="50.0">
+                                                               <HBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </HBox.margin>
+                                                               <children>
+                                                                  <Label fx:id="dashboardTabAccountingPanelSingle" minHeight="34.0" text="&lt;value&gt;" />
+                                                                  <Label fx:id="dashboardTabAccountingPanelLaw" minHeight="34.0" text="&lt;value&gt;" />
+                                                                  <Label fx:id="dashboardTabAccountingPanelFull" minHeight="34.0" text="&lt;value&gt;" />
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <VBox fx:id="dashboardTabAccountingVBoxNoAccountingInfo" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                         <children>
+                                                            <Label text="Brak wybranego biura rachunkowego" />
+                                                         </children>
+                                                      </VBox>
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -5260,14 +5349,6 @@
                      </children></AnchorPane>
               </content>
           </Tab>
-          <Tab fx:id="officesTab" onSelectionChanged="#tabRefresh" text="Stanowiska">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <children>
-                      <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
-                  </children></AnchorPane>
-            </content>
-          </Tab>
           <Tab fx:id="bankTab" onSelectionChanged="#tabRefresh" text="Bank">
               <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -5566,7 +5647,7 @@
                                                        <children>
                                                            <HBox alignment="CENTER_RIGHT" prefWidth="200.0" style="-fx-background-color: #6a208c;">
                                                                <children>
-                                                                   <Label fx:id="dashboardTabBankCreditPopUpX" onMouseClicked="#createDepositHidePopUp" text="x" textFill="WHITE">
+                                                                   <Label fx:id="dashboardTabBankCreditPopUpX" onMouseClicked="#getCreditHidePopUp" text="x" textFill="WHITE">
                                                                        <font>
                                                                            <Font name="System Bold" size="15.0" />
                                                                        </font>
@@ -7224,7 +7305,70 @@
               <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
-                          <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css" />
+                          <Pane prefHeight="635.0" prefWidth="891.0" styleClass="menu-pane" stylesheets="@styles.css">
+                           <children>
+                              <VBox prefHeight="606.0" prefWidth="891.0">
+                                 <children>
+                                    <ScrollPane hbarPolicy="NEVER" prefHeight="606.0" prefWidth="200.0" styleClass="menu-pane" stylesheets="@styles.css">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="606.0" prefWidth="891.0">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="606.0" prefWidth="891.0" styleClass="menu-pane">
+                                                   <children>
+                                                      <HBox alignment="CENTER" prefWidth="200.0">
+                                                         <children>
+                                                            <Label fx:id="resultsTabCurrentRound" text="Obecna runda: &lt;value&gt;" textFill="WHITE">
+                                                               <font>
+                                                                  <Font size="30.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="15.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefWidth="200.0">
+                                                         <children>
+                                                            <Label fx:id="resultsTabPlace" text="Twoje miejsce: &lt;value&gt;" textFill="WHITE">
+                                                               <font>
+                                                                  <Font size="30.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets bottom="15.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" prefWidth="200.0">
+                                                         <children>
+                                                            <Label fx:id="resultsTabTotalSalesNumber" text="W poprzedniej rundzie udało ci się sprzedać &lt;value&gt; usług" textFill="WHITE">
+                                                               <font>
+                                                                  <Font size="30.0" />
+                                                               </font>
+                                                               <HBox.margin>
+                                                                  <Insets bottom="15.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                       <TableView fx:id="resultsTabTableViewLostSales" maxWidth="550.0" prefHeight="200.0" prefWidth="500.0" styleClass="results-room-tab-view" stylesheets="@styles.css">
+                                                           <columns>
+                                                               <TableColumn prefWidth="75.0" text="C1" />
+                                                               <TableColumn prefWidth="75.0" text="C2" />
+                                                           </columns>
+                                                           <VBox.margin>
+                                                               <Insets bottom="30.0" />
+                                                           </VBox.margin>
+                                                       </TableView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                           </children></Pane>
                       </children></AnchorPane>
               </content>
           </Tab>
@@ -7243,8 +7387,6 @@
                                         <placeholder>
                                             <VBox alignment="CENTER" maxHeight="200.0" maxWidth="200.0">
                                                 <Button mnemonicParsing="false" onAction="#markGameAsReady" styleClass="menu-sub-button" text="Zgłoś gotowość" />
-                                                <Button mnemonicParsing="false" onAction="#up" text="Up" />
-                                                <Button mnemonicParsing="false" onAction="#moneyUp" text="MoneyUP" />
                                             </VBox>
                                         </placeholder>
                                         <columns>
@@ -7263,5 +7405,17 @@
           </Tab>
         </tabs>
       </TabPane>
+      <Pane fx:id="gameDashboardWaitPane" prefHeight="635.0" prefWidth="0.0" styleClass="menu-pane" stylesheets="@styles.css">
+         <children>
+            <VBox fx:id="gameDashboardWaitVBox" alignment="CENTER" prefHeight="635.0" prefWidth="891.0" visible="false">
+               <children>
+                  <Label fx:id="gameDashboardWaitLabel" text="Gra oczekuje na przeniesienie przez administratora" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children></Pane>
     </children>
 </HBox>

@@ -27,7 +27,7 @@ public class UserMainScreenController {
     private ResultSet games;
     private int numberOfColumns;
     public static String[] columnKeys = new String[100];
-    private final String[] columnNames = {"Id gry", "Data rozpoczęcia", "Data zakończenia", "Gra aktywna", "Obecna runda", "Liczba użytkowników"};
+    private final String[] columnNames = {"Id gry", "Data rozpoczęcia", "Data zakończenia", "Gra aktywna", "Obecna runda", "Liczba graczy"};
 
     @FXML
     private TableView userGamesTable;
@@ -91,6 +91,10 @@ public class UserMainScreenController {
                 dataRow.put(columnKeys[numberOfColumns], "tak");
             } else {
                 dataRow.put(columnKeys[numberOfColumns], "nie");
+            }
+            ResultSet rsPlayers = executeQuery("SELECT COUNT(*) FROM hotelprojekt.game_users WHERE game_id = " + games.getInt(1) + ";");
+            while (rsPlayers.next()) {
+                dataRow.put(columnKeys[5], String.valueOf(rsPlayers.getInt(1)));
             }
             allData.add(dataRow);
         }

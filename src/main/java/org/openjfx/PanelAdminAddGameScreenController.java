@@ -247,20 +247,21 @@ public class PanelAdminAddGameScreenController {
     @FXML
     private void addGame() throws IOException, SQLException {
         if(numberOfSelectedUsers > 0) {
+            System.out.println("numberOfSelectedUsers: " + numberOfSelectedUsers);
             String gameId = "", hotelId = "";
             executeQuery("INSERT INTO hotelprojekt.game (game_id, current_round) VALUES (DEFAULT, DEFAULT);");
             ResultSet rs = executeQuery("SELECT MAX(game_id) FROM hotelprojekt.game;");
             while (rs.next()) {
                 gameId = rs.getString(1);
             }
-
+            System.out.println("gamId = " + gameId);
             for(int i = 0; i < numberOfSelectedUsers; i++) {
                 executeQuery("INSERT INTO hotelprojekt.hotel (hotel_id) VALUES (DEFAULT);");
                 ResultSet rs2 = executeQuery("SELECT MAX(hotel_id) FROM hotelprojekt.hotel;");
                 while (rs2.next()) {
                     hotelId = rs2.getString(1);
                 }
-                executeQuery("INSERT INTO hotelprojekt.game_users (game_id, user_id, hotel_id) VALUES (" + gameId + ", " + selectedUsersId[i] + ", DEFAULT);");
+                executeQuery("INSERT INTO hotelprojekt.game_users (game_id, user_id, hotel_id) VALUES (" + gameId + ", " + selectedUsersId[i] + ", " + hotelId + ");");
             }
             App.setRoot("paneladmingamesscreen");
         }

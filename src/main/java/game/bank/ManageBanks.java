@@ -165,7 +165,8 @@ public abstract class ManageBanks {
     }
 
     public static void resetBank() {
-        currentlyChosenBank = new Bank();
+        currentlyChosenBank = null;
+        previouslyChosenBank = null;
         bankOption1 = new Bank();
         bankOption2 = new Bank();
         bankOption3 = new Bank();
